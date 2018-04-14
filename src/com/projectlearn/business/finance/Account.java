@@ -20,16 +20,6 @@ public class Account {
         this.accountType = accountType;
 
     }
-    //deposit
-    public void deposit(double amount){
-        this.balance += amount;
-    }
-
-    //withdraw
-    public void withdraw(double amount){
-        this.balance -= amount;
-    }
-
 
 
     //getters
@@ -59,6 +49,17 @@ public class Account {
 
     public String getAccountPassword(){
         return this.password;
+    }
+
+
+    //this method checks whether the email and password are true
+    public boolean CheckLogin(String email, String password){
+
+        boolean status = false;
+        if(this.email.equalsIgnoreCase(email) && this.password.equals(password)){
+            status = true;
+        }
+        return status;
     }
 
 }

@@ -19,7 +19,7 @@
 //        }
 //
 //        else if(user == "2") {
-//            login();
+//            Login();
 //        }
 //    }
 //
@@ -37,7 +37,7 @@
 //    }
 //
 //    //logs in to admin
-//    public void login() {
+//    public void Login() {
 //        String userName = JOptionPane.showInputDialog(null, "Enter your user name");
 //        if(userName == userName1) {
 //            String password = JOptionPane.showInputDialog("Enter password");

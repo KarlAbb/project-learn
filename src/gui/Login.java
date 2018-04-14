@@ -1,5 +1,6 @@
 package gui;
 
+import com.projectlearn.business.finance.Account;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,6 +23,7 @@ import java.io.IOException;
 
 public class Login extends Application {
     public  Stage stage;
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -47,12 +49,7 @@ public class Login extends Application {
 
 
 
+
     }
-
-    public void btnCancel_Click(){
-        stage.close();
-    }
-
-
 
 }
