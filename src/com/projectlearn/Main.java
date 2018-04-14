@@ -1,4 +1,4 @@
-package com.projectlearn.business;
+package com.projectlearn;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
