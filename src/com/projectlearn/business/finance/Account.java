@@ -1,22 +1,40 @@
 package com.projectlearn.business.finance;
 
 public class Account {
-    private int accountNum;
+    private int accountID;
     private int balance;
     private String accountType;
     private int paycheckAmount;
     private int payInterval;
 
-    public Account(int accountNum, int balance, String accountType, int paycheckAmount, int payInterval) {
-        this.accountNum = accountNum;
-        this.balance = balance;
+    private String name;
+    private String email;
+    private String password;
+
+    //constructor
+    public Account(String name,String email, String password, int id, String accountType) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.accountID = id;
         this.accountType = accountType;
-        this.paycheckAmount = paycheckAmount;
-        this.payInterval = payInterval;
+
+    }
+    //deposit
+    public void deposit(double amount){
+        this.balance += amount;
     }
 
+    //withdraw
+    public void withdraw(double amount){
+        this.balance -= amount;
+    }
+
+
+
+    //getters
     public int getAccountNum() {
-        return accountNum;
+        return accountID;
     }
 
     public int getBalance() {
@@ -34,4 +52,13 @@ public class Account {
     public int getPayInterval() {
         return payInterval;
     }
+
+    public String getAccountLogins(){
+        return this.name;
+    }
+
+    public String getAccountPassword(){
+        return this.password;
+    }
+
 }
