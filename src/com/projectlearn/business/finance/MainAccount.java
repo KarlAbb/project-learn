@@ -16,6 +16,10 @@ public class MainAccount extends Application{
 
     public static void main (String... args) {
         AccountList accounts = new AccountList();
+        int num = 1234;
+        int balance = 1234;
+        Account stefan = new Account(num, balance);
+        stefan.addAccount(num, stefan);
 
         launch(args);
     }

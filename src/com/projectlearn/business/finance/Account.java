@@ -15,16 +15,18 @@ public class Account {
     private String password;
 
     //constructor
-    public Account(int accountNum, String name, String email, String password, int id, String accountType) {
+    public Account(int accountNum, int balance /*String name, String email, String password, int id, String accountType*/) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.accountID = id;
+//        this.accountID = id;
         this.accountType = accountType;
         this.accountNum = accountNum;
+        this.balance = balance;
     }
     //deposit
-    public void deposit(double amount){
+    public void deposit(int accountNum, int amount){
+
         this.balance += amount;
     }
 

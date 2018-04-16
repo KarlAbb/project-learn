@@ -5,12 +5,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 import java.util.HashMap;
 import java.util.Random;
 
 public class FinanceController {
 
+
+    @FXML
+    private AnchorPane finance;
 
     @FXML
     private Label rando;
@@ -24,14 +28,22 @@ public class FinanceController {
     @FXML
     private TextField accountNum;
 
-    public void deposit(ActionEvent event) {
+    public void deposit(ActionEvent event) throws Exception{
         int accountID = Integer.parseInt(accountNum.getText());
         int depositAmount = Integer.parseInt(amount.getText());
         HashMap<Integer, Account> temp = AccountList.getList();
-        Account deposit = temp.get(accountID);
-        deposit.deposit(depositAmount);
-        temp.put(accountID, deposit);
-        AccountList.updateAccounts(temp);
+        Account depositAccount = temp.get(accountID);
+        if(depositAccount == null) {
+            System.out.println("error: account does not exist");
+        }
+        else {
+            int newBalance = depositAccount.getBalance() + depositAmount;
+            depositAccount.setBalance(newBalance);
+            temp.put(accountID, depositAccount);
+            AccountList.updateAccounts(temp);
+
+            rando.setText(Integer.toString(newBalance));
+        }
     }
 
     public void generateRandom(ActionEvent event) {
