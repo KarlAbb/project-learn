@@ -1,4 +1,4 @@
-package gui;
+package gui.login;
 
 import com.projectlearn.business.finance.Account;
 import com.projectlearn.business.finance.AccountList;
