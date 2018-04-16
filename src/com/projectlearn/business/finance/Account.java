@@ -69,4 +69,8 @@ public class Account {
         return this.password;
     }
 
+    public void setBalance(int amount) {
+        balance = amount;
+    }
+
 }
