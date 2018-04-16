@@ -19,7 +19,7 @@ public class MainAccount extends Application{
         int num = 1234;
         int balance = 1234;
         Account stefan = new Account(num, balance);
-        stefan.addAccount(num, stefan);
+        accounts.setAccounts(num, stefan);
 
         launch(args);
     }

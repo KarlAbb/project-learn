@@ -9,7 +9,7 @@
    <children>
       <Button fx:id="clickme" layoutX="223.0" layoutY="360.0" mnemonicParsing="false" onAction="#generateRandom" text="Click for Random Number" />
       <Label fx:id="rando" layoutX="244.0" layoutY="322.0" prefHeight="37.0" prefWidth="112.0" />
-      <Button fx:id="deposit" layoutX="14.0" layoutY="295.0" mnemonicParsing="false" onAction="#deposit" prefHeight="26.0" prefWidth="71.0" text="Deposit" />
+      <Button fx:id="deposit" layoutX="14.0" layoutY="295.0" mnemonicParsing="false" onAction="#newDeposit" prefHeight="26.0" prefWidth="71.0" text="Deposit" />
       <TextField layoutX="14.0" layoutY="259.0" prefHeight="26.0" prefWidth="71.0" promptText="amount" />
       <TextField fx:id="accountNum" layoutX="226.0" layoutY="42.0" promptText="Enter account number" />
    </children>

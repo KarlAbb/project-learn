@@ -47,7 +47,7 @@ public class Account {
         return accountID;
     }
 
-    public int getBalance() {
+    public int getBalance(int accountNum) {
         return balance;
     }
 

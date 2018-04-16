@@ -31,12 +31,17 @@ public class AccountList {
         accounts.put(accountNum, account);
     }
 
-    public void deposit(int accountNum, int amount) {
+    public static Account getAccount(int accountNum) {
+        return accounts.get(accountNum);
+    }
+
+    public static void deposit(int accountNum, int amount) {
         boolean key = accounts.containsKey(accountNum);
         if(key == true) {
             Account depositAccount = accounts.get(accountNum);
-            int balance = depositAccount.getBalance();
-            depositAccount.setBalance(amount);
+            int balance = depositAccount.getBalance(accountNum);
+            System.out.println(balance);
+            depositAccount.setBalance(balance + amount);
 
         }
     }
