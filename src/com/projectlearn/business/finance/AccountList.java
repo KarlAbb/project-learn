@@ -3,7 +3,14 @@ package com.projectlearn.business.finance;
 import java.util.HashMap;
 
 public class AccountList {
-    public HashMap<Integer, Account> accounts = new HashMap();
+    private static HashMap<Integer, Account> accounts = new HashMap();
+
+    public static HashMap<Integer, Account> getList() {
+        if (accounts == null) {
+            accounts = new HashMap<>();
+        }
+            return accounts;
+    }
 
     public AccountList() {
 
@@ -38,8 +45,8 @@ public class AccountList {
         return accounts;
     }
 
-    public void updateAccounts(HashMap<Integer, Account> accounts) {
-        this.accounts = accounts;
+    public static void updateAccounts(HashMap<Integer, Account> newAccount) {
+        accounts = newAccount;
     }
 
 }

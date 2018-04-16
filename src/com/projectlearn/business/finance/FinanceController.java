@@ -11,8 +11,6 @@ import java.util.Random;
 
 public class FinanceController {
 
-    AccountList accountList = new AccountList();
-    HashMap<Integer, Account> accounts = accountList.getAccounts();
 
     @FXML
     private Label rando;
@@ -27,10 +25,13 @@ public class FinanceController {
     private TextField accountNum;
 
     public void deposit(ActionEvent event) {
+        int accountID = Integer.parseInt(accountNum.getText());
         int depositAmount = Integer.parseInt(amount.getText());
-        Account account = accountList.getAccounts(Integer.parseInt(accountNum.getText()));
-        int balance = account.getBalance() + depositAmount;
-        account.setBalance(balance);
+        HashMap<Integer, Account> temp = AccountList.getList();
+        Account deposit = temp.get(accountID);
+        deposit.deposit(depositAmount);
+        temp.put(accountID, deposit);
+        AccountList.updateAccounts(temp);
     }
 
     public void generateRandom(ActionEvent event) {
