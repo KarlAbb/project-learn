@@ -1,24 +1,27 @@
 package com.projectlearn.business.finance;
 
 public class Account {
+    AccountList accounts = new AccountList();
+
     private int accountID;
     private int balance;
     private String accountType;
     private int paycheckAmount;
     private int payInterval;
+    private int accountNum;
 
     private String name;
     private String email;
     private String password;
 
     //constructor
-    public Account(String name,String email, String password, int id, String accountType) {
+    public Account(int accountNum, String name, String email, String password, int id, String accountType) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.accountID = id;
         this.accountType = accountType;
-
+        this.accountNum = accountNum;
     }
     //deposit
     public void deposit(double amount){
@@ -28,6 +31,11 @@ public class Account {
     //withdraw
     public void withdraw(double amount){
         this.balance -= amount;
+    }
+
+    //add account to AccountList
+    public void addAccount(int accountNum, Account account) {
+        accounts.setAccounts(accountNum, account);
     }
 
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="amount" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectlearn.business.finance.FinanceController">
+   <children>
+      <Button fx:id="clickme" layoutX="223.0" layoutY="360.0" mnemonicParsing="false" onAction="#generateRandom" text="Click for Random Number" />
+      <Label fx:id="rando" layoutX="244.0" layoutY="322.0" prefHeight="37.0" prefWidth="112.0" />
+      <Button fx:id="deposit" layoutX="14.0" layoutY="187.0" mnemonicParsing="false" onAction="#deposit" prefHeight="26.0" prefWidth="71.0" text="Deposit" />
+      <TextField layoutX="14.0" layoutY="149.0" prefHeight="26.0" prefWidth="71.0" promptText="ammount" />
+   </children>
+</AnchorPane>
