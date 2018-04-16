@@ -7,32 +7,41 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="472.0" prefWidth="364.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="472.0" prefWidth="364.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LoginController">
    <children>
-      <Label fx:id="emailLabel" layoutX="20.0" layoutY="183.0" prefHeight="28.0" prefWidth="48.0" scaleZ="-14.0" text="Email" AnchorPane.bottomAnchor="261.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="296.0" AnchorPane.topAnchor="183.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <TextField fx:id="emailTextField" layoutX="20.0" layoutY="211.0" prefHeight="33.0" prefWidth="311.0" promptText="Enter your email" scaleZ="-14.0" AnchorPane.bottomAnchor="228.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </TextField>
-      <Label fx:id="passwordLabel" layoutX="20.0" layoutY="244.0" prefHeight="28.0" prefWidth="92.0" scaleZ="-14.0" text="Password" AnchorPane.leftAnchor="20.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <PasswordField fx:id="emailPasswordField" layoutX="20.0" layoutY="272.0" prefHeight="33.0" prefWidth="311.0" promptText="Enter your password" scaleZ="-14.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </PasswordField>
-      <HBox layoutX="127.0" layoutY="323.0" prefHeight="53.0" prefWidth="217.0" AnchorPane.bottomAnchor="96.0" AnchorPane.leftAnchor="127.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="323.0">
+      <VBox layoutX="19.0" layoutY="180.0" prefHeight="156.0" prefWidth="324.0">
+         <children>
+            <Label fx:id="emailLabel" prefHeight="28.0" prefWidth="48.0" text="Email">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="emailTextField" prefHeight="33.0" prefWidth="311.0" promptText="Enter your email">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <VBox prefHeight="79.0" prefWidth="324.0">
+               <children>
+                  <Label fx:id="passwordLabel" prefHeight="28.0" prefWidth="92.0" text="Password">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="emailPasswordField" prefHeight="33.0" prefWidth="311.0" promptText="Enter your password">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </PasswordField>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <HBox layoutX="127.0" layoutY="331.0" prefHeight="53.0" prefWidth="217.0" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="127.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="331.0">
          <children>
             <Button fx:id="cancelBtn" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#cancelBtn_Click" prefHeight="39.0" prefWidth="99.0" text="Cancel" textAlignment="CENTER">
                <font>
