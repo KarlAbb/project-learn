@@ -16,10 +16,6 @@ public class AccountList {
 
     }
 
-    //gets a certain account
-    public Account getAccounts(int accountNum) {
-        return accounts.get(accountNum);
-    }
 
     //adds a new account
     public void setAccounts(int accountNum, Account account) {
@@ -31,21 +27,13 @@ public class AccountList {
         accounts.put(accountNum, account);
     }
 
+    //gets a certain account
     public static Account getAccount(int accountNum) {
         return accounts.get(accountNum);
     }
 
-    public static void deposit(int accountNum, int amount) {
-        boolean key = accounts.containsKey(accountNum);
-        if(key == true) {
-            Account depositAccount = accounts.get(accountNum);
-            int balance = depositAccount.getBalance(accountNum);
-            System.out.println(balance);
-            depositAccount.setBalance(balance + amount);
 
-        }
-    }
-
+    //gets whole account list
     public HashMap<Integer, Account> getAccounts(){
         return accounts;
     }

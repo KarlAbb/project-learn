@@ -28,31 +28,17 @@ public class FinanceController {
     @FXML
     private TextField accountNum;
 
-    public void newDeposit(ActionEvent event) {
+    public void deposit(ActionEvent event) {
         int accountID = Integer.parseInt(accountNum.getText());
+        System.out.println(accountID);
         int depositAmount = Integer.parseInt(amount.getText());
-        AccountList.deposit(accountID, depositAmount);
-        HashMap<Integer, Account> temp = AccountList.getList();
-        Account depositAccount = temp.get(accountID);
+        System.out.println(depositAmount);
+        Account.deposit(accountID, depositAmount);
+        String amountLabel = Integer.toString(depositAmount);
+        rando.setText(amountLabel);
     }
 
-//    public void deposit(ActionEvent event) throws Exception{
-//        int accountID = Integer.parseInt(accountNum.getText());
-//        int depositAmount = Integer.parseInt(amount.getText());
-//        HashMap<Integer, Account> temp = AccountList.getList();
-//        Account depositAccount = temp.get(accountID);
-//        if(depositAccount == null) {
-//            System.out.println("error: account does not exist");
-//        }
-//        else {
-//            int newBalance = depositAccount.getBalance(accountID) + depositAmount;
-//            depositAccount.setBalance(newBalance);
-//            temp.put(accountID, depositAccount);
-//            AccountList.updateAccounts(temp);
-//
-//            rando.setText(Integer.toString(newBalance));
-//        }
-//    }
+
 
     public void generateRandom(ActionEvent event) {
         Random rand = new Random();

@@ -18,7 +18,7 @@ public class MainAccount extends Application{
         AccountList accounts = new AccountList();
         int num = 1234;
         int balance = 1234;
-        Account stefan = new Account(num, balance);
+        Account stefan = new Account(num, balance, "stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner");
         accounts.setAccounts(num, stefan);
 
         launch(args);

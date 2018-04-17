@@ -15,7 +15,7 @@ public class Account {
     private String password;
 
     //constructor
-    public Account(int accountNum, int balance /*String name, String email, String password, int id, String accountType*/) {
+    public Account(int accountNum, int balance, String name, String email, String password, int id, String accountType) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -25,9 +25,19 @@ public class Account {
         this.balance = balance;
     }
     //deposit
-    public void deposit(int accountNum, int amount){
+    public static void deposit(int accountNum, int amount){
+        Account temp = AccountList.getAccount(accountNum);
+        int balance = temp.getBalance(accountNum);
+        balance += amount;
+        temp.addAccount(accountNum, temp);
+    }
 
-        this.balance += amount;
+    //withdraw
+    public static void withdraw(int accountNum, int amount) {
+        Account temp = AccountList.getAccount(accountNum);
+        int balance = temp.getBalance(accountNum);
+        balance -= amount;
+        temp.addAccount(accountNum, temp);
     }
 
     //withdraw
@@ -38,6 +48,10 @@ public class Account {
     //add account to AccountList
     public void addAccount(int accountNum, Account account) {
         accounts.setAccounts(accountNum, account);
+    }
+
+    public String getName(int accountNum) {
+        return name;
     }
 
 
