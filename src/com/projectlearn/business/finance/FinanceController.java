@@ -5,12 +5,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 import java.util.HashMap;
 import java.util.Random;
 
 public class FinanceController {
 
+
+    @FXML
+    private AnchorPane finance;
 
     @FXML
     private Label rando;
@@ -26,13 +30,15 @@ public class FinanceController {
 
     public void deposit(ActionEvent event) {
         int accountID = Integer.parseInt(accountNum.getText());
+        System.out.println(accountID);
         int depositAmount = Integer.parseInt(amount.getText());
-        HashMap<Integer, Account> temp = AccountList.getList();
-        Account deposit = temp.get(accountID);
-        deposit.deposit(depositAmount);
-        temp.put(accountID, deposit);
-        AccountList.updateAccounts(temp);
+        System.out.println(depositAmount);
+        Account.deposit(accountID, depositAmount);
+        String amountLabel = Integer.toString(depositAmount);
+        rando.setText(amountLabel);
     }
+
+
 
     public void generateRandom(ActionEvent event) {
         Random rand = new Random();
