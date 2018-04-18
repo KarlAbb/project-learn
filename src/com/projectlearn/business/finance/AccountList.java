@@ -23,7 +23,7 @@ public class AccountList {
         if(key == false) {
             accounts.put(accountNum, account);
         }
-        else System.out.println("error: account already exists");
+        else System.out.println("WARNING: REPLACING ACCOUNT");
         accounts.put(accountNum, account);
     }
 

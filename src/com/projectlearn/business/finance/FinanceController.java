@@ -17,7 +17,10 @@ public class FinanceController {
     private AnchorPane finance;
 
     @FXML
-    private Label rando;
+    private Label account;
+
+    @FXML
+    private Label balance;
 
     @FXML
     private Button deposit;
@@ -28,6 +31,15 @@ public class FinanceController {
     @FXML
     private TextField accountNum;
 
+
+    public void welcome () {
+        accountNum.setOnAction((event -> {
+            String name = Account.getAccountName(Integer.parseInt(accountNum.getText()));
+            account.setText("Welcome " + name + " !");
+            balance.setText(Integer.toString(Account.getAccountBalance((Integer.parseInt(accountNum.getText())))));
+        }));
+    }
+
     public void deposit(ActionEvent event) {
         int accountID = Integer.parseInt(accountNum.getText());
         System.out.println(accountID);
@@ -35,16 +47,9 @@ public class FinanceController {
         System.out.println(depositAmount);
         Account.deposit(accountID, depositAmount);
         String amountLabel = Integer.toString(depositAmount);
-        rando.setText(amountLabel);
+        balance.setText(Integer.toString(Account.getAccountBalance((Integer.parseInt(accountNum.getText())))));
     }
 
-
-
-    public void generateRandom(ActionEvent event) {
-        Random rand = new Random();
-        int myRand = rand.nextInt(50) + 1;
-        rando.setText(Integer.toString(myRand));
-    }
 
     public void depositTen(ActionEvent event) {
 

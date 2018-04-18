@@ -27,15 +27,16 @@ public class Account {
     //deposit
     public static void deposit(int accountNum, int amount){
         Account temp = AccountList.getAccount(accountNum);
-        int balance = temp.getBalance(accountNum);
+        int balance = temp.getBalance();
         balance += amount;
         temp.addAccount(accountNum, temp);
     }
 
+
     //withdraw
     public static void withdraw(int accountNum, int amount) {
         Account temp = AccountList.getAccount(accountNum);
-        int balance = temp.getBalance(accountNum);
+        int balance = temp.getBalance();
         balance -= amount;
         temp.addAccount(accountNum, temp);
     }
@@ -50,19 +51,25 @@ public class Account {
         accounts.setAccounts(accountNum, account);
     }
 
-    public String getName(int accountNum) {
+    public static String getAccountName(int accountNum) {
+        Account temp = AccountList.getAccount(accountNum);
+        return temp.getName();
+    }
+
+    public static int getAccountBalance(int accountNum) {
+        Account temp = AccountList.getAccount(accountNum);
+        return temp.getBalance();
+    }
+
+    public String getName() {
         return name;
     }
 
 
 
-    //getters
+    //getters and setters
     public int getAccountNum() {
         return accountID;
-    }
-
-    public int getBalance(int accountNum) {
-        return balance;
     }
 
     public String getAccountType() {
@@ -84,6 +91,8 @@ public class Account {
     public String getAccountPassword(){
         return this.password;
     }
+
+    public int getBalance() { return balance; }
 
     public void setBalance(int amount) {
         balance = amount;
