@@ -29,7 +29,12 @@ public class Account {
         Account temp = AccountList.getAccount(accountNum);
         int balance = temp.getBalance();
         balance += amount;
+        temp.setBalance(balance);
         temp.addAccount(accountNum, temp);
+    }
+
+    public static void depositAccount(Account account, int amount) {
+        account.setBalance(account.getBalance() + amount);
     }
 
 
