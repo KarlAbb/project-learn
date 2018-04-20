@@ -1,4 +1,5 @@
 package com.projectlearn.business.finance;
+import java.lang.*;
 
 public class Account {
     AccountList accounts = new AccountList();
@@ -24,17 +25,11 @@ public class Account {
         this.accountNum = accountNum;
         this.balance = balance;
     }
-    //deposit
-    public static void deposit(int accountNum, int amount){
-        Account temp = AccountList.getAccount(accountNum);
-        int balance = temp.getBalance();
-        balance += amount;
-        temp.setBalance(balance);
-        temp.addAccount(accountNum, temp);
-    }
 
-    public static void depositAccount(Account account, int amount) {
-        account.setBalance(account.getBalance() + amount);
+
+    public int deposit(int amount) {
+        balance += amount;
+        return balance;
     }
 
 
