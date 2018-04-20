@@ -1,35 +1,45 @@
 package com.projectlearn.business.finance;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class AccountList {
-    private ArrayList<Account> accountlist ;
+    private static HashMap<Integer, Account> accounts = new HashMap();
 
-    public AccountList(){
-        accountlist = new ArrayList<Account>();
+    public static HashMap<Integer, Account> getList() {
+        if (accounts == null) {
+            accounts = new HashMap<>();
+        }
+            return accounts;
     }
 
-    public void addAccounts(){
-        this.accountlist.add(new Account
-                ("john","john@gmail.com","pass",1,"basic"));
-        this.accountlist.add(new Account
-                ("fibi","fibi@email.fb","pass",1,"basic"));
-        this.accountlist.add(new Account
-                ("lebowski","lebowski@gmail.com","vietnam",1,"basic"));
+    public AccountList() {
 
     }
 
-    public ArrayList<Account> getList(){
-        return this.accountlist;
+
+    //adds a new account
+    public void setAccounts(int accountNum, Account account) {
+        boolean key = accounts.containsKey(accountNum);
+        if(key == false) {
+            accounts.put(accountNum, account);
+        }
+        else System.out.println("WARNING: REPLACING ACCOUNT");
+        accounts.put(accountNum, account);
     }
 
-    public boolean checkInfo(String email, String password){
-        boolean status = false;
-        for(Account a : accountlist){
-             if (a.CheckLogin(email,password)) {
-                 status = true;
-             }
-         }
-        return status;
+    //gets a certain account
+    public static Account getAccount(int accountNum) {
+        return accounts.get(accountNum);
     }
+
+
+    //gets whole account list
+    public HashMap<Integer, Account> getAccounts(){
+        return accounts;
+    }
+
+    public static void updateAccounts(HashMap<Integer, Account> newAccount) {
+        accounts = newAccount;
+    }
+
 }

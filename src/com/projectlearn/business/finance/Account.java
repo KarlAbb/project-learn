@@ -1,34 +1,75 @@
 package com.projectlearn.business.finance;
 
 public class Account {
+    AccountList accounts = new AccountList();
+
     private int accountID;
     private int balance;
     private String accountType;
     private int paycheckAmount;
     private int payInterval;
+    private int accountNum;
 
     private String name;
     private String email;
     private String password;
 
     //constructor
-    public Account(String name,String email, String password, int id, String accountType) {
+    public Account(int accountNum, int balance, String name, String email, String password, int id, String accountType) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.accountID = id;
+//        this.accountID = id;
         this.accountType = accountType;
-
+        this.accountNum = accountNum;
+        this.balance = balance;
+    }
+    //deposit
+    public static void deposit(int accountNum, int amount){
+        Account temp = AccountList.getAccount(accountNum);
+        int balance = temp.getBalance();
+        balance += amount;
+        temp.addAccount(accountNum, temp);
     }
 
 
-    //getters
+    //withdraw
+    public static void withdraw(int accountNum, int amount) {
+        Account temp = AccountList.getAccount(accountNum);
+        int balance = temp.getBalance();
+        balance -= amount;
+        temp.addAccount(accountNum, temp);
+    }
+
+    //withdraw
+    public void withdraw(double amount){
+        this.balance -= amount;
+    }
+
+    //add account to AccountList
+    public void addAccount(int accountNum, Account account) {
+        accounts.setAccounts(accountNum, account);
+    }
+
+    public static String getAccountName(int accountNum) {
+        Account temp = AccountList.getAccount(accountNum);
+        return temp.getName();
+    }
+
+    public static int getAccountBalance(int accountNum) {
+        Account temp = AccountList.getAccount(accountNum);
+        return temp.getBalance();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+
+
+    //getters and setters
     public int getAccountNum() {
         return accountID;
-    }
-
-    public int getBalance() {
-        return balance;
     }
 
     public String getAccountType() {
@@ -51,15 +92,10 @@ public class Account {
         return this.password;
     }
 
+    public int getBalance() { return balance; }
 
-    //this method checks whether the email and password are true
-    public boolean CheckLogin(String email, String password){
-
-        boolean status = false;
-        if(this.email.equalsIgnoreCase(email) && this.password.equals(password)){
-            status = true;
-        }
-        return status;
+    public void setBalance(int amount) {
+        balance = amount;
     }
 
 }
