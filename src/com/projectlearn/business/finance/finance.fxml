@@ -12,5 +12,7 @@
       <TextField fx:id="amount" layoutX="97.0" layoutY="561.0" prefHeight="26.0" prefWidth="71.0" promptText="amount" />
       <TextField fx:id="accountNum" layoutX="326.0" layoutY="33.0" onAction="#welcome" promptText="Enter account number" />
       <Label fx:id="balance" layoutX="709.0" layoutY="562.0" prefHeight="25.0" prefWidth="53.0" />
+      <Button fx:id="withdraw" layoutX="191.0" layoutY="562.0" mnemonicParsing="false" onAction="#withdraw" text="Withdraw" />
+      <TextField fx:id="withdrawAmount" layoutX="272.0" layoutY="562.0" prefHeight="25.0" prefWidth="71.0" promptText="amount" />
    </children>
 </AnchorPane>

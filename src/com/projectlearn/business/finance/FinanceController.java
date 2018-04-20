@@ -26,17 +26,23 @@ public class FinanceController {
     private Button deposit;
 
     @FXML
+    private Button withdraw;
+
+    @FXML
     private TextField amount;
 
     @FXML
     private TextField accountNum;
 
+    @FXML
+    private TextField withdrawAmount;
+
 
     public void welcome () {
         accountNum.setOnAction((event -> {
-            String name = Account.getAccountName(Integer.parseInt(accountNum.getText()));
-            account.setText("Welcome " + name + " !");
+            account.setText("Welcome " + Account.getAccountName(Integer.parseInt(accountNum.getText())) + "!");
             balance.setText(Integer.toString(Account.getAccountBalance((Integer.parseInt(accountNum.getText())))));
+
         }));
     }
 
@@ -45,9 +51,14 @@ public class FinanceController {
         System.out.println(accountID);
         int depositAmount = Integer.parseInt(amount.getText());
         System.out.println(depositAmount);
+//        Account.depositAccount(AccountList.getAccount(Integer.parseInt(account.getText())), Integer.parseInt(amount.getText()));
         Account.deposit(accountID, depositAmount);
         String amountLabel = Integer.toString(depositAmount);
+        System.out.println(Account.getAccountBalance((Integer.parseInt(accountNum.getText()))));
         balance.setText(Integer.toString(Account.getAccountBalance((Integer.parseInt(accountNum.getText())))));
+    }
+
+    public void withdraw(ActionEvent event) {
     }
 
 
