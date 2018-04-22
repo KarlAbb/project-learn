@@ -51,10 +51,7 @@ public class FinanceController {
         System.out.println(accountID);
         int depositAmount = Integer.parseInt(amount.getText());
         System.out.println(depositAmount);
-        Account.deposit(accountID, depositAmount);
-        String amountLabel = Integer.toString(depositAmount);
-        System.out.println(Account.getAccountBalance((Integer.parseInt(accountNum.getText()))));
-        balance.setText(Integer.toString(Account.getAccountBalance((Integer.parseInt(accountNum.getText())))));
+        AccountList.getAccount(accountID).deposit(depositAmount);
     }
 
     public void withdraw(ActionEvent event) {
