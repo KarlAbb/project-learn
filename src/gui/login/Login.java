@@ -36,10 +36,6 @@ public class Login extends Application {
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
-
-
-
-
     }
 
 }

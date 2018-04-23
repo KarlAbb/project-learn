@@ -2,10 +2,7 @@ package gui.login;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -57,7 +54,8 @@ public class LoginController {
     @FXML
     public void loginBtn_Click(ActionEvent event) {
 
-        if (loginprocessor.checkLogin(emailTextField.getText(), emailPasswordField.getText())) {
+        //You must use an account number
+        if (loginprocessor.checkLogin(Integer.parseInt(emailTextField.getText()), emailPasswordField.getText())) {
             loginText.setText("Logged in");
         } else {
             loginText.setFill(Color.RED);

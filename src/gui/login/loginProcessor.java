@@ -11,7 +11,6 @@ public class loginProcessor  {
 
     public loginProcessor(){
         accounts = new AccountList();
-        accounts.addAccounts();
     }
 
 
@@ -20,9 +19,9 @@ public class loginProcessor  {
     //pass email and password to the method
     // check if email and pass are in accountlist and are a match
     // returns true
-    public boolean checkLogin(String email, String password){
+    public boolean checkLogin(int accountNum, String password){
         boolean status = false;
-        if (accounts.checkInfo(email,password)){
+        if (accounts.checkInfo(accountNum, password)){
             status = true;
         }
         return status;
