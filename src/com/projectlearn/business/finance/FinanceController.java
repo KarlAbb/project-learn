@@ -2,11 +2,17 @@ package com.projectlearn.business.finance;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -29,6 +35,9 @@ public class FinanceController {
     private Button withdraw;
 
     @FXML
+    private Button newAccount;
+
+    @FXML
     private TextField amount;
 
     @FXML
@@ -38,31 +47,46 @@ public class FinanceController {
     private TextField withdrawAmount;
 
 
+    //inital Account display
+    @FXML
     public void welcome () {
-        accountNum.setOnAction((event -> {
-            account.setText("Welcome " + Account.getAccountName(Integer.parseInt(accountNum.getText())) + "!");
-            balance.setText(Integer.toString(Account.getAccountBalance((Integer.parseInt(accountNum.getText())))));
+            accountNum.setOnAction((event -> {
+            account.setText("Welcome " + AccountList.getAccount(Integer.parseInt(accountNum.getText())).getName() + "!");
+            balance.setText("Your balance is: " + AccountList.getAccount(Integer.parseInt(accountNum.getText())).getBalance());
 
         }));
+
+
     }
 
+    //deposit ActionHandler
     public void deposit(ActionEvent event) {
         int accountID = Integer.parseInt(accountNum.getText());
         System.out.println(accountID);
         int depositAmount = Integer.parseInt(amount.getText());
         System.out.println(depositAmount);
-//        Account.depositAccount(AccountList.getAccount(Integer.parseInt(account.getText())), Integer.parseInt(amount.getText()));
-        Account.deposit(accountID, depositAmount);
-        String amountLabel = Integer.toString(depositAmount);
-        System.out.println(Account.getAccountBalance((Integer.parseInt(accountNum.getText()))));
-        balance.setText(Integer.toString(Account.getAccountBalance((Integer.parseInt(accountNum.getText())))));
+        balance.setText("Your balance is: " + AccountList.getAccount(accountID).deposit(depositAmount));
     }
 
     public void withdraw(ActionEvent event) {
+        int accountID = Integer.parseInt(accountNum.getText());
+        System.out.println(accountID);
+        int withdrawValue = Integer.parseInt(withdrawAmount.getText());
+        System.out.println(withdrawAmount);
+        balance.setText("Your balance is: " + AccountList.getAccount(accountID).withdraw(withdrawValue));
     }
 
 
-    public void depositTen(ActionEvent event) {
+    public void newAccount (ActionEvent event) throws IOException{
+                Parent newAccountParent = FXMLLoader.load(getClass().getResource("newAccount.fxml"));
+                Scene newAccountScene = new Scene(newAccountParent);
+
+                Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                root.setScene(newAccountScene);
+                root.show();
 
     }
+
+
 }
