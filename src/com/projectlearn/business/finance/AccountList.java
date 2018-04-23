@@ -32,6 +32,13 @@ public class AccountList {
         return accounts.get(accountNum);
     }
 
+    public boolean checkInfo(int accountNum, String password) {
+        if (AccountList.getAccount(accountNum).getAccountPassword() == password) {
+            return true;
+        }
+        else return false;
+    }
+
 
     //gets whole account list
     public HashMap<Integer, Account> getAccounts(){
