@@ -19,21 +19,23 @@
             <Image url="@xcqYZ8.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="account" layoutX="14.0" layoutY="27.0" prefHeight="37.0" prefWidth="112.0" />
-      <Label fx:id="balance" layoutX="709.0" layoutY="562.0" prefHeight="25.0" prefWidth="53.0" />
-      <HBox layoutY="562.0" prefHeight="26.0" prefWidth="800.0" spacing="20.0">
+      <HBox layoutY="562.0" prefHeight="26.0" prefWidth="800.0" spacing="15.0">
          <children>
             <Button fx:id="withdraw" mnemonicParsing="false" onAction="#withdraw" text="Withdraw" />
             <TextField fx:id="withdrawAmount" prefHeight="25.0" prefWidth="71.0" promptText="amount" />
             <Button fx:id="deposit" mnemonicParsing="false" onAction="#deposit" prefHeight="26.0" prefWidth="71.0" text="Deposit" />
             <TextField fx:id="amount" prefHeight="26.0" prefWidth="71.0" promptText="amount" />
-            <HBox prefHeight="26.0" prefWidth="320.0" />
-            <Button fx:id="newAccount" mnemonicParsing="false" onAction="#newAccount" prefHeight="26.0" prefWidth="100.0" text="New Account">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Button>
+            <HBox prefHeight="26.0" prefWidth="320.0" spacing="20.0">
+               <children>
+                  <Label fx:id="balance" prefHeight="25.0" prefWidth="200.0" />
+                  <Label fx:id="account" prefHeight="37.0" prefWidth="200.0" />
+               </children>
+            </HBox>
+            <Button fx:id="newAccount" mnemonicParsing="false" onAction="#newAccount" prefHeight="26.0" prefWidth="100.0" text="New Account" />
          </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
       </HBox>
       <VBox layoutX="20.0" layoutY="14.0" prefHeight="282.0" prefWidth="760.0" spacing="20.0">
          <children>

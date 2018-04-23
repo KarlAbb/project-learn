@@ -12,7 +12,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
+import javafx.event.ActionEvent;
 import java.io.IOException;
 
 
@@ -41,19 +41,33 @@ public class NewAccountController {
 
     @FXML
     private void initialize() {
-        type.setValue("Intern");
+        type.setItems(types);
+        type.setValue("Employee");
     }
 
     @FXML
     public void addNewAccount (ActionEvent event) throws IOException {
         try {
+
+            int accountInt = Integer.parseInt(accountNum.getText());
+            int balance = 0;
+            String nameString = name.getText();
+            String passwordInt = password.getText();
+            String emailString = email.getText();
+            int IDInt = Integer.parseInt(ID.getText());
+            String accountTypeString = type.getTypeSelector();
+            Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString);
+            AccountList.getList().put(accountInt, newAccount);
+
             Parent mainAccount = FXMLLoader.load(getClass().getResource("finance.FXML"));
             Scene mainAccountScene = new Scene(mainAccount);
+            mainAccountScene.getStylesheets().add(getClass().getResource("finance.css").toExternalForm());
 
             Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             root.setScene(mainAccountScene);
             root.show();
+
         } catch (Exception e) {
             System.out.println("Error: IO Exception");
         }

@@ -25,6 +25,7 @@
             <TextField fx:id="ID" promptText="ex: 1" />
             <Label text="Type" />
             <TextField fx:id="accountType" promptText="ex: Team Manager" />
+            <Label />
             <ChoiceBox fx:id="type" prefWidth="150.0" />
          </children>
          <padding>

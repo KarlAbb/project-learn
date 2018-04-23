@@ -48,10 +48,12 @@ public class FinanceController {
 
 
     //inital Account display
+    @FXML
     public void welcome () {
             accountNum.setOnAction((event -> {
             account.setText("Welcome " + AccountList.getAccount(Integer.parseInt(accountNum.getText())).getName() + "!");
-            balance.setText(AccountList.getAccount(Integer.parseInt(accountNum.getText())).getBalance() + "");
+            balance.setText("Your balance is: " + AccountList.getAccount(Integer.parseInt(accountNum.getText())).getBalance());
+
         }));
 
 
@@ -63,7 +65,7 @@ public class FinanceController {
         System.out.println(accountID);
         int depositAmount = Integer.parseInt(amount.getText());
         System.out.println(depositAmount);
-        balance.setText(AccountList.getAccount(accountID).deposit(depositAmount) + "");
+        balance.setText("Your balance is: " + AccountList.getAccount(accountID).deposit(depositAmount));
     }
 
     public void withdraw(ActionEvent event) {
@@ -71,7 +73,7 @@ public class FinanceController {
         System.out.println(accountID);
         int withdrawValue = Integer.parseInt(withdrawAmount.getText());
         System.out.println(withdrawAmount);
-        balance.setText(AccountList.getAccount(accountID).withdraw(withdrawValue) + "");
+        balance.setText("Your balance is: " + AccountList.getAccount(accountID).withdraw(withdrawValue));
     }
 
 
