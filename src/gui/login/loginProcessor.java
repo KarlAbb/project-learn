@@ -4,13 +4,13 @@ import com.projectlearn.business.finance.Account;
 import com.projectlearn.business.finance.AccountList;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class loginProcessor  {
-    AccountList accounts;
-
+HashMap accounts;
 
     public loginProcessor(){
-        accounts = new AccountList();
+        HashMap accounts = AccountList.getList();
     }
 
 
@@ -21,7 +21,7 @@ public class loginProcessor  {
     // returns true
     public boolean checkLogin(int accountNum, String password){
         boolean status = false;
-        if (accounts.checkInfo(accountNum, password)){
+        if (AccountList.checkInfo(accountNum, password)){
             status = true;
         }
         return status;

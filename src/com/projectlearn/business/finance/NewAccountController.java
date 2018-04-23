@@ -59,9 +59,9 @@ public class NewAccountController {
             Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString);
             AccountList.getList().put(accountInt, newAccount);
 
-            Parent mainAccount = FXMLLoader.load(getClass().getResource("finance.FXML"));
+            Parent mainAccount = FXMLLoader.load(getClass().getResource("/gui/login/login.fxml"));
             Scene mainAccountScene = new Scene(mainAccount);
-            mainAccountScene.getStylesheets().add(getClass().getResource("finance.css").toExternalForm());
+//            mainAccountScene.getStylesheets().add(getClass().getResource("finance.css").toExternalForm());
 
             Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
