@@ -24,25 +24,40 @@ public class FinanceController {
 
     @FXML
     private Label account;
-
     @FXML
     private Label balance;
+    @FXML
+    private Label displayAccountNumber;
+    @FXML
+    private Label displayName;
+    @FXML
+    private Label displayEmail;
+    @FXML
+    private Label displayID;
+    @FXML
+    private Label displayStatus;
+    @FXML
+    private Label setAccountNumber;
+    @FXML
+    private Label setName;
+    @FXML
+    private Label setEmail;
+    @FXML
+    private Label setID;
+    @FXML
+    private Label setStatus;
 
     @FXML
     private Button deposit;
-
     @FXML
     private Button withdraw;
-
     @FXML
     private Button newAccount;
 
     @FXML
     private TextField amount;
-
     @FXML
     private TextField accountNum;
-
     @FXML
     private TextField withdrawAmount;
 

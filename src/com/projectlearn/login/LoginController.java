@@ -1,6 +1,5 @@
-package gui.login;
+package com.projectlearn.login;
 
-import com.projectlearn.business.finance.Account;
 import com.projectlearn.business.finance.AccountList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

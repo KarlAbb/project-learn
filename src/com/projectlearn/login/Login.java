@@ -1,4 +1,4 @@
-package gui.login;
+package com.projectlearn.login;
 
 import com.projectlearn.business.finance.Account;
 import com.projectlearn.business.finance.AccountList;
@@ -43,7 +43,7 @@ public class Login extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("/gui/login/login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/projectlearn/login/login.fxml"));
 
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);

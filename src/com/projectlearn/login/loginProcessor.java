@@ -1,9 +1,7 @@
-package gui.login;
+package com.projectlearn.login;
 
-import com.projectlearn.business.finance.Account;
 import com.projectlearn.business.finance.AccountList;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class loginProcessor  {
