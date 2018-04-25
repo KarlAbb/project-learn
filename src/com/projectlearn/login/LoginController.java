@@ -1,6 +1,7 @@
 package com.projectlearn.login;
 
-import com.projectlearn.business.finance.AccountList;
+import com.projectlearn.finance.AccountList;
+import com.projectlearn.finance.FinanceController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,17 +18,19 @@ import java.io.IOException;
 
 public class LoginController {
 
-    @FXML
-    private Label emailLabel;
+    public static int currentAccount = 0;
 
     @FXML
-    private TextField emailTextField;
+    private Label accountLabel;
+
+    @FXML
+    private TextField numTextField;
 
     @FXML
     private Label passwordLabel;
 
     @FXML
-    private PasswordField emailPasswordField;
+    private PasswordField passwordField;
 
     @FXML
     private Button cancelBtn;
@@ -61,7 +64,7 @@ public class LoginController {
     }
 
     @FXML
-    public void newAccount (ActionEvent event) throws IOException { Parent newAccountParent = FXMLLoader.load(getClass().getResource("/com/projectlearn/business/finance/newAccount.fxml"));
+    public void newAccount (ActionEvent event) throws IOException { Parent newAccountParent = FXMLLoader.load(getClass().getResource("/com/projectlearn/finance/newAccount.fxml"));
         Scene newAccountScene = new Scene(newAccountParent);
 
         Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -75,15 +78,17 @@ public class LoginController {
     @FXML
     public void loginBtn_Click(ActionEvent event) throws Exception {
 
-        if (AccountList.getAccount(Integer.parseInt(emailTextField.getText())).getAccountPassword().equals(emailPasswordField.getText())) {
-            Parent mainAccount = FXMLLoader.load(getClass().getResource("/com/projectlearn/business/finance/finance.FXML"));
+        if (AccountList.getAccount(Integer.parseInt(numTextField.getText())).getAccountPassword().equals(passwordField.getText())) {
+            Parent mainAccount = FXMLLoader.load(getClass().getResource("/com/projectlearn/finance/finance.FXML"));
             Scene mainAccountScene = new Scene(mainAccount);
-            mainAccountScene.getStylesheets().add(getClass().getResource("/com/projectlearn/business/finance/finance.css").toExternalForm());
+            mainAccountScene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
 
             Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             root.setScene(mainAccountScene);
             root.show();
+
+            currentAccount = Integer.parseInt(passwordField.getText());
         } else {
             loginText.setFill(Color.RED);
             loginText.setText("Incorrect email or password");

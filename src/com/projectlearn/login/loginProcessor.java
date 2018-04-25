@@ -1,6 +1,6 @@
 package com.projectlearn.login;
 
-import com.projectlearn.business.finance.AccountList;
+import com.projectlearn.finance.AccountList;
 
 import java.util.HashMap;
 

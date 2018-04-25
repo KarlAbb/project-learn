@@ -1,4 +1,4 @@
-package com.projectlearn.business.finance;
+package com.projectlearn.finance;
 import java.lang.*;
 
 public class Account {

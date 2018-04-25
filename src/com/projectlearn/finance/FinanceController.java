@@ -1,5 +1,6 @@
-package com.projectlearn.business.finance;
+package com.projectlearn.finance;
 
+import com.projectlearn.login.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,11 +14,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Random;
 
 public class FinanceController {
-
 
     @FXML
     private AnchorPane finance;
@@ -61,20 +59,17 @@ public class FinanceController {
     @FXML
     private TextField withdrawAmount;
 
-
     //inital Account display
     @FXML
     public void welcome () {
-            accountNum.setOnAction((event -> {
-            account.setText("Welcome " + AccountList.getAccount(Integer.parseInt(accountNum.getText())).getName() + "!");
-            balance.setText("Your balance is: " + AccountList.getAccount(Integer.parseInt(accountNum.getText())).getBalance());
-
-        }));
-
+        int currentAccount = LoginController.currentAccount;
+            account.setText("Welcome " + AccountList.getAccount(currentAccount).getName() + "!");
+            balance.setText("Your balance is: " + AccountList.getAccount(currentAccount).getBalance());
 
     }
 
     //deposit ActionHandler
+    @FXML
     public void deposit(ActionEvent event) {
         int accountID = Integer.parseInt(accountNum.getText());
         System.out.println(accountID);
