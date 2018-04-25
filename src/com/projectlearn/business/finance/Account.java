@@ -33,10 +33,14 @@ public class Account {
 
     //withdraw
     public int withdraw(int amount) {
-        balance -= amount;
         if(balance < 0) {
-            return -1;
+            return balance;
         }
+        else if (balance >= amount){
+            balance -= amount;
+            return balance;
+        }
+
         else return balance;
     }
 
