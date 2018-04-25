@@ -1,7 +1,7 @@
 package com.projectlearn.login;
 
-import com.projectlearn.business.finance.Account;
-import com.projectlearn.business.finance.AccountList;
+import com.projectlearn.finance.Account;
+import com.projectlearn.finance.AccountList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,7 +21,6 @@ public class Login extends Application {
         AccountList accounts = new AccountList();
         int num = 1234;
         int balance = 10;
-        String name = "hello";
         Account stefan = new Account(num, balance, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner");
         accounts.setAccounts(num, stefan);
 

@@ -1,14 +1,11 @@
-package com.projectlearn.business.finance;
+package com.projectlearn.finance;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import javafx.application.Application;
-
-import java.util.HashMap;
 
 //Image url https://cdn.wallpapersafari.com/2/63/xcqYZ8.jpg
 

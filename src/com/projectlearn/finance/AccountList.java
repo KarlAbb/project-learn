@@ -1,4 +1,4 @@
-package com.projectlearn.business.finance;
+package com.projectlearn.finance;
 
 import java.util.HashMap;
 
@@ -48,5 +48,6 @@ public class AccountList {
     public static void updateAccounts(HashMap<Integer, Account> newAccount) {
         accounts = newAccount;
     }
+
 
 }
