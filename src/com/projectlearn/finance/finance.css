@@ -16,6 +16,10 @@
 -fx-font-weight: bold;
 }
 
+#displayAccountNumber {
+-fx-text-fill:
+}
+
 .root {
 
 }

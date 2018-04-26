@@ -78,11 +78,11 @@ public class LoginController {
     @FXML
     public void loginBtn_Click(ActionEvent event) throws IOException {
 
-//        try {
+        try {
             if (AccountList.getAccount(Integer.parseInt(numTextField.getText())).getAccountPassword().equals(passwordField.getText())) {
-                currentAccount = Integer.parseInt(passwordField.getText());
+                currentAccount = Integer.parseInt(numTextField.getText());
 
-                Parent mainAccount = FXMLLoader.load(getClass().getResource("/com/projectlearn/finance/finance.FXML"));
+                Parent mainAccount = FXMLLoader.load(getClass().getResource("/com/projectlearn/finance/finance.fxml"));
                 Scene mainAccountScene = new Scene(mainAccount);
                 mainAccountScene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
 
@@ -95,10 +95,10 @@ public class LoginController {
                 loginText.setFill(Color.RED);
                 loginText.setText("Incorrect email or password");
             }
-//        } catch(Exception e) {
-//            loginText.setFill(Color.GREEN);
-//            loginText.setText("Oops! Something went wrong! Please try again!");
-//        }
+        } catch(Exception e) {
+            loginText.setFill(Color.GREEN);
+            loginText.setText("Oops! Something went wrong! Please try again!");
+        }
 
     }
 }

@@ -31,13 +31,12 @@
                   <Label fx:id="account" prefHeight="37.0" prefWidth="200.0" />
                </children>
             </HBox>
-            <Button fx:id="newAccount" mnemonicParsing="false" onAction="#newAccount" prefHeight="26.0" prefWidth="100.0" text="New Account" />
+            <Button fx:id="logOut" mnemonicParsing="false" onAction="#logOut" prefHeight="26.0" prefWidth="100.0" text="Log out" />
          </children>
          <padding>
             <Insets left="10.0" />
          </padding>
       </HBox>
-      <TextField fx:id="accountNum" layoutY="372.0" onAction="#welcome" prefHeight="26.0" prefWidth="610.0" promptText="Enter account number" />
       <GridPane layoutX="35.0" layoutY="14.0" prefHeight="282.0" prefWidth="730.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="357.79998779296875" minWidth="10.0" prefWidth="118.40000610351562" />

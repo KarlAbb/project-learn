@@ -53,12 +53,10 @@ public class FinanceController implements Initializable{
     @FXML
     private Button withdraw;
     @FXML
-    private Button newAccount;
+    private Button logOut;
 
     @FXML
     private TextField amount;
-    @FXML
-    private TextField accountNum;
     @FXML
     private TextField withdrawAmount;
 
@@ -82,7 +80,7 @@ public class FinanceController implements Initializable{
     //deposit ActionHandler
     @FXML
     public void deposit(ActionEvent event) {
-        int accountID = Integer.parseInt(accountNum.getText());
+        int accountID = LoginController.currentAccount;
         System.out.println(accountID);
         int depositAmount = Integer.parseInt(amount.getText());
         System.out.println(depositAmount);
@@ -90,23 +88,21 @@ public class FinanceController implements Initializable{
     }
 
     public void withdraw(ActionEvent event) {
-        int accountID = Integer.parseInt(accountNum.getText());
+        int accountID = LoginController.currentAccount;
         System.out.println(accountID);
         int withdrawValue = Integer.parseInt(withdrawAmount.getText());
         System.out.println(withdrawAmount);
         balance.setText("Your balance is: " + AccountList.getAccount(accountID).withdraw(withdrawValue));
     }
 
+    public void logOut(ActionEvent event) throws Exception{
+        Parent logOut = FXMLLoader.load(getClass().getResource("/com/projectlearn/login/login.fxml"));
+        Scene logOutScene = new Scene(logOut);
 
-    public void newAccount (ActionEvent event) throws IOException{
-                Parent newAccountParent = FXMLLoader.load(getClass().getResource("newAccount.fxml"));
-                Scene newAccountScene = new Scene(newAccountParent);
+        Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-                Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-                root.setScene(newAccountScene);
-                root.show();
-
+        root.setScene(logOutScene);
+        root.show();
     }
 
 
