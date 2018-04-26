@@ -78,20 +78,25 @@ public class LoginController {
     @FXML
     public void loginBtn_Click(ActionEvent event) throws Exception {
 
-        if (AccountList.getAccount(Integer.parseInt(numTextField.getText())).getAccountPassword().equals(passwordField.getText())) {
-            Parent mainAccount = FXMLLoader.load(getClass().getResource("/com/projectlearn/finance/finance.FXML"));
-            Scene mainAccountScene = new Scene(mainAccount);
-            mainAccountScene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
+        try {
+            if (AccountList.getAccount(Integer.parseInt(numTextField.getText())).getAccountPassword().equals(passwordField.getText())) {
+                currentAccount = Integer.parseInt(passwordField.getText());
 
-            Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Parent mainAccount = FXMLLoader.load(getClass().getResource("/com/projectlearn/finance/finance.FXML"));
+                Scene mainAccountScene = new Scene(mainAccount);
+                mainAccountScene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
 
-            root.setScene(mainAccountScene);
-            root.show();
+                Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            currentAccount = Integer.parseInt(passwordField.getText());
-        } else {
-            loginText.setFill(Color.RED);
-            loginText.setText("Incorrect email or password");
+                root.setScene(mainAccountScene);
+                root.show();
+
+            } else {
+                loginText.setFill(Color.RED);
+                loginText.setText("Incorrect email or password");
+            }
+        } catch(Exception e) {
+            loginText.setText("Oops! Something went wrong! Please try again!");
         }
 
     }

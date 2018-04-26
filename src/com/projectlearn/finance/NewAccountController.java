@@ -59,13 +59,13 @@ public class NewAccountController {
             Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString);
             AccountList.getList().put(accountInt, newAccount);
 
-            Parent mainAccount = FXMLLoader.load(getClass().getResource("/com/projectlearn/login/login.fxml"));
-            Scene mainAccountScene = new Scene(mainAccount);
+            Parent login = FXMLLoader.load(getClass().getResource("/com/projectlearn/login/login.fxml"));
+            Scene loginScene = new Scene(login);
 //            mainAccountScene.getStylesheets().add(getClass().getResource("finance.css").toExternalForm());
 
             Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            root.setScene(mainAccountScene);
+            root.setScene(loginScene);
             root.show();
 
         } catch (Exception e) {

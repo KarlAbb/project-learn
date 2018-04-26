@@ -39,6 +39,11 @@ public class AccountList {
         else return false;
     }
 
+    public static void updateAccountList(int accountNum, Account newAccount) {
+        accounts.put(accountNum, newAccount);
+
+    }
+
 
     //gets whole account list
     public HashMap<Integer, Account> getAccounts(){

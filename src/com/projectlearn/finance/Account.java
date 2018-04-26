@@ -84,4 +84,11 @@ public class Account {
         return name;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public int getAccountID () {
+        return accountID;
+    }
 }
