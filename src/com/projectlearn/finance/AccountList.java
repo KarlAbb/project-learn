@@ -18,7 +18,7 @@ public class AccountList {
 
 
     //adds a new account
-    public void setAccounts(int accountNum, Account account) {
+    public static void setAccounts(int accountNum, Account account) {
         boolean key = accounts.containsKey(accountNum);
         if(key == false) {
             accounts.put(accountNum, account);

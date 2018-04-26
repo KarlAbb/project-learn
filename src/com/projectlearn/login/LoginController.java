@@ -76,9 +76,9 @@ public class LoginController {
 
 
     @FXML
-    public void loginBtn_Click(ActionEvent event) throws Exception {
+    public void loginBtn_Click(ActionEvent event) throws IOException {
 
-        try {
+//        try {
             if (AccountList.getAccount(Integer.parseInt(numTextField.getText())).getAccountPassword().equals(passwordField.getText())) {
                 currentAccount = Integer.parseInt(passwordField.getText());
 
@@ -95,9 +95,10 @@ public class LoginController {
                 loginText.setFill(Color.RED);
                 loginText.setText("Incorrect email or password");
             }
-        } catch(Exception e) {
-            loginText.setText("Oops! Something went wrong! Please try again!");
-        }
+//        } catch(Exception e) {
+//            loginText.setFill(Color.GREEN);
+//            loginText.setText("Oops! Something went wrong! Please try again!");
+//        }
 
     }
 }

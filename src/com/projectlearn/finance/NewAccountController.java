@@ -57,11 +57,12 @@ public class NewAccountController {
             int IDInt = Integer.parseInt(ID.getText());
             String accountTypeString = type.getTypeSelector();
             Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString);
-            AccountList.getList().put(accountInt, newAccount);
+            AccountList.setAccounts(accountInt, newAccount);
+            System.out.println(AccountList.getAccount(accountInt).getName());
+//            AccountList.getList().put(accountInt, newAccount);
 
             Parent login = FXMLLoader.load(getClass().getResource("/com/projectlearn/login/login.fxml"));
             Scene loginScene = new Scene(login);
-//            mainAccountScene.getStylesheets().add(getClass().getResource("finance.css").toExternalForm());
 
             Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
