@@ -14,10 +14,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Login extends Application {
+    //TODO REORGANIZE PACKAGES
     public  Stage stage;
     public Scene mainAccountScene;
 
     public static void main(String[] args) {
+        //default account
         AccountList accounts = new AccountList();
         int num = 1234;
         int balance = 10;
@@ -26,18 +28,6 @@ public class Login extends Application {
 
         launch(args);
     }
-
-
-
-
-    //Buttons
-    Button btnLogin;
-    Button btnCancel;
-    TextField emailField;
-    PasswordField passwordField;
-    private String name;
-    private String password;
-
 
     @Override
     public void start(Stage primaryStage) throws IOException {

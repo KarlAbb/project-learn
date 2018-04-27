@@ -6,11 +6,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="539.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectlearn.finance.NewAccountController">
    <children>
-      <Button fx:id="done" layoutX="741.0" layoutY="506.0" mnemonicParsing="false" onAction="#addNewAccount" text="Done" />
       <VBox prefHeight="539.0" prefWidth="120.0" spacing="20.0">
          <children>
             <Label text="Account Number" />
@@ -30,5 +31,16 @@
             <Insets left="10.0" />
          </padding>
       </VBox>
+      <Label fx:id="alreadyInUse" layoutX="130.0" layoutY="14.0" prefHeight="50.0" prefWidth="665.0" textFill="DARKRED">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <HBox layoutX="586.0" layoutY="500.0" prefHeight="25.0" prefWidth="135.0" spacing="50.0">
+         <children>
+            <Button fx:id="quit" mnemonicParsing="false" onAction="#quitCreation" text="Quit" />
+            <Button fx:id="done" mnemonicParsing="false" onAction="#addNewAccount" text="Done" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

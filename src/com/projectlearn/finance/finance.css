@@ -16,10 +16,10 @@
 -fx-font-weight: bold;
 }
 
-#displayAccountNumber {
--fx-text-fill:
+.info-labels {
+-fx-text-fill: #0000cd;
 }
 
 .root {
-
+   -fx-background-image: url("/com/projectlearn/finance/blurred-group.png");
 }

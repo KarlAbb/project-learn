@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 
 public class FinanceController implements Initializable{
 
+    //Main container
     @FXML
     private AnchorPane finance;
 
@@ -27,6 +28,7 @@ public class FinanceController implements Initializable{
     private Label account;
     @FXML
     private Label balance;
+    //These are all informational labels that do not change with each account
     @FXML
     private Label displayAccountNumber;
     @FXML
@@ -37,6 +39,7 @@ public class FinanceController implements Initializable{
     private Label displayID;
     @FXML
     private Label displayStatus;
+    //These are all informational labels that do change with each account to display information about it
     @FXML
     private Label setAccountNumber;
     @FXML
@@ -48,15 +51,19 @@ public class FinanceController implements Initializable{
     @FXML
     private Label setStatus;
 
+    //These buttons deposit and withdraw the entered amount
     @FXML
     private Button deposit;
     @FXML
     private Button withdraw;
+    //This button returns to the login scene
     @FXML
     private Button logOut;
 
+    //This textfield contains the amount that should be deposited into an account
     @FXML
     private TextField amount;
+    //This textfield contains the amount that should be withdrawn from an account
     @FXML
     private TextField withdrawAmount;
 
@@ -87,6 +94,8 @@ public class FinanceController implements Initializable{
         balance.setText("Your balance is: " + AccountList.getAccount(accountID).deposit(depositAmount));
     }
 
+    //withdraw ActionHandler
+    @FXML
     public void withdraw(ActionEvent event) {
         int accountID = LoginController.currentAccount;
         System.out.println(accountID);
@@ -95,7 +104,9 @@ public class FinanceController implements Initializable{
         balance.setText("Your balance is: " + AccountList.getAccount(accountID).withdraw(withdrawValue));
     }
 
+    //Log out ActionHandler
     public void logOut(ActionEvent event) throws Exception{
+        //Changes scene back to login screen
         Parent logOut = FXMLLoader.load(getClass().getResource("/com/projectlearn/login/login.fxml"));
         Scene logOutScene = new Scene(logOut);
 
