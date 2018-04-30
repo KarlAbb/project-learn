@@ -1,5 +1,6 @@
 package com.projectlearn.finance;
 
+import com.projectlearn.login.Login;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -74,6 +75,8 @@ public class NewAccountController {
                 System.out.println(AccountList.getAccount(accountInt).getName());
 //            AccountList.getList().put(accountInt, newAccount);
 
+                Login.storeAccount(accountInt, newAccount);
+
                 //Changes back to login screen
                 Parent login = FXMLLoader.load(getClass().getResource("/com/projectlearn/login/login.fxml"));
                 Scene loginScene = new Scene(login);
@@ -89,7 +92,7 @@ public class NewAccountController {
             }
 
         } catch (Exception e) {
-            System.out.println("Error: IO Exception");
+            System.out.println("Error: Exception");
         }
 
 
