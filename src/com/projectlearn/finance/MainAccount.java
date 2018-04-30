@@ -1,5 +1,7 @@
+/*
 package com.projectlearn.finance;
 
+import com.projectlearn.finance.logic.AccountList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,7 +20,7 @@ public class MainAccount extends Application{
         int num = 1234;
         int balance = 10;
         String name = "hello";
-        Account stefan = new Account(num, balance, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner");
+        Abstract stefan = new Account(num, balance, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner");
         accounts.setAccounts(num, stefan);
 
         launch(args);
@@ -38,3 +40,4 @@ public class MainAccount extends Application{
         }
     }
 }
+*/
