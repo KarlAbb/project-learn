@@ -2,6 +2,7 @@ package com.projectlearn.login;
 
 import com.projectlearn.finance.Account;
 import com.projectlearn.finance.AccountList;
+import com.projectlearn.finance.Employee;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -14,7 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.*;
 
-public class Login extends Application {
+public class Login extends Application implements Employee {
     //TODO REORGANIZE PACKAGES
     public  Stage stage;
     public Scene mainAccountScene;
@@ -58,4 +59,8 @@ public class Login extends Application {
         primaryStage.show();
     }
 
+    @Override
+    public void getName(int accountNum) {
+
+    }
 }
