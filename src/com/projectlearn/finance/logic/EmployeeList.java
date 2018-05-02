@@ -56,6 +56,19 @@ public class EmployeeList {
 
     }
 
+    public static boolean checkLoginInfo(int accID, String passwd) {
+
+        boolean log = false;
+        for (Map.Entry<Integer,Employee> a : accountList.entrySet()) {
+            int key = a.getKey();
+            if(a.getValue().loginInfor(accID,passwd)){
+                log = true;
+            }
+        }
+        return log;
+
+    }
+
 
 
 

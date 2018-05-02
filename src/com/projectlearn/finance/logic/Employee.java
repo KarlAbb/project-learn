@@ -29,6 +29,16 @@ public class Employee extends AbstractAccount {
 
 
 
+    public boolean loginInfor(int id, String password){
+        boolean log = false;
+        if(this.id == id && password.equalsIgnoreCase(this.password)){
+            log = true;
+        }
+        return log;
+    }
+
+
+
 
     public void setName(String name) {
         this.name = name;

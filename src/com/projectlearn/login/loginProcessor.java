@@ -1,16 +1,21 @@
-/*
 
 package com.projectlearn.login;
 
-import com.projectlearn.finance.AccountList;
+import com.projectlearn.finance.logic.*;
 
 import java.util.HashMap;
 
 public class loginProcessor  {
-HashMap accounts;
+    EmployeeList emplist;
 
     public loginProcessor(){
-        HashMap accounts = AccountList.getList();
+        emplist = new EmployeeList();
+        emplist.addAccounts(01,new Employee(
+                01,"john","password","asd",EmpType.SYSADMIN
+        ));
+
+        //just testing
+
     }
 
 
@@ -19,9 +24,9 @@ HashMap accounts;
     //pass email and password to the method
     // check if email and pass are in accountlist and are a match
     // returns true
-    public boolean checkLogin(int accountNum, String password){
+    public boolean checkLogin(int id, String password){
         boolean status = false;
-        if (AccountList.checkInfo(accountNum, password)){
+        if (emplist.checkLoginInfo(id,password)){
             status = true;
         }
         return status;
@@ -31,4 +36,3 @@ HashMap accounts;
 
 
 
-*/

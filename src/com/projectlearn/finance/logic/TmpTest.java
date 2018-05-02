@@ -14,7 +14,9 @@ public class TmpTest {
         emplist.addAccounts(01,emp1);
         emp1.deposit(200);
 
-        System.out.println(emplist.getAccountBalance(01));
+
+
+        System.out.println(emplist.checkLoginInfo(01,"123123123"));
 
 
 

@@ -1,9 +1,10 @@
-/*
+
 
 package com.projectlearn.login;
 
-import com.projectlearn.finance.AccountList;
-import com.projectlearn.finance.FinanceController;
+import com.projectlearn.finance.logic.EmployeeList;
+
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,7 +57,7 @@ public class LoginController {
     private loginProcessor loginprocessor;
 
     public LoginController() {
-        loginprocessor = new loginProcessor(); //gives an error
+        loginprocessor = new loginProcessor();
     }
 
     @FXML
@@ -80,29 +81,16 @@ public class LoginController {
     @FXML
     public void loginBtn_Click(ActionEvent event) throws IOException {
 
-        try {
-            if (AccountList.getAccount(Integer.parseInt(numTextField.getText())).getAccountPassword().equals(passwordField.getText())) {
-                currentAccount = Integer.parseInt(numTextField.getText());
 
-                Parent mainAccount = FXMLLoader.load(getClass().getResource("/com/projectlearn/finance/finance.fxml"));
-                Scene mainAccountScene = new Scene(mainAccount);
-                mainAccountScene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
-
-                Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-                root.setScene(mainAccountScene);
-                root.show();
+            if (EmployeeList.checkLoginInfo(Integer.parseInt(numTextField.getText()),passwordField.getText())) {
+            loginText.setFill(Color.GREEN);
+                loginText.setText("welcome");
 
             } else {
                 loginText.setFill(Color.RED);
                 loginText.setText("Incorrect email or password");
             }
-        } catch(Exception e) {
-            loginText.setFill(Color.GREEN);
-            loginText.setText("Oops! Something went wrong! Please try again!");
-        }
+
 
     }
 }
-
-*/

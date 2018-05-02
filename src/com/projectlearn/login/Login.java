@@ -1,8 +1,7 @@
-/*
+
 package com.projectlearn.login;
 
-import com.projectlearn.finance.Account;
-import com.projectlearn.finance.AccountList;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,26 +18,9 @@ public class Login extends Application {
     public Scene mainAccountScene;
 
     public static void main(String[] args) {
-        AccountList accounts = new AccountList();
-        int num = 1234;
-        int balance = 10;
-        Account stefan = new Account(num, balance, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner");
-        accounts.setAccounts(num, stefan);
 
         launch(args);
     }
-
-
-
-
-    //Buttons
-    Button btnLogin;
-    Button btnCancel;
-    TextField emailField;
-    PasswordField passwordField;
-    private String name;
-    private String password;
-
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -53,4 +35,3 @@ public class Login extends Application {
 
 }
 
-*/
