@@ -6,6 +6,8 @@ public class AbstractAccount implements Account {
     private int balance;
 
     //constructor
+    public AbstractAccount(){}
+
     public AbstractAccount(int accountID) {
         this.accountID = accountID;
         this.balance = 0;
