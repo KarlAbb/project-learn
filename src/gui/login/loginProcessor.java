@@ -1,10 +1,5 @@
 package gui.login;
 
-import com.projectlearn.business.finance.Account;
-import com.projectlearn.business.finance.AccountList;
-
-import java.util.ArrayList;
-
 public class loginProcessor  {
     AccountList accounts;
 
