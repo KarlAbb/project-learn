@@ -5,6 +5,7 @@ import com.projectlearn.business.finance.account.AbstractFinancies;
 import com.projectlearn.business.finance.account.Account;
 import com.projectlearn.business.builders.AccountBuilder;
 import com.projectlearn.business.finance.account.AccountType;
+import com.projectlearn.business.finance.account.types.CEO;
 import com.projectlearn.business.finance.account.types.FinancialAccount;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -19,6 +20,8 @@ public class Main extends Application{
     public static void main(String... args) {
         launch(args);
     }
+
+
 
     @Override
     public void start(Stage primaryStage) {

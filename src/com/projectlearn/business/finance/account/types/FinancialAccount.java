@@ -18,16 +18,12 @@ public class FinancialAccount extends AbstractFinancies {
 
     // Possibly make like a Map<Account, FinancialAccount> ?
 
-    public FinancialAccount(Account account) {
-        super(account);
-    }
-
-    public FinancialAccount(Account account, int salary) {
-        super(account, salary);
-    }
-
     public FinancialAccount(Account account, int salary, int InitialBalance){
         super(account, salary, InitialBalance);
+    }
+
+    public FinancialAccount(Account account){
+        super(account);
     }
 
     @Override
@@ -42,9 +38,11 @@ public class FinancialAccount extends AbstractFinancies {
 
     @Override
     public boolean sendPayment(AbstractFinancies Account, int money) {
-        // business logic.
-        // not yet implemented.
-        return false;
+        if(this.balance < money) {
+            return false;
+        }
+        Account.incrementBalance(money);
+        return true;
     }
 
     @Override
@@ -56,6 +54,7 @@ public class FinancialAccount extends AbstractFinancies {
     public void incrementBalance(int increment) {
         this.balance = balance + increment;
     }
+
 
 
 }

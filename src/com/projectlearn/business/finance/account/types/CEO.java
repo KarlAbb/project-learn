@@ -5,7 +5,7 @@ import com.projectlearn.business.finance.account.AccountType;
 
 import java.util.UUID;
 
-public class CEO implements Account {
+public class CEO extends Account {
 
 
     private String name;
@@ -14,40 +14,16 @@ public class CEO implements Account {
     private Integer AccountLogins;
 
     public CEO(String name, UUID ID, String Password, Integer AccountLogins) {
+        super(name, ID, Password, AccountType.CEO, AccountLogins);
         this.name = name;
         this.ID = ID;
         this.password = Password;
         this.AccountLogins = AccountLogins;
     }
 
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public UUID getID() {
-        return ID;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
 
     @Override
     public AccountType getAccountType() {
        return AccountType.CEO;
     }
-
-    @Override
-    public int getAccountLogins() {
-        return AccountLogins;
-    }
-
-    @Override
-    public void incrementLogins() {
-        this.AccountLogins++;
-    }
-
 }

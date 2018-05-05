@@ -1,10 +1,13 @@
 package com.projectlearn.business.finance.account;
 
+import com.projectlearn.business.builders.FinanceAccountBuilder;
 import javafx.util.Callback;
 
 public abstract class AbstractFinancies {
 
     private Account account;
+
+    private FinanceAccountBuilder financeAccountBuilder;
 
     /**
      * Default constructor, which would handle all Financial transactions.
@@ -15,20 +18,16 @@ public abstract class AbstractFinancies {
     // Should I have an enum for Financial Types? And then do AbstractFinancies<Enum>?.
     // So I could group them.
 
-
-    public AbstractFinancies(Account account) {
-        this.account = account;
-    }
-
-    public AbstractFinancies(Account account, int Salary) {
-        this.account = account;
-        this.setSalary(Salary);
-    }
-
     public AbstractFinancies(Account account, int Salary, int InitialBalance) {
         this.account = account;
         this.setSalary(Salary);
         this.incrementBalance(InitialBalance);
+        this.financeAccountBuilder = new FinanceAccountBuilder();
+    }
+
+    public AbstractFinancies(Account account) {
+        this.account = account;
+        this.financeAccountBuilder = new FinanceAccountBuilder();
     }
 
     public abstract int getSalary();
@@ -40,6 +39,7 @@ public abstract class AbstractFinancies {
     public abstract void setSalary(int salary);
     public abstract void incrementBalance(int increment);
 
-
-
+    public FinanceAccountBuilder getFinanceAccountBuilder() {
+        return financeAccountBuilder;
+    }
 }
