@@ -1,7 +1,7 @@
 package com.projectlearn.finance;
 import java.lang.*;
 
-public class Account {
+public class Account extends AccountManager{
     private int accountID;
     private int balance;
     private String accountType;
@@ -15,13 +15,7 @@ public class Account {
 
     //constructor
     public Account(int accountNum, int balance, String name, String email, String password, int id, String accountType) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.accountID = id;
-        this.accountType = accountType;
-        this.accountNum = accountNum;
-        this.balance = balance;
+        super(accountNum, balance, name, email, password, id, accountType);
     }
 
 
@@ -43,6 +37,7 @@ public class Account {
 
         else return balance;
     }
+
 
 
 
