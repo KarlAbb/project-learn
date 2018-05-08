@@ -1,0 +1,25 @@
+#deposit {
+-fx-font-size: 12px ;
+-fx-background-color: #dcdcdc;
+-fx-padding: 4 4 4 4;
+-fx-text-fill: #800000;
+-fx-border-radius: 8;
+-fx-font-weight: bold;
+}
+
+#withdraw {
+-fx-font-size: 12px ;
+-fx-background-color: #dcdcdc;
+-fx-padding: 4 4 4 4;
+-fx-text-fill: #800000;
+-fx-border-radius: 8;
+-fx-font-weight: bold;
+}
+
+#displayAccountNumber {
+
+}
+
+.root {
+
+}

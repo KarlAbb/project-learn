@@ -1,4 +1,6 @@
-package gui.login;
+
+package com.projectlearn.login;
+
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,33 +15,23 @@ import java.io.IOException;
 
 public class Login extends Application {
     public  Stage stage;
+    public Scene mainAccountScene;
 
     public static void main(String[] args) {
+
         launch(args);
     }
 
+    @Override
+    public void start(Stage primaryStage) throws IOException {
 
-    //Buttons
-    Button btnLogin;
-    Button btnCancel;
-    TextField emailField;
-    PasswordField passwordField;
-    private String name;
-    private String password;
-
-
-    @Override public void start(Stage primaryStage) throws IOException {
-
-        Parent root = FXMLLoader.load(getClass().getResource("/gui/login/login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/projectlearn/login/login.fxml"));
 
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
-
-
-
-
     }
 
 }
+
