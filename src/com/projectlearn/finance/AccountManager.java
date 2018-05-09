@@ -2,6 +2,9 @@ package com.projectlearn.finance;
 
 public abstract class AccountManager {
 
+    //TODO change name or delete class
+    //TODO change name of AccountPerms to AccountManager
+
     private int accountID;
     private int balance;
     private String accountType;
