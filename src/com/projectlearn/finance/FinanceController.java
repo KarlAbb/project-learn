@@ -50,6 +50,8 @@ public class FinanceController implements Initializable{
     private Label setID;
     @FXML
     private Label setStatus;
+    @FXML
+    private Label warning;
 
     //These buttons deposit and withdraw the entered amount
     @FXML
@@ -88,10 +90,16 @@ public class FinanceController implements Initializable{
     @FXML
     public void deposit(ActionEvent event) {
         int accountID = LoginController.currentAccount;
-        System.out.println(accountID);
-        int depositAmount = Integer.parseInt(amount.getText());
-        System.out.println(depositAmount);
-        balance.setText("Your balance is: " + AccountList.getAccount(accountID).deposit(depositAmount));
+        if(AccountList.getAccount(accountID).getPerms().contains(Permissions.canDeposit)) {
+            System.out.println(accountID);
+            int depositAmount = Integer.parseInt(amount.getText());
+            System.out.println(depositAmount);
+            balance.setText("Your balance is: " + AccountList.getAccount(accountID).deposit(depositAmount));
+        }
+
+        else {
+            warning.setText("You don't have permission to do this! Please contact an administrator if you believe that this is a mistake!");
+        }
     }
 
     //withdraw ActionHandler
@@ -101,7 +109,7 @@ public class FinanceController implements Initializable{
         System.out.println(accountID);
         int withdrawValue = Integer.parseInt(withdrawAmount.getText());
         System.out.println(withdrawAmount);
-        balance.setText("Your balance is: " + AccountList.getAccount(accountID).withdraw(withdrawValue));
+        warning.setText("Your balance is: " + AccountList.getAccount(accountID).withdraw(withdrawValue));
     }
 
     //Log out ActionHandler

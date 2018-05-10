@@ -1,5 +1,7 @@
 package com.projectlearn.finance;
 
+import java.util.EnumSet;
+
 public class AccountPerms {
 
     Permissions canHire;
@@ -9,7 +11,4 @@ public class AccountPerms {
     Permissions canPay;
     Permissions canFine;
 
-    public void setPerms (String perm) {
-        
-    }
 }

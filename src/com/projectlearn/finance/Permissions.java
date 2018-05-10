@@ -7,4 +7,5 @@ public enum Permissions {
     canWithdraw,
     canPay,
     canFine,
+    canViewAccounts
 }

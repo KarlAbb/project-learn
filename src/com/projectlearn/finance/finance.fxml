@@ -55,5 +55,6 @@
             <Label fx:id="setStatus" prefHeight="57.0" prefWidth="682.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
+      <Label fx:id="warning" layoutX="63.0" layoutY="415.0" prefHeight="54.0" prefWidth="675.0" />
    </children>
 </AnchorPane>

@@ -16,6 +16,12 @@
 -fx-font-weight: bold;
 }
 
+#warning {
+-fx-font-size: 13px;
+-fx-text-fill: #800000;
+-fx-font-weight: bold;
+}
+
 .info-labels {
 -fx-text-fill: #0000cd;
 }
