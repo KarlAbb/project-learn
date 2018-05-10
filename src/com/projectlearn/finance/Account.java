@@ -1,8 +1,9 @@
 package com.projectlearn.finance;
 import java.lang.*;
+import java.util.EnumSet;
 import java.util.Set;
 
-public class Account extends AccountManager{
+public class Account /*extends AccountManager*/{
     private int accountID;
     private int balance;
     private String accountType;
@@ -14,9 +15,18 @@ public class Account extends AccountManager{
     private String email;
     private String password;
 
+    private Set<Permissions> permissions;
+
     //constructor
     public Account(int accountNum, int balance, String name, String email, String password, int id, String accountType, Set<Permissions> perms) {
-        super(accountNum, balance, name, email, password, id, accountType);
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.accountID = id;
+        this.accountType = accountType;
+        this.accountNum = accountNum;
+        this.balance = balance;
+        this.permissions = perms;
     }
 
 
@@ -39,7 +49,9 @@ public class Account extends AccountManager{
         else return balance;
     }
 
-
+    public Set<Permissions> getPerms() {
+        return permissions;
+    }
 
 
 
