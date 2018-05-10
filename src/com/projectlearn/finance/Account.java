@@ -1,5 +1,6 @@
 package com.projectlearn.finance;
 import java.lang.*;
+import java.util.Set;
 
 public class Account extends AccountManager{
     private int accountID;
@@ -14,7 +15,7 @@ public class Account extends AccountManager{
     private String password;
 
     //constructor
-    public Account(int accountNum, int balance, String name, String email, String password, int id, String accountType) {
+    public Account(int accountNum, int balance, String name, String email, String password, int id, String accountType, Set<Permissions> perms) {
         super(accountNum, balance, name, email, password, id, accountType);
     }
 

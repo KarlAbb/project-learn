@@ -9,7 +9,7 @@ public class AccountPerms {
     Permissions canPay;
     Permissions canFine;
 
-    public void setPerms (String perm) {
-        
+    public AccountPerms () {
+
     }
 }
