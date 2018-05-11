@@ -110,6 +110,7 @@ public class LoginController{
         catch(Exception e) {
             loginText.setFill(Color.GREEN);
             loginText.setText("Oops! Something went wrong! Please try again!");
+            System.out.println(e.getCause() + " " + e.getMessage() + " " + e.getStackTrace());
         }
 
     }

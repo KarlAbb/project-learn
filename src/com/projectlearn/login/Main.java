@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.Set;
 
 public class Main extends Application {
@@ -18,11 +19,13 @@ public class Main extends Application {
     public  Stage stage;
     public Scene mainAccountScene;
 
-    public static Set<Permissions> admin = Set.of(Permissions.canHire, Permissions.canFire, Permissions.canDeposit, Permissions.canWithdraw, Permissions.canPay, Permissions.canFine, Permissions.canViewAccounts);
-    public static Set<Permissions> intern = Set.of(Permissions.canWithdraw);
-    public static Set<Permissions> employee = Set.of(Permissions.canDeposit, Permissions.canWithdraw);
-    public static Set<Permissions> hr = Set.of(Permissions.canDeposit, Permissions.canWithdraw, Permissions.canHire, Permissions.canFire, Permissions.canPay, Permissions.canViewAccounts);
-    public static Set<Permissions> it = Set.of(Permissions.canDeposit, Permissions.canWithdraw, Permissions.canViewAccounts);
+    HashMap<String, Permissions> permissionsHashMap = new HashMap<>();
+
+    public static Set<Permissions> admin = Set.of(Permissions.CAN_HIRE, Permissions.CAN_FIRE, Permissions.CAN_DEPOSIT, Permissions.CAN_WITHDRAW, Permissions.CAN_PAY, Permissions.CAN_FINE, Permissions.CAN_VIEW_ACCOUNTS);
+    public static Set<Permissions> intern = Set.of(Permissions.CAN_WITHDRAW);
+    public static Set<Permissions> employee = Set.of(Permissions.CAN_DEPOSIT, Permissions.CAN_WITHDRAW);
+    public static Set<Permissions> hr = Set.of(Permissions.CAN_DEPOSIT, Permissions.CAN_WITHDRAW, Permissions.CAN_HIRE, Permissions.CAN_FIRE, Permissions.CAN_PAY, Permissions.CAN_VIEW_ACCOUNTS);
+    public static Set<Permissions> it = Set.of(Permissions.CAN_DEPOSIT, Permissions.CAN_WITHDRAW, Permissions.CAN_VIEW_ACCOUNTS);
 
     public static void main(String[] args) throws Exception{
 
@@ -37,6 +40,7 @@ public class Main extends Application {
         int balance2 = 30;
         Account internBob = new Account(num2, balance2, "Bob", "Testing@gmail.com", "1234", 0, "Intern", intern);
         accounts.setAccounts(num2, internBob);
+
 
 
 

@@ -69,13 +69,53 @@ public class NewAccountController {
             int IDInt = Integer.parseInt(ID.getText());
             String accountTypeString = type.getTypeSelector();
             if(!AccountList.getList().containsKey(accountInt)) {
-                if (accountTypeString == "admin") {
-                    Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.admin);
+                if (accountTypeString.equals("Intern")) {
+                    Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.intern);
                     AccountList.setAccounts(accountInt, newAccount);
                     System.out.println(AccountList.getAccount(accountInt).getName());
 //            AccountList.getList().put(accountInt, newAccount);
 
                     Main.storeAccount(accountInt, newAccount);
+                }
+                else if (accountTypeString == "Employee") {
+                    Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.employee);
+                    AccountList.setAccounts(accountInt, newAccount);
+                    System.out.println(AccountList.getAccount(accountInt).getName());
+                    Main.storeAccount(accountInt, newAccount);
+                }
+                else if (accountTypeString == "Team Leader") {
+
+                }
+                else if (accountTypeString == "IT") {
+                    Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.it);
+                    AccountList.setAccounts(accountInt, newAccount);
+                    System.out.println(AccountList.getAccount(accountInt).getName());
+                    Main.storeAccount(accountInt, newAccount);
+                }
+                else if (accountTypeString == "IT Manager") {
+
+                }
+
+                else if (accountTypeString == "Manager") {
+
+                }
+                else if (accountTypeString == "HR") {
+                    Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.hr);
+                    AccountList.setAccounts(accountInt, newAccount);
+                    System.out.println(AccountList.getAccount(accountInt).getName());
+                    Main.storeAccount(accountInt, newAccount);
+                }
+                else if (accountTypeString == "HR Manager") {
+
+                }
+                else if (accountTypeString == "Admin") {
+                    Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.admin);
+                    AccountList.setAccounts(accountInt, newAccount);
+                    System.out.println(AccountList.getAccount(accountInt).getName());
+                    Main.storeAccount(accountInt, newAccount);
+                }
+                else if (accountTypeString == "CEO") {
+
                 }
 
                 //Changes back to login screen
@@ -93,7 +133,7 @@ public class NewAccountController {
             }
 
         } catch (Exception e) {
-            System.out.println("Error: Exception");
+            System.out.println("Error: " + e.getMessage());
         }
 
 
