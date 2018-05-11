@@ -13,13 +13,16 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.util.Set;
 
-public class Login extends Application {
+public class Main extends Application {
     //TODO REORGANIZE PACKAGES
     public  Stage stage;
     public Scene mainAccountScene;
 
     public static Set<Permissions> admin = Set.of(Permissions.canHire, Permissions.canFire, Permissions.canDeposit, Permissions.canWithdraw, Permissions.canPay, Permissions.canFine, Permissions.canViewAccounts);
     public static Set<Permissions> intern = Set.of(Permissions.canWithdraw);
+    public static Set<Permissions> employee = Set.of(Permissions.canDeposit, Permissions.canWithdraw);
+    public static Set<Permissions> hr = Set.of(Permissions.canDeposit, Permissions.canWithdraw, Permissions.canHire, Permissions.canFire, Permissions.canPay, Permissions.canViewAccounts);
+    public static Set<Permissions> it = Set.of(Permissions.canDeposit, Permissions.canWithdraw, Permissions.canViewAccounts);
 
     public static void main(String[] args) throws Exception{
 

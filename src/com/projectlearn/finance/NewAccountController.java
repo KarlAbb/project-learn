@@ -1,6 +1,6 @@
 package com.projectlearn.finance;
 
-import com.projectlearn.login.Login;
+import com.projectlearn.login.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,7 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
@@ -70,12 +69,14 @@ public class NewAccountController {
             int IDInt = Integer.parseInt(ID.getText());
             String accountTypeString = type.getTypeSelector();
             if(!AccountList.getList().containsKey(accountInt)) {
-                Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Login.admin);
-                AccountList.setAccounts(accountInt, newAccount);
-                System.out.println(AccountList.getAccount(accountInt).getName());
+                if (accountTypeString == "admin") {
+                    Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.admin);
+                    AccountList.setAccounts(accountInt, newAccount);
+                    System.out.println(AccountList.getAccount(accountInt).getName());
 //            AccountList.getList().put(accountInt, newAccount);
 
-                Login.storeAccount(accountInt, newAccount);
+                    Main.storeAccount(accountInt, newAccount);
+                }
 
                 //Changes back to login screen
                 Parent login = FXMLLoader.load(getClass().getResource("/com/projectlearn/login/login.fxml"));

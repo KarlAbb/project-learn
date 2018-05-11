@@ -85,6 +85,9 @@ public class FinanceController implements Initializable{
         if(!AccountList.getAccount(LoginController.currentAccount).getPerms().contains(Permissions.canDeposit)) {
             deposit.setDisable(true);
         }
+        else if (!AccountList.getAccount((LoginController.currentAccount)).getPerms().contains(Permissions.canWithdraw)) {
+            withdraw.setDisable(true);
+        }
         System.out.println(LoginController.currentAccount);
         accountInfo(LoginController.currentAccount);
     }
@@ -113,7 +116,7 @@ public class FinanceController implements Initializable{
             System.out.println(accountID);
             int withdrawValue = Integer.parseInt(withdrawAmount.getText());
             System.out.println(withdrawAmount);
-            warning.setText("Your balance is: " + AccountList.getAccount(accountID).withdraw(withdrawValue));
+            balance.setText("Your balance is: " + AccountList.getAccount(accountID).withdraw(withdrawValue));
         }
 
         else {
