@@ -2,16 +2,11 @@ package com.projectlearn.login;
 
 import com.projectlearn.finance.Account;
 import com.projectlearn.finance.AccountList;
-import com.projectlearn.finance.Employee;
 import com.projectlearn.finance.Permissions;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -66,7 +61,7 @@ public class Login extends Application {
 
         scene.getStylesheets().add(getClass().getResource("/com/projectlearn/login/login.css").toExternalForm());
 
-//        stage.getIcons().add(new Image("/com/projectlearn/finance/ProjectLearn_Logo.png"));
+        primaryStage.getIcons().add(new Image("/com/projectlearn/finance/ProjectLearn_Logo.png"));
 
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);

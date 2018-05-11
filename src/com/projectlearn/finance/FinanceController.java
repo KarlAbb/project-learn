@@ -82,6 +82,9 @@ public class FinanceController implements Initializable{
     }
 
     public void initialize (URL url, ResourceBundle rb) {
+        if(!AccountList.getAccount(LoginController.currentAccount).getPerms().contains(Permissions.canDeposit)) {
+            deposit.setDisable(true);
+        }
         System.out.println(LoginController.currentAccount);
         accountInfo(LoginController.currentAccount);
     }
@@ -98,7 +101,7 @@ public class FinanceController implements Initializable{
         }
 
         else {
-            warning.setText("You don't have permission to do this! Please contact an administrator if you believe that this is a mistake!");
+            noPermission();
         }
     }
 
@@ -106,10 +109,16 @@ public class FinanceController implements Initializable{
     @FXML
     public void withdraw(ActionEvent event) {
         int accountID = LoginController.currentAccount;
-        System.out.println(accountID);
-        int withdrawValue = Integer.parseInt(withdrawAmount.getText());
-        System.out.println(withdrawAmount);
-        warning.setText("Your balance is: " + AccountList.getAccount(accountID).withdraw(withdrawValue));
+        if(AccountList.getAccount(accountID).getPerms().contains(Permissions.canWithdraw)) {
+            System.out.println(accountID);
+            int withdrawValue = Integer.parseInt(withdrawAmount.getText());
+            System.out.println(withdrawAmount);
+            warning.setText("Your balance is: " + AccountList.getAccount(accountID).withdraw(withdrawValue));
+        }
+
+        else {
+            noPermission();
+        }
     }
 
     //Log out ActionHandler
@@ -122,6 +131,14 @@ public class FinanceController implements Initializable{
 
         root.setScene(logOutScene);
         root.show();
+    }
+
+    public void noPermission() {
+        warning.setText("You don't have permission to do this! Please contact an administrator if you believe that this is a mistake!");
+    }
+
+    public boolean enabledPerms() {
+        return false;
     }
 
 

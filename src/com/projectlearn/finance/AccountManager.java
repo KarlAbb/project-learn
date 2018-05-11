@@ -1,28 +1,14 @@
 package com.projectlearn.finance;
 
-public abstract class AccountManager {
+import java.util.EnumSet;
 
-    //TODO change name or delete class
-    //TODO change name of AccountPerms to AccountManager
+public class AccountManager {
 
-    private int accountID;
-    private int balance;
-    private String accountType;
-    private int paycheckAmount;
-    private int payInterval;
-    private int accountNum;
+    Permissions canHire;
+    Permissions canFire;
+    Permissions canDeposit;
+    Permissions canWithdraw;
+    Permissions canPay;
+    Permissions canFine;
 
-    private String name;
-    private String email;
-    private String password;
-
-    public AccountManager (int accountNum, int balance, String name, String email, String password, int id, String accountType) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.accountID = id;
-        this.accountType = accountType;
-        this.accountNum = accountNum;
-        this.balance = balance;
-    }
 }
