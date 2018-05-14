@@ -14,7 +14,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -72,20 +71,20 @@ public class FinanceController implements Initializable{
     //Displays all of the account information
     @FXML
     public void accountInfo (int accountNum) {
-        setAccountNumber.setText(Integer.toString(AccountList.getAccount(accountNum).getAccountNum()));
-        setName.setText(AccountList.getAccount(accountNum).getName());
-        setEmail.setText(AccountList.getAccount(accountNum).getEmail());
-        setID.setText(Integer.toString(AccountList.getAccount(accountNum).getAccountID()));
-        setStatus.setText(AccountList.getAccount(accountNum).getAccountType());
-        account.setText("Welcome " + AccountList.getAccount(accountNum).getName() + "!");
-        balance.setText("Your balance is: " + AccountList.getAccount(accountNum).getBalance());
+        setAccountNumber.setText(Integer.toString(AccountManager.getAccount(accountNum).getAccountNum()));
+        setName.setText(AccountManager.getAccount(accountNum).getName());
+        setEmail.setText(AccountManager.getAccount(accountNum).getEmail());
+        setID.setText(Integer.toString(AccountManager.getAccount(accountNum).getAccountID()));
+        setStatus.setText(AccountManager.getAccount(accountNum).getAccountType());
+        account.setText("Welcome " + AccountManager.getAccount(accountNum).getName() + "!");
+        balance.setText("Your balance is: " + AccountManager.getAccount(accountNum).getBalance());
     }
 
     public void initialize (URL url, ResourceBundle rb) {
-        if(!AccountList.getAccount(LoginController.currentAccount).getPerms().contains(Permissions.canDeposit)) {
+        if(!AccountManager.getAccount(LoginController.currentAccount).getPerms().contains(Permissions.CAN_DEPOSIT)) {
             deposit.setDisable(true);
         }
-        else if (!AccountList.getAccount((LoginController.currentAccount)).getPerms().contains(Permissions.canWithdraw)) {
+        else if (!AccountManager.getAccount((LoginController.currentAccount)).getPerms().contains(Permissions.CAN_WITHDRAW)) {
             withdraw.setDisable(true);
         }
         System.out.println(LoginController.currentAccount);
@@ -96,11 +95,11 @@ public class FinanceController implements Initializable{
     @FXML
     public void deposit(ActionEvent event) {
         int accountID = LoginController.currentAccount;
-        if(AccountList.getAccount(accountID).getPerms().contains(Permissions.canDeposit)) {
+        if(AccountManager.getAccount(accountID).getPerms().contains(Permissions.CAN_DEPOSIT)) {
             System.out.println(accountID);
             int depositAmount = Integer.parseInt(amount.getText());
             System.out.println(depositAmount);
-            balance.setText("Your balance is: " + AccountList.getAccount(accountID).deposit(depositAmount));
+            balance.setText("Your balance is: " + AccountManager.getAccount(accountID).deposit(depositAmount));
         }
 
         else {
@@ -112,11 +111,11 @@ public class FinanceController implements Initializable{
     @FXML
     public void withdraw(ActionEvent event) {
         int accountID = LoginController.currentAccount;
-        if(AccountList.getAccount(accountID).getPerms().contains(Permissions.canWithdraw)) {
+        if(AccountManager.getAccount(accountID).getPerms().contains(Permissions.CAN_WITHDRAW)) {
             System.out.println(accountID);
             int withdrawValue = Integer.parseInt(withdrawAmount.getText());
             System.out.println(withdrawAmount);
-            balance.setText("Your balance is: " + AccountList.getAccount(accountID).withdraw(withdrawValue));
+            balance.setText("Your balance is: " + AccountManager.getAccount(accountID).withdraw(withdrawValue));
         }
 
         else {

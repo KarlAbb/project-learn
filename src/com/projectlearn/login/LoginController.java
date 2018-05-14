@@ -1,12 +1,10 @@
 package com.projectlearn.login;
 
-import com.projectlearn.finance.Account;
-import com.projectlearn.finance.AccountList;
-import com.projectlearn.finance.FinanceController;
+import com.projectlearn.finance.AccountManager;
+import com.projectlearn.finance.Permissions;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,15 +13,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import com.projectlearn.finance.Account;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class LoginController{
 
-    public static int currentAccount = 0;
+    private Account currentAccount;
 
     //logo
     @FXML
@@ -85,9 +84,9 @@ public class LoginController{
 
         try {
             //checks to see if login info is correct
-            if (AccountList.getAccount(Integer.parseInt(numTextField.getText())).getAccountPassword().equals(passwordField.getText())) {
+            if (AccountManager.getAccount(Integer.parseInt(numTextField.getText())).getAccountPassword().equals(passwordField.getText())) {
                 //sets the account number entered by a user to an int so that the main scene knows what account to display
-                currentAccount = Integer.parseInt(numTextField.getText());
+                //currentAccount = Integer.parseInt(numTextField.getText());
 
                 //loads up the main scene
                 Parent mainAccount = FXMLLoader.load(getClass().getResource("/com/projectlearn/finance/finance.fxml"));
@@ -112,6 +111,14 @@ public class LoginController{
             loginText.setText("Oops! Something went wrong! Please try again!");
             System.out.println(e.getCause() + " " + e.getMessage() + " " + e.getStackTrace());
         }
+
+    }
+
+    public void setAccount(Account currentAccount) {
+        this.currentAccount = currentAccount;
+    }
+
+    public void permissionList(HashSet<Set<Permissions>> permissionList) {
 
     }
 }
