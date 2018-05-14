@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import com.projectlearn.finance.Account;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,6 +24,7 @@ import java.util.Set;
 public class LoginController{
 
     private Account currentAccount;
+    private AccountManager accountManager;
 
     //logo
     @FXML
@@ -84,7 +86,7 @@ public class LoginController{
 
         try {
             //checks to see if login info is correct
-            if (AccountManager.getAccount(Integer.parseInt(numTextField.getText())).getAccountPassword().equals(passwordField.getText())) {
+            if (accountManager.getAccount(Integer.parseInt(numTextField.getText())).getAccountPassword().equals(passwordField.getText())) {
                 //sets the account number entered by a user to an int so that the main scene knows what account to display
                 //currentAccount = Integer.parseInt(numTextField.getText());
 
@@ -118,7 +120,11 @@ public class LoginController{
         this.currentAccount = currentAccount;
     }
 
-    public void permissionList(HashSet<Set<Permissions>> permissionList) {
+    public void permissionList(HashMap<String, Set<Permissions>> permissionList) {
 
+    }
+
+    public void setAccountManager(AccountManager accountManager) {
+        this.accountManager = accountManager;
     }
 }

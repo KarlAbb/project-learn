@@ -19,6 +19,8 @@ public class Main extends Application {
     public  Stage stage;
     public Scene mainAccountScene;
 
+    public AccountManager accountManagers = new AccountManager();
+
     HashMap<String, Permissions> permissionsHashMap = new HashMap<>();
 
     public static Set<Permissions> admin = Set.of(Permissions.CAN_HIRE, Permissions.CAN_FIRE, Permissions.CAN_DEPOSIT, Permissions.CAN_WITHDRAW, Permissions.CAN_PAY, Permissions.CAN_FINE, Permissions.CAN_VIEW_ACCOUNTS);
@@ -28,9 +30,8 @@ public class Main extends Application {
     public static Set<Permissions> it = Set.of(Permissions.CAN_DEPOSIT, Permissions.CAN_WITHDRAW, Permissions.CAN_VIEW_ACCOUNTS);
 
     public static void main(String[] args) throws Exception{
-
-        //default account
         AccountManager accountManager = new AccountManager();
+        //default account
         int num = 1234;
         int balance = 10;
         Account stefan = new Account(num, balance, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", admin);
@@ -65,8 +66,9 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/login/login.fxml"));
 
         Parent root = fxmlLoader.load();
+        LoginController controller = fxmlLoader.<LoginController>getController();
+        controller.setAccountManager(accountManagers);
 
-        //Parent root = FXMLLoader.load(getClass().getResource("/com/projectlearn/login/login.fxml"));
         Scene scene = new Scene(root);
 
         scene.getStylesheets().add(getClass().getResource("/com/projectlearn/login/login.css").toExternalForm());

@@ -1,10 +1,12 @@
 package com.projectlearn.finance;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class AccountManager {
     //The HashMap that stores all accounts with the account number as the key and an Account as a value
-    private static HashMap<Integer, Account> accounts = new HashMap();
+    public HashMap<Integer, Account> accounts = new HashMap();
+    public HashMap<String, Set<Permissions>> permissionSet = new HashMap<>();
 
     //default constructor
     public AccountManager() {
@@ -12,7 +14,7 @@ public class AccountManager {
     }
 
     //returns the HashMap and creates a new one if it doesn't exist
-    public static HashMap<Integer, Account> getList() {
+    public HashMap<Integer, Account> getList() {
         if (accounts == null) {
             accounts = new HashMap<>();
         }
@@ -20,7 +22,7 @@ public class AccountManager {
     }
 
     //adds a new account
-    public static void setAccounts(int accountNum, Account account) {
+    public void setAccounts(int accountNum, Account account) {
         //checks to see if an account exists and warns if replacing an existing account
         boolean key = accounts.containsKey(accountNum);
         if(key == false) {
@@ -31,13 +33,13 @@ public class AccountManager {
     }
 
     //gets a certain account
-    public static Account getAccount(int accountNum) {
+    public Account getAccount(int accountNum) {
         return accounts.get(accountNum);
     }
 
     //checks the password of an account
-    public static boolean checkInfo(int accountNum, String password) {
-        if (AccountManager.getAccount(accountNum).getAccountPassword() == password) {
+    public boolean checkInfo(int accountNum, String password) {
+        if (getAccount(accountNum).getAccountPassword() == password) {
             return true;
         }
         else return false;
