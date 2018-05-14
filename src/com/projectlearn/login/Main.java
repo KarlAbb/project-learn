@@ -1,7 +1,7 @@
 package com.projectlearn.login;
 
 import com.projectlearn.finance.Account;
-import com.projectlearn.finance.AccountList;
+import com.projectlearn.finance.AccountManager;
 import com.projectlearn.finance.Permissions;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +19,8 @@ public class Main extends Application {
     public  Stage stage;
     public Scene mainAccountScene;
 
+    public AccountManager accountManagers = new AccountManager();
+
     HashMap<String, Permissions> permissionsHashMap = new HashMap<>();
 
     public static Set<Permissions> admin = Set.of(Permissions.CAN_HIRE, Permissions.CAN_FIRE, Permissions.CAN_DEPOSIT, Permissions.CAN_WITHDRAW, Permissions.CAN_PAY, Permissions.CAN_FINE, Permissions.CAN_VIEW_ACCOUNTS);
@@ -29,18 +31,17 @@ public class Main extends Application {
 
 
     public static void main(String[] args) throws Exception{
-
+        AccountManager accountManager = new AccountManager();
         //default account
-        AccountList accounts = new AccountList();
         int num = 1234;
         int balance = 10;
         Account stefan = new Account(num, balance, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", admin);
-        accounts.setAccounts(num, stefan);
+        accountManager.setAccounts(num, stefan);
 
         int num2 = 0000;
         int balance2 = 30;
         Account internBob = new Account(num2, balance2, "Bob", "Testing@gmail.com", "1234", 0, "Intern", intern);
-        accounts.setAccounts(num2, internBob);
+        accountManager.setAccounts(num2, internBob);
 
 
 
@@ -63,13 +64,20 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/login/login.fxml"));
 
-        Parent root = FXMLLoader.load(getClass().getResource("/com/projectlearn/login/login.fxml"));
+        Parent root = fxmlLoader.load();
+        LoginController controller = fxmlLoader.<LoginController>getController();
+        controller.setAccountManager(accountManagers);
+
         Scene scene = new Scene(root);
 
         scene.getStylesheets().add(getClass().getResource("/com/projectlearn/login/login.css").toExternalForm());
 
         primaryStage.getIcons().add(new Image("/com/projectlearn/finance/ProjectLearn_Logo.png"));
+
+        LoginController loginController = fxmlLoader.getController();
+        //loginController.permissionList();
 
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);

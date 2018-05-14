@@ -68,19 +68,19 @@ public class NewAccountController {
             String emailString = email.getText();
             int IDInt = Integer.parseInt(ID.getText());
             String accountTypeString = type.getTypeSelector();
-            if(!AccountList.getList().containsKey(accountInt)) {
+            if(!AccountManager.getList().containsKey(accountInt)) {
                 if (accountTypeString.equals("Intern")) {
-                    Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, StandardPermissions.ADMIN);
-                    AccountList.setAccounts(accountInt, newAccount);
-                    System.out.println(AccountList.getAccount(accountInt).getName());
-//            AccountList.getList().put(accountInt, newAccount);
+                    Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.intern);
+                    AccountManager.setAccounts(accountInt, newAccount);
+                    System.out.println(AccountManager.getAccount(accountInt).getName());
+//            AccountManager.getList().put(accountInt, newAccount);
 
                     Main.storeAccount(accountInt, newAccount);
                 }
                 else if (accountTypeString == "Employee") {
                     Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.employee);
-                    AccountList.setAccounts(accountInt, newAccount);
-                    System.out.println(AccountList.getAccount(accountInt).getName());
+                    AccountManager.setAccounts(accountInt, newAccount);
+                    System.out.println(AccountManager.getAccount(accountInt).getName());
                     Main.storeAccount(accountInt, newAccount);
                 }
                 else if (accountTypeString == "Team Leader") {
@@ -88,8 +88,8 @@ public class NewAccountController {
                 }
                 else if (accountTypeString == "IT") {
                     Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.it);
-                    AccountList.setAccounts(accountInt, newAccount);
-                    System.out.println(AccountList.getAccount(accountInt).getName());
+                    AccountManager.setAccounts(accountInt, newAccount);
+                    System.out.println(AccountManager.getAccount(accountInt).getName());
                     Main.storeAccount(accountInt, newAccount);
                 }
                 else if (accountTypeString == "IT Manager") {
@@ -101,8 +101,8 @@ public class NewAccountController {
                 }
                 else if (accountTypeString == "HR") {
                     Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.hr);
-                    AccountList.setAccounts(accountInt, newAccount);
-                    System.out.println(AccountList.getAccount(accountInt).getName());
+                    AccountManager.setAccounts(accountInt, newAccount);
+                    System.out.println(AccountManager.getAccount(accountInt).getName());
                     Main.storeAccount(accountInt, newAccount);
                 }
                 else if (accountTypeString == "HR Manager") {
@@ -110,8 +110,8 @@ public class NewAccountController {
                 }
                 else if (accountTypeString == "Admin") {
                     Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.admin);
-                    AccountList.setAccounts(accountInt, newAccount);
-                    System.out.println(AccountList.getAccount(accountInt).getName());
+                    AccountManager.setAccounts(accountInt, newAccount);
+                    System.out.println(AccountManager.getAccount(accountInt).getName());
                     Main.storeAccount(accountInt, newAccount);
                 }
                 else if (accountTypeString == "CEO") {
