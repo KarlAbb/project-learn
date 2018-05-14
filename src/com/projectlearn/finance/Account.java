@@ -18,7 +18,7 @@ public class Account /*extends AccountManager*/{
     private Set<Permissions> permissions;
 
     //constructor
-    public Account(int accountNum, int balance, String name, String email, String password, int id, String accountType, Set<Permissions> perms) {
+    public Account(int accountNum, int balance, String name, String email, String password, int id, String accountType, Set<StandardPermissions> perms) {
         this.name = name;
         this.email = email;
         this.password = password;

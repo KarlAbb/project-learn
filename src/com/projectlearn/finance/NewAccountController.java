@@ -70,7 +70,7 @@ public class NewAccountController {
             String accountTypeString = type.getTypeSelector();
             if(!AccountList.getList().containsKey(accountInt)) {
                 if (accountTypeString.equals("Intern")) {
-                    Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.intern);
+                    Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, StandardPermissions.ADMIN);
                     AccountList.setAccounts(accountInt, newAccount);
                     System.out.println(AccountList.getAccount(accountInt).getName());
 //            AccountList.getList().put(accountInt, newAccount);
