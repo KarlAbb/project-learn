@@ -20,6 +20,10 @@ public class Main extends Application {
     public Scene mainAccountScene;
 
     public AccountManager accountManagers = new AccountManager();
+    int num = 1234;
+    int balance = 10;
+    Account stefan = new Account(num, balance, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", admin);
+
 
     HashMap<String, Permissions> permissionsHashMap = new HashMap<>();
 

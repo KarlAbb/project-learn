@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -72,7 +73,7 @@ public class LoginController{
     //ActionHandler to new account scene
     @FXML
     public void newAccount (ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/login/newAccount.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/finance/newAccount.fxml"));
 
         Parent newAccountParent = FXMLLoader.load(getClass().getResource("/com/projectlearn/finance/newAccount.fxml"));
         Scene newAccountScene = new Scene(newAccountParent);
@@ -99,13 +100,31 @@ public class LoginController{
                 //currentAccount = Integer.parseInt(numTextField.getText());
 
                 //loads up the main scene
-                Parent mainAccount = FXMLLoader.load(getClass().getResource("/com/projectlearn/finance/finance.fxml"));
+                /*Parent mainAccount = FXMLLoader.load(getClass().getResource("/com/projectlearn/finance/finance.fxml"));
                 Scene mainAccountScene = new Scene(mainAccount);
                 mainAccountScene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
 
                 Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
                 root.setScene(mainAccountScene);
+                root.show();*/
+
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/login/login.fxml"));
+
+                Parent roots = fxmlLoader.load();
+                NewAccountController newAccountController = fxmlLoader.<NewAccountController>getController();
+                newAccountController.setAccountManager(accountManager);
+
+                Scene scene = new Scene(roots);
+
+                Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                scene.getStylesheets().add(getClass().getResource("/com/projectlearn/login/login.css").toExternalForm());
+
+                //loginController.permissionList();
+
+                root.setScene(scene);
+                root.setResizable(false);
                 root.show();
 
             }
