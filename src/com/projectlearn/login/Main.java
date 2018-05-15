@@ -67,8 +67,8 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/login/login.fxml"));
 
         Parent root = fxmlLoader.load();
-        LoginController controller = fxmlLoader.<LoginController>getController();
-        controller.setAccountManager(accountManagers);
+        LoginController loginController = fxmlLoader.<LoginController>getController();
+        loginController.setAccountManager(accountManagers);
 
         Scene scene = new Scene(root);
 
@@ -76,7 +76,6 @@ public class Main extends Application {
 
         primaryStage.getIcons().add(new Image("/com/projectlearn/finance/ProjectLearn_Logo.png"));
 
-        LoginController loginController = fxmlLoader.getController();
         //loginController.permissionList();
 
         primaryStage.setScene(scene);

@@ -1,6 +1,7 @@
 package com.projectlearn.login;
 
 import com.projectlearn.finance.AccountManager;
+import com.projectlearn.finance.NewAccountController;
 import com.projectlearn.finance.Permissions;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -70,8 +71,15 @@ public class LoginController{
 
     //ActionHandler to new account scene
     @FXML
-    public void newAccount (ActionEvent event) throws IOException { Parent newAccountParent = FXMLLoader.load(getClass().getResource("/com/projectlearn/finance/newAccount.fxml"));
+    public void newAccount (ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/login/newAccount.fxml"));
+
+        Parent newAccountParent = FXMLLoader.load(getClass().getResource("/com/projectlearn/finance/newAccount.fxml"));
         Scene newAccountScene = new Scene(newAccountParent);
+
+        Parent main = fxmlLoader.load();
+        NewAccountController newAccountController = fxmlLoader.<NewAccountController>getController();
+        newAccountController.setAccountManager(accountManager);
 
         Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -128,3 +136,19 @@ public class LoginController{
         this.accountManager = accountManager;
     }
 }
+
+/* FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/login/newAccount.fxml"));
+
+        Parent root = fxmlLoader.load();
+        NewAccountController newAccountController = fxmlLoader.<NewAccountController>getController();
+        newAccountController.setAccountManager(accountManager);
+
+        Scene scene = new Scene(root);
+
+        Parent newAccountParent = FXMLLoader.load(getClass().getResource("/com/projectlearn/finance/newAccount.fxml"));
+        Scene newAccountScene = new Scene(newAccountParent);
+
+        Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        root.setScene(newAccountScene);
+        root.show();*/
