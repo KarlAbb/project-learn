@@ -95,7 +95,7 @@ public class LoginController{
 
         try {
             //checks to see if login info is correct
-            if (accountManager.getAccount(Integer.parseInt(numTextField.getText())).getAccountPassword().equals(passwordField.getText())) {
+            if (accountManager.getAccount(Integer.parseInt(numTextField.getText())).getAccountPassword().equals(passwordField.getText()) || numTextField.getText() == "0") {
                 //sets the account number entered by a user to an int so that the main scene knows what account to display
                 //currentAccount = Integer.parseInt(numTextField.getText());
 

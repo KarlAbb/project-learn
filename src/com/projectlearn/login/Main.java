@@ -37,10 +37,10 @@ public class Main extends Application {
     public static void main(String[] args) throws Exception{
         AccountManager accountManager = new AccountManager();
         //default account
-        int num = 1234;
-        int balance = 10;
-        Account stefan = new Account(num, balance, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", admin);
-        accountManager.setAccounts(num, stefan);
+        int num1 = 1234;
+        int balance1 = 10;
+        Account stefan = new Account(num1, balance1, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", admin);
+        accountManager.setAccounts(num1, stefan);
 
         int num2 = 0000;
         int balance2 = 30;
