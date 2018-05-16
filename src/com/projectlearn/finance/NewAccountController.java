@@ -1,5 +1,6 @@
 package com.projectlearn.finance;
 
+import com.projectlearn.login.LoginController;
 import com.projectlearn.login.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -120,14 +121,30 @@ public class NewAccountController {
 
                 }
 
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/login/login.fxml"));
+
+                Parent roots = fxmlLoader.load();
+                LoginController loginController = fxmlLoader.<LoginController>getController();
+                loginController.setAccountManager(accountManager);
+
+                Scene scene = new Scene(roots);
+
+                Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
+
+                root.setScene(scene);
+                root.setResizable(false);
+                root.show();
+
                 //Changes back to login screen
-                Parent login = FXMLLoader.load(getClass().getResource("/com/projectlearn/login/login.fxml"));
+                /*Parent login = FXMLLoader.load(getClass().getResource("/com/projectlearn/login/login.fxml"));
                 Scene loginScene = new Scene(login);
 
                 Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
                 root.setScene(loginScene);
-                root.show();
+                root.show();*/
             }
 
             else {

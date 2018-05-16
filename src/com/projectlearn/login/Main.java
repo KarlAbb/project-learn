@@ -19,7 +19,7 @@ public class Main extends Application {
     public  Stage stage;
     public Scene mainAccountScene;
 
-    public AccountManager accountManagers = new AccountManager();
+    public AccountManager accountManager = new AccountManager();
     int num = 1234;
     int balance = 10;
     Account stefan = new Account(num, balance, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", admin);
@@ -35,17 +35,6 @@ public class Main extends Application {
 
 
     public static void main(String[] args) throws Exception{
-        AccountManager accountManager = new AccountManager();
-        //default account
-        int num1 = 1234;
-        int balance1 = 10;
-        Account stefan = new Account(num1, balance1, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", admin);
-        accountManager.setAccounts(num1, stefan);
-
-        int num2 = 0000;
-        int balance2 = 30;
-        Account internBob = new Account(num2, balance2, "Bob", "Testing@gmail.com", "1234", 0, "Intern", intern);
-        accountManager.setAccounts(num2, internBob);
 
 
 
@@ -68,11 +57,22 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+
+        int num1 = 1234;
+        int balance1 = 10;
+        Account stefan = new Account(num1, balance1, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", Main.admin);
+        accountManager.setAccounts(num1, stefan);
+
+        int num2 = 0000;
+        int balance2 = 30;
+        Account internBob = new Account(num2, balance2, "Bob", "Testing@gmail.com", "1234", 0, "Intern", intern);
+        accountManager.setAccounts(num2, internBob);
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/login/login.fxml"));
 
         Parent root = fxmlLoader.load();
         LoginController loginController = fxmlLoader.<LoginController>getController();
-        loginController.setAccountManager(accountManagers);
+        loginController.setAccountManager(accountManager);
 
         Scene scene = new Scene(root);
 

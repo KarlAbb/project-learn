@@ -1,8 +1,6 @@
 package com.projectlearn.login;
 
-import com.projectlearn.finance.AccountManager;
-import com.projectlearn.finance.NewAccountController;
-import com.projectlearn.finance.Permissions;
+import com.projectlearn.finance.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,11 +13,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import com.projectlearn.finance.Account;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.ResourceBundle;
 import java.util.Set;
 
 
@@ -73,18 +71,19 @@ public class LoginController{
     //ActionHandler to new account scene
     @FXML
     public void newAccount (ActionEvent event) throws IOException {
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/finance/newAccount.fxml"));
 
-        Parent newAccountParent = FXMLLoader.load(getClass().getResource("/com/projectlearn/finance/newAccount.fxml"));
-        Scene newAccountScene = new Scene(newAccountParent);
-
-        Parent main = fxmlLoader.load();
+        Parent roots = fxmlLoader.load();
         NewAccountController newAccountController = fxmlLoader.<NewAccountController>getController();
         newAccountController.setAccountManager(accountManager);
 
+        Scene scene = new Scene(roots);
+
         Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        root.setScene(newAccountScene);
+        root.setScene(scene);
+        root.setResizable(false);
         root.show();
 
     }
@@ -94,38 +93,31 @@ public class LoginController{
     public void loginBtn_Click(ActionEvent event) throws IOException {
 
         try {
+            int num1 = 1234;
+            int balance1 = 10;
+            Account stefan = new Account(num1, balance1, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", Main.admin);
+            accountManager.setAccounts(num1, stefan);
             //checks to see if login info is correct
-            if (accountManager.getAccount(Integer.parseInt(numTextField.getText())).getAccountPassword().equals(passwordField.getText()) || numTextField.getText() == "0") {
-                //sets the account number entered by a user to an int so that the main scene knows what account to display
-                //currentAccount = Integer.parseInt(numTextField.getText());
+            if (accountManager.getAccount(Integer.parseInt(numTextField.getText())).getAccountPassword().equals(passwordField.getText())) {
 
                 //loads up the main scene
-                /*Parent mainAccount = FXMLLoader.load(getClass().getResource("/com/projectlearn/finance/finance.fxml"));
-                Scene mainAccountScene = new Scene(mainAccount);
-                mainAccountScene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
-
-                Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-                root.setScene(mainAccountScene);
-                root.show();*/
-
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/login/login.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/finance/finance.fxml"));
 
                 Parent roots = fxmlLoader.load();
-                NewAccountController newAccountController = fxmlLoader.<NewAccountController>getController();
-                newAccountController.setAccountManager(accountManager);
+                FinanceController financeController = fxmlLoader.<FinanceController>getController();
+                financeController.setAccountManager(accountManager);
+                financeController.accountInfo(Integer.parseInt(numTextField.getText()));
 
                 Scene scene = new Scene(roots);
 
                 Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-                scene.getStylesheets().add(getClass().getResource("/com/projectlearn/login/login.css").toExternalForm());
-
-                //loginController.permissionList();
+                scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
 
                 root.setScene(scene);
                 root.setResizable(false);
                 root.show();
+
 
             }
             //login incorrect actions
@@ -136,9 +128,23 @@ public class LoginController{
         }
         //catchs exceptions i.e letters instead of numbers for the account number entered
         catch(Exception e) {
+            int num1 = 1234;
+            int balance1 = 10;
+            Account stefan = new Account(num1, balance1, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", Main.admin);
+            accountManager.setAccounts(num1, stefan);
+
             loginText.setFill(Color.GREEN);
             loginText.setText("Oops! Something went wrong! Please try again!");
             System.out.println(e.getCause() + " " + e.getMessage() + " " + e.getStackTrace());
+            //System.out.println(e.fillInStackTrace());
+            e.printStackTrace();
+        }
+
+        finally {
+            int num1 = 1234;
+            int balance1 = 10;
+            Account stefan = new Account(num1, balance1, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", Main.admin);
+            accountManager.setAccounts(num1, stefan);
         }
 
     }
@@ -156,18 +162,4 @@ public class LoginController{
     }
 }
 
-/* FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/login/newAccount.fxml"));
 
-        Parent root = fxmlLoader.load();
-        NewAccountController newAccountController = fxmlLoader.<NewAccountController>getController();
-        newAccountController.setAccountManager(accountManager);
-
-        Scene scene = new Scene(root);
-
-        Parent newAccountParent = FXMLLoader.load(getClass().getResource("/com/projectlearn/finance/newAccount.fxml"));
-        Scene newAccountScene = new Scene(newAccountParent);
-
-        Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        root.setScene(newAccountScene);
-        root.show();*/

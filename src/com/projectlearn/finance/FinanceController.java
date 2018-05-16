@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class FinanceController implements Initializable{
+public class FinanceController {
 
     public AccountManager accountManager;
 
@@ -82,16 +82,6 @@ public class FinanceController implements Initializable{
         balance.setText("Your balance is: " + accountManager.getAccount(accountNum).getBalance());
     }
 
-    public void initialize (URL url, ResourceBundle rb) {
-        /*if(!accountManager.getAccount(accountManager.getAccount(1234)).getPerms().contains(Permissions.CAN_DEPOSIT)) {
-            deposit.setDisable(true);
-        }
-        else if (!accountManager.getAccount((LoginController.currentAccount)).getPerms().contains(Permissions.CAN_WITHDRAW)) {
-            withdraw.setDisable(true);
-        }*/
-        System.out.println(accountManager.getAccount(1234));
-        accountInfo(accountManager.getAccount(1234).getAccountNum());
-    }
 
     //deposit ActionHandler
     @FXML
@@ -127,14 +117,31 @@ public class FinanceController implements Initializable{
 
     //Log out ActionHandler
     public void logOut(ActionEvent event) throws Exception{
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/login/login.fxml"));
+
+        Parent roots = fxmlLoader.load();
+        LoginController loginController = fxmlLoader.<LoginController>getController();
+        loginController.setAccountManager(accountManager);
+
+        Scene scene = new Scene(roots);
+
+        Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
+
+        root.setScene(scene);
+        root.setResizable(false);
+        root.show();
+
         //Changes scene back to login screen
-        Parent logOut = FXMLLoader.load(getClass().getResource("/com/projectlearn/login/login.fxml"));
+        /*Parent logOut = FXMLLoader.load(getClass().getResource("/com/projectlearn/login/login.fxml"));
         Scene logOutScene = new Scene(logOut);
 
         Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         root.setScene(logOutScene);
-        root.show();
+        root.show();*/
     }
 
     public void noPermission() {
