@@ -79,7 +79,7 @@ public class Account /*extends AccountManager*/{
     }
 
     public String getAccountPassword(){
-        return this.password;
+        return password;
     }
 
     public int getBalance() { return balance; }

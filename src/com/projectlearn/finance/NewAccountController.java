@@ -21,7 +21,7 @@ import java.io.IOException;
 
 public class NewAccountController {
 
-    AccountManager accountManager = new AccountManager();
+    AccountManager accountManager;
 
     //Displays a warning if a user tries to make an account with an existing account number
     @FXML
@@ -112,7 +112,7 @@ public class NewAccountController {
                 else if (accountTypeString == "HR Manager") {
 
                 }
-                else if (accountTypeString == "Admin") {
+                else if (accountTypeString.equals("Admin")) {
                     Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.admin);
                     accountManager.setAccounts(accountInt, newAccount);
                     System.out.println(accountManager.getAccount(accountInt).getName());

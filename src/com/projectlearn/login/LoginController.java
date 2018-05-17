@@ -101,15 +101,17 @@ public class LoginController{
     public void loginBtn_Click(ActionEvent event) throws IOException {
 
         try {
-            int num1 = 1234;
-            int balance1 = 10;
-            Account stefan = new Account(num1, balance1, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", Main.admin);
-            accountManager.setAccounts(num1, stefan);
+//            int num1 = 1234;
+//            int balance1 = 10;
+//            Account stefan = new Account(num1, balance1, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", Main.admin);
+//            accountManager.setAccounts(num1, stefan);
 
             currentAccount = accountManager.getAccount(Integer.parseInt(numTextField.getText()));
-            int accountNum = currentAccount.getAccountNum();
+            //int accountNum = currentAccount.getAccountNum();
             String accountPassword = currentAccount.getAccountPassword();
             String inputPassword  = passwordField.getText();
+            System.out.println(accountPassword);
+            System.out.println(inputPassword);
 
             //checks to see if login info is correct
             if (checkLogin(accountPassword, inputPassword)) {
