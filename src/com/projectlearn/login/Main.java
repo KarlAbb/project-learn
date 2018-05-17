@@ -47,13 +47,13 @@ public class Main extends Application {
         launch(args);
     }
 
-    public static void storeAccount(int accountNum, Account account) throws Exception{
+    /*public static void storeAccount(int accountNum, Account account) throws Exception{
         File accountsStored = new File("Accounts Stored.txt");
         FileOutputStream fos = new FileOutputStream(accountsStored);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(accountNum);
         oos.writeObject(account);
-    }
+    }*/
 
     @Override
     public void start(Stage primaryStage) throws IOException {

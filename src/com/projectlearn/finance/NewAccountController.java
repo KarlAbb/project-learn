@@ -71,6 +71,7 @@ public class NewAccountController {
             String emailString = email.getText();
             int IDInt = Integer.parseInt(ID.getText());
             String accountTypeString = type.getTypeSelector();
+            System.out.println(accountTypeString);
             if(!accountManager.getList().containsKey(accountInt)) {
                 if (accountTypeString.equals("Intern")) {
                     Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.intern);
@@ -78,13 +79,13 @@ public class NewAccountController {
                     System.out.println(accountManager.getAccount(accountInt).getName());
 //            AccountManager.getList().put(accountInt, newAccount);
 
-                    Main.storeAccount(accountInt, newAccount);
+                    //Main.storeAccount(accountInt, newAccount);
                 }
                 else if (accountTypeString == "Employee") {
                     Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.employee);
                     accountManager.setAccounts(accountInt, newAccount);
                     System.out.println(accountManager.getAccount(accountInt).getName());
-                    Main.storeAccount(accountInt, newAccount);
+                    //Main.storeAccount(accountInt, newAccount);
                 }
                 else if (accountTypeString == "Team Leader") {
 
@@ -93,7 +94,7 @@ public class NewAccountController {
                     Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.it);
                     accountManager.setAccounts(accountInt, newAccount);
                     System.out.println(accountManager.getAccount(accountInt).getName());
-                    Main.storeAccount(accountInt, newAccount);
+                    //Main.storeAccount(accountInt, newAccount);
                 }
                 else if (accountTypeString == "IT Manager") {
 
@@ -106,7 +107,7 @@ public class NewAccountController {
                     Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.hr);
                     accountManager.setAccounts(accountInt, newAccount);
                     System.out.println(accountManager.getAccount(accountInt).getName());
-                    Main.storeAccount(accountInt, newAccount);
+                    //Main.storeAccount(accountInt, newAccount);
                 }
                 else if (accountTypeString == "HR Manager") {
 
@@ -115,7 +116,7 @@ public class NewAccountController {
                     Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.admin);
                     accountManager.setAccounts(accountInt, newAccount);
                     System.out.println(accountManager.getAccount(accountInt).getName());
-                    Main.storeAccount(accountInt, newAccount);
+
                 }
                 else if (accountTypeString == "CEO") {
 
@@ -131,7 +132,7 @@ public class NewAccountController {
 
                 Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-                scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
+                //scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
 
                 root.setScene(scene);
                 root.setResizable(false);

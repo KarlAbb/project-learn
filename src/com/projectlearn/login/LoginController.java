@@ -22,8 +22,6 @@ import java.util.Set;
 
 
 public class LoginController{
-
-    private Account currentAccount;
     private AccountManager accountManager;
 
     //logo
@@ -61,6 +59,16 @@ public class LoginController{
     @FXML
     private Text loginText;
 
+    int num1 = 1234;
+    int balance1 = 10;
+    Account stefan = new Account(num1, balance1, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", Main.admin);
+
+    Account currentAccount;
+
+
+
+
+
     //Cancels and exits application
     @FXML
     public void cancelBtn_Click(ActionEvent event) {
@@ -97,8 +105,14 @@ public class LoginController{
             int balance1 = 10;
             Account stefan = new Account(num1, balance1, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", Main.admin);
             accountManager.setAccounts(num1, stefan);
+
+            currentAccount = accountManager.getAccount(Integer.parseInt(numTextField.getText()));
+            int accountNum = currentAccount.getAccountNum();
+            String accountPassword = currentAccount.getAccountPassword();
+            String inputPassword  = passwordField.getText();
+
             //checks to see if login info is correct
-            if (accountManager.getAccount(Integer.parseInt(numTextField.getText())).getAccountPassword().equals(passwordField.getText())) {
+            if (checkLogin(accountPassword, inputPassword)) {
 
                 //loads up the main scene
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/finance/finance.fxml"));
@@ -136,7 +150,6 @@ public class LoginController{
             loginText.setFill(Color.GREEN);
             loginText.setText("Oops! Something went wrong! Please try again!");
             System.out.println(e.getCause() + " " + e.getMessage() + " " + e.getStackTrace());
-            //System.out.println(e.fillInStackTrace());
             e.printStackTrace();
         }
 
@@ -149,8 +162,15 @@ public class LoginController{
 
     }
 
-    public void setAccount(Account currentAccount) {
+    /*public void setAccount(Account currentAccount) {
         this.currentAccount = currentAccount;
+    }*/
+
+    public boolean checkLogin(String accountPassword, String password) {
+        if((accountPassword.equals(password))) {
+            return true;
+        }
+        else {return false;}
     }
 
     public void permissionList(HashMap<String, Set<Permissions>> permissionList) {
