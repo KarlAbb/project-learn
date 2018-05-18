@@ -16,10 +16,13 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 public class FinanceController {
 
     public AccountManager accountManager;
+
+    private Account currentAccount;
 
     //Main container
     @FXML
@@ -70,54 +73,58 @@ public class FinanceController {
     @FXML
     private TextField withdrawAmount;
 
+    private int accountNum;
+
     //Displays all of the account information
     @FXML
-    public void accountInfo (int accountNum) {
-        setAccountNumber.setText(Integer.toString(accountManager.getAccount(accountNum).getAccountNum()));
-        setName.setText(accountManager.getAccount(accountNum).getName());
-        setEmail.setText(accountManager.getAccount(accountNum).getEmail());
-        setID.setText(Integer.toString(accountManager.getAccount(accountNum).getAccountID()));
-        setStatus.setText(accountManager.getAccount(accountNum).getAccountType());
-        account.setText("Welcome " + accountManager.getAccount(accountNum).getName() + "!");
-        balance.setText("Your balance is: " + accountManager.getAccount(accountNum).getBalance());
+    public void accountInfo () {
+        setAccountNumber.setText(Integer.toString(accountNum));
+        setName.setText(currentAccount.getName());
+        setEmail.setText(currentAccount.getEmail());
+        setID.setText(Integer.toString(currentAccount.getAccountID()));
+        setStatus.setText(currentAccount.getAccountType());
+        account.setText("Welcome " + currentAccount.getName() + "!");
+        balance.setText("Your balance is: " + currentAccount.getBalance());
+        enabledPerms(currentAccount.getPerms());
     }
 
 
     //deposit ActionHandler
     @FXML
     public void deposit(ActionEvent event) {
-        /*int accountID = accountManager.currentAccount;
-        if(accountManager.getAccount(accountID).getPerms().contains(Permissions.CAN_DEPOSIT)) {
-            System.out.println(accountID);
+        if(currentAccount.getPerms().contains(Permissions.CAN_DEPOSIT)) {
+            System.out.println(accountNum);
             int depositAmount = Integer.parseInt(amount.getText());
             System.out.println(depositAmount);
-            balance.setText("Your balance is: " + accountManager.getAccount(accountID).deposit(depositAmount));
+            currentAccount.deposit(depositAmount);
+            balance.setText("Your balance is: " + currentAccount.getBalance());
         }
 
         else {
             noPermission();
-        }*/
+        }
     }
 
     //withdraw ActionHandler
     @FXML
     public void withdraw(ActionEvent event) {
-        /*int accountID =
-        if(accountManager.getAccount(accountID).getPerms().contains(Permissions.CAN_WITHDRAW)) {
-            System.out.println(accountID);
+        if(currentAccount.getPerms().contains(Permissions.CAN_WITHDRAW)) {
+            System.out.println(accountNum);
             int withdrawValue = Integer.parseInt(withdrawAmount.getText());
             System.out.println(withdrawAmount);
-            balance.setText("Your balance is: " + accountManager.getAccount(accountID).withdraw(withdrawValue));
+            currentAccount.withdraw(withdrawValue);
+            balance.setText("Your balance is: " + currentAccount.getBalance());
         }
 
         else {
             noPermission();
-        }*/
+        }
     }
 
     //Log out ActionHandler
     public void logOut(ActionEvent event) throws Exception{
 
+        //Changes scene back to login screen
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/login/login.fxml"));
 
         Parent roots = fxmlLoader.load();
@@ -133,27 +140,28 @@ public class FinanceController {
         root.setScene(scene);
         root.setResizable(false);
         root.show();
-
-        //Changes scene back to login screen
-        /*Parent logOut = FXMLLoader.load(getClass().getResource("/com/projectlearn/login/login.fxml"));
-        Scene logOutScene = new Scene(logOut);
-
-        Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        root.setScene(logOutScene);
-        root.show();*/
     }
 
     public void noPermission() {
         warning.setText("You don't have permission to do this! Please contact an administrator if you believe that this is a mistake!");
     }
 
-    public boolean enabledPerms() {
-        return false;
-    }
-
     public void setAccountManager(AccountManager accountManager) {
         this.accountManager = accountManager;
+    }
+
+    public void currentAccount (Account currentAccount) {
+        this.currentAccount = currentAccount;
+    }
+
+    public void enabledPerms(Set<Permissions> perms) {
+        if(!perms.contains(Permissions.CAN_DEPOSIT)) {
+            deposit.setDisable(true);
+        }
+
+        if(!perms.contains(Permissions.CAN_WITHDRAW)) {
+            withdraw.setDisable(true);
+        }
     }
 
 

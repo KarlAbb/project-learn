@@ -9,6 +9,7 @@ public class AccountManager {
     public Set<Permissions> employee = Set.of(Permissions.CAN_DEPOSIT, Permissions.CAN_WITHDRAW);
     public Set<Permissions> hr = Set.of(Permissions.CAN_DEPOSIT, Permissions.CAN_WITHDRAW, Permissions.CAN_HIRE, Permissions.CAN_FIRE, Permissions.CAN_PAY, Permissions.CAN_VIEW_ACCOUNTS);
     public Set<Permissions> it = Set.of(Permissions.CAN_DEPOSIT, Permissions.CAN_WITHDRAW, Permissions.CAN_VIEW_ACCOUNTS);
+    public Set<Permissions> noPerms = Set.of();
 
     //The HashMap that stores all accounts with the account number as the key and an Account as a value
     public HashMap<Integer, Account> accounts = new HashMap();

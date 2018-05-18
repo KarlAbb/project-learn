@@ -101,17 +101,13 @@ public class LoginController{
     public void loginBtn_Click(ActionEvent event) throws IOException {
 
         try {
-//            int num1 = 1234;
-//            int balance1 = 10;
-//            Account stefan = new Account(num1, balance1, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", Main.admin);
-//            accountManager.setAccounts(num1, stefan);
-
+            System.out.println(accountManager.getList().size());
             currentAccount = accountManager.getAccount(Integer.parseInt(numTextField.getText()));
-            //int accountNum = currentAccount.getAccountNum();
             String accountPassword = currentAccount.getAccountPassword();
             String inputPassword  = passwordField.getText();
             System.out.println(accountPassword);
             System.out.println(inputPassword);
+            System.out.println(accountManager.getList().size());
 
             //checks to see if login info is correct
             if (checkLogin(accountPassword, inputPassword)) {
@@ -122,7 +118,8 @@ public class LoginController{
                 Parent roots = fxmlLoader.load();
                 FinanceController financeController = fxmlLoader.<FinanceController>getController();
                 financeController.setAccountManager(accountManager);
-                financeController.accountInfo(Integer.parseInt(numTextField.getText()));
+                financeController.currentAccount(currentAccount);
+                financeController.accountInfo();
 
                 Scene scene = new Scene(roots);
 
@@ -142,12 +139,14 @@ public class LoginController{
                 loginText.setText("Incorrect email or password");
             }
         }
-        //catchs exceptions i.e letters instead of numbers for the account number entered
+        //catches exceptions i.e letters instead of numbers for the account number entered
         catch(Exception e) {
+            System.out.println(accountManager.getList().size());
             int num1 = 1234;
             int balance1 = 10;
             Account stefan = new Account(num1, balance1, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", Main.admin);
             accountManager.setAccounts(num1, stefan);
+            System.out.println(accountManager.getList().size());
 
             loginText.setFill(Color.GREEN);
             loginText.setText("Oops! Something went wrong! Please try again!");
@@ -163,10 +162,6 @@ public class LoginController{
         }
 
     }
-
-    /*public void setAccount(Account currentAccount) {
-        this.currentAccount = currentAccount;
-    }*/
 
     public boolean checkLogin(String accountPassword, String password) {
         if((accountPassword.equals(password))) {

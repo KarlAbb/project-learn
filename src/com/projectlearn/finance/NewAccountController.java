@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
 import java.io.IOException;
+import java.util.Set;
 
 
 public class NewAccountController {
@@ -63,6 +64,7 @@ public class NewAccountController {
     @FXML
     public void addNewAccount (ActionEvent event) throws IOException {
         try {
+            System.out.println(accountManager.getList().size());
             //gets all of the information that the user entered
             int accountInt = Integer.parseInt(accountNum.getText());
             int balance = 0;
@@ -70,57 +72,10 @@ public class NewAccountController {
             String passwordInt = password.getText();
             String emailString = email.getText();
             int IDInt = Integer.parseInt(ID.getText());
-            String accountTypeString = type.getTypeSelector();
-            System.out.println(accountTypeString);
+            String accountTypeString = String.valueOf(type.getValue());
+            System.out.println(type.getValue());
             if(!accountManager.getList().containsKey(accountInt)) {
-                if (accountTypeString.equals("Intern")) {
-                    Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.intern);
-                    accountManager.setAccounts(accountInt, newAccount);
-                    System.out.println(accountManager.getAccount(accountInt).getName());
-//            AccountManager.getList().put(accountInt, newAccount);
-
-                    //Main.storeAccount(accountInt, newAccount);
-                }
-                else if (accountTypeString == "Employee") {
-                    Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.employee);
-                    accountManager.setAccounts(accountInt, newAccount);
-                    System.out.println(accountManager.getAccount(accountInt).getName());
-                    //Main.storeAccount(accountInt, newAccount);
-                }
-                else if (accountTypeString == "Team Leader") {
-
-                }
-                else if (accountTypeString == "IT") {
-                    Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.it);
-                    accountManager.setAccounts(accountInt, newAccount);
-                    System.out.println(accountManager.getAccount(accountInt).getName());
-                    //Main.storeAccount(accountInt, newAccount);
-                }
-                else if (accountTypeString == "IT Manager") {
-
-                }
-
-                else if (accountTypeString == "Manager") {
-
-                }
-                else if (accountTypeString == "HR") {
-                    Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.hr);
-                    accountManager.setAccounts(accountInt, newAccount);
-                    System.out.println(accountManager.getAccount(accountInt).getName());
-                    //Main.storeAccount(accountInt, newAccount);
-                }
-                else if (accountTypeString == "HR Manager") {
-
-                }
-                else if (accountTypeString.equals("Admin")) {
-                    Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.admin);
-                    accountManager.setAccounts(accountInt, newAccount);
-                    System.out.println(accountManager.getAccount(accountInt).getName());
-
-                }
-                else if (accountTypeString == "CEO") {
-
-                }
+                Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt,accountTypeString, getPermissionLevel(accountTypeString));
 
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/login/login.fxml"));
 
@@ -132,25 +87,19 @@ public class NewAccountController {
 
                 Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-                //scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
+                scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
 
                 root.setScene(scene);
                 root.setResizable(false);
                 root.show();
 
-                //Changes back to login screen
-                /*Parent login = FXMLLoader.load(getClass().getResource("/com/projectlearn/login/login.fxml"));
-                Scene loginScene = new Scene(login);
-
-                Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-                root.setScene(loginScene);
-                root.show();*/
             }
 
             else {
                 alreadyInUse.setText("Sorry, but that account number is taken! Please choose another one and try again!");
             }
+
+            System.out.println(accountManager.getList().size());
 
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
@@ -174,4 +123,43 @@ public class NewAccountController {
     public void setAccountManager(AccountManager accountManager) {
         this.accountManager = accountManager;
     }
+
+    public Set getPermissionLevel(String accountType) {
+        if (accountType.equals("Intern")) {
+            return accountManager.intern;
+        }
+        else if (accountType.equals("Employee")) {
+            return  accountManager.employee;
+        }
+        else if (accountType.equals("Team Leader")) {
+            return  accountManager.hr;
+        }
+        else if (accountType.equals("IT")) {
+            return accountManager.it;
+        }
+        else if (accountType.equals("IT Manager")) {
+            return accountManager.it;
+        }
+
+        else if (accountType.equals("Manager")) {
+            return accountManager.admin;
+        }
+        else if (accountType.equals("HR")) {
+            return accountManager.hr;
+        }
+        else if (accountType.equals("HR Manager")) {
+            return accountManager.hr;
+        }
+        else if (accountType.equals("Admin")) {
+            return accountManager.admin;
+        }
+        else if (accountType.equals("CEO")) {
+            return accountManager.admin;
+        }
+
+        else {
+            return accountManager.noPerms;
+        }
+    }
+
 }

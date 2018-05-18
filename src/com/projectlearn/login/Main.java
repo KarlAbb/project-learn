@@ -80,8 +80,6 @@ public class Main extends Application {
 
         primaryStage.getIcons().add(new Image("/com/projectlearn/finance/ProjectLearn_Logo.png"));
 
-        //loginController.permissionList();
-
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
