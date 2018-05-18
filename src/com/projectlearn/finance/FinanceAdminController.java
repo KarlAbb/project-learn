@@ -187,7 +187,7 @@ public class FinanceAdminController {
         }
 
         catch (Exception e) {
-
+            e.printStackTrace();
         }
 
     }

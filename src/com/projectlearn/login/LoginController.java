@@ -132,7 +132,7 @@ public class LoginController{
                     root.show();
                 }
 
-                else {
+                else if(!currentAccount.getPerms().equals(accountManager.admin)) {
                     //loads up the main scene
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/finance/finance.fxml"));
 
