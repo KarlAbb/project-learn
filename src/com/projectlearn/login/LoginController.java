@@ -112,24 +112,46 @@ public class LoginController{
             //checks to see if login info is correct
             if (checkLogin(accountPassword, inputPassword)) {
 
-                //loads up the main scene
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/finance/finance.fxml"));
+                if(currentAccount.getPerms().equals(accountManager.admin)) {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/finance/financeAdmin.fxml"));
 
-                Parent roots = fxmlLoader.load();
-                FinanceController financeController = fxmlLoader.<FinanceController>getController();
-                financeController.setAccountManager(accountManager);
-                financeController.currentAccount(currentAccount);
-                financeController.accountInfo();
+                    Parent roots = fxmlLoader.load();
+                    FinanceAdminController financeAdminController = fxmlLoader.<FinanceAdminController>getController();
+                    financeAdminController.setAccountManager(accountManager);
+                    financeAdminController.currentAccount(currentAccount);
+                    financeAdminController.accountInfo();
 
-                Scene scene = new Scene(roots);
+                    Scene scene = new Scene(roots);
 
-                Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-                scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
+                    scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
 
-                root.setScene(scene);
-                root.setResizable(false);
-                root.show();
+                    root.setScene(scene);
+                    root.setResizable(false);
+                    root.show();
+                }
+
+                else {
+                    //loads up the main scene
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/finance/finance.fxml"));
+
+                    Parent roots = fxmlLoader.load();
+                    FinanceController financeController = fxmlLoader.<FinanceController>getController();
+                    financeController.setAccountManager(accountManager);
+                    financeController.currentAccount(currentAccount);
+                    financeController.accountInfo();
+
+                    Scene scene = new Scene(roots);
+
+                    Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                    scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
+
+                    root.setScene(scene);
+                    root.setResizable(false);
+                    root.show();
+                }
 
 
             }

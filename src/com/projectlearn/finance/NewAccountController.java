@@ -76,6 +76,7 @@ public class NewAccountController {
             System.out.println(type.getValue());
             if(!accountManager.getList().containsKey(accountInt)) {
                 Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt,accountTypeString, getPermissionLevel(accountTypeString));
+                accountManager.setAccounts(accountInt, newAccount);
 
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/login/login.fxml"));
 
