@@ -1,10 +1,19 @@
 package com.projectlearn.finance;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class AccountManager {
+    public Set<Permissions> admin = Set.of(Permissions.CAN_HIRE, Permissions.CAN_FIRE, Permissions.CAN_DEPOSIT, Permissions.CAN_WITHDRAW, Permissions.CAN_PAY, Permissions.CAN_FINE, Permissions.CAN_VIEW_ACCOUNTS);
+    public Set<Permissions> intern = Set.of(Permissions.CAN_WITHDRAW);
+    public Set<Permissions> employee = Set.of(Permissions.CAN_DEPOSIT, Permissions.CAN_WITHDRAW);
+    public Set<Permissions> hr = Set.of(Permissions.CAN_DEPOSIT, Permissions.CAN_WITHDRAW, Permissions.CAN_HIRE, Permissions.CAN_FIRE, Permissions.CAN_PAY, Permissions.CAN_VIEW_ACCOUNTS);
+    public Set<Permissions> it = Set.of(Permissions.CAN_DEPOSIT, Permissions.CAN_WITHDRAW, Permissions.CAN_VIEW_ACCOUNTS);
+    public Set<Permissions> noPerms = Set.of();
+
     //The HashMap that stores all accounts with the account number as the key and an Account as a value
-    private static HashMap<Integer, Account> accounts = new HashMap();
+    public HashMap<Integer, Account> accounts = new HashMap();
+    public HashMap<String, Set<Permissions>> permissionSet = new HashMap<>();
 
     //default constructor
     public AccountManager() {
@@ -12,7 +21,7 @@ public class AccountManager {
     }
 
     //returns the HashMap and creates a new one if it doesn't exist
-    public static HashMap<Integer, Account> getList() {
+    public HashMap<Integer, Account> getList() {
         if (accounts == null) {
             accounts = new HashMap<>();
         }
@@ -20,7 +29,7 @@ public class AccountManager {
     }
 
     //adds a new account
-    public static void setAccounts(int accountNum, Account account) {
+    public void setAccounts(int accountNum, Account account) {
         //checks to see if an account exists and warns if replacing an existing account
         boolean key = accounts.containsKey(accountNum);
         if(key == false) {
@@ -31,13 +40,13 @@ public class AccountManager {
     }
 
     //gets a certain account
-    public static Account getAccount(int accountNum) {
+    public Account getAccount(int accountNum) {
         return accounts.get(accountNum);
     }
 
     //checks the password of an account
-    public static boolean checkInfo(int accountNum, String password) {
-        if (AccountManager.getAccount(accountNum).getAccountPassword() == password) {
+    public boolean checkInfo(int accountNum, String password) {
+        if (getAccount(accountNum).getAccountPassword() == password) {
             return true;
         }
         else return false;

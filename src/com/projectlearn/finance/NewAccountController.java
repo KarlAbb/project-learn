@@ -1,5 +1,6 @@
 package com.projectlearn.finance;
 
+import com.projectlearn.login.LoginController;
 import com.projectlearn.login.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,9 +17,12 @@ import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
 import java.io.IOException;
+import java.util.Set;
 
 
 public class NewAccountController {
+
+    AccountManager accountManager;
 
     //Displays a warning if a user tries to make an account with an existing account number
     @FXML
@@ -60,6 +64,7 @@ public class NewAccountController {
     @FXML
     public void addNewAccount (ActionEvent event) throws IOException {
         try {
+            System.out.println(accountManager.getList().size());
             //gets all of the information that the user entered
             int accountInt = Integer.parseInt(accountNum.getText());
             int balance = 0;
@@ -67,70 +72,35 @@ public class NewAccountController {
             String passwordInt = password.getText();
             String emailString = email.getText();
             int IDInt = Integer.parseInt(ID.getText());
-            String accountTypeString = type.getTypeSelector();
-            if(!AccountManager.getList().containsKey(accountInt)) {
-                if (accountTypeString.equals("Intern")) {
-                    Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.intern);
-                    AccountManager.setAccounts(accountInt, newAccount);
-                    System.out.println(AccountManager.getAccount(accountInt).getName());
-//            AccountManager.getList().put(accountInt, newAccount);
+            String accountTypeString = String.valueOf(type.getValue());
+            System.out.println(type.getValue());
+            if(!accountManager.getList().containsKey(accountInt)) {
+                Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt,accountTypeString, getPermissionLevel(accountTypeString));
+                accountManager.setAccounts(accountInt, newAccount);
 
-                    Main.storeAccount(accountInt, newAccount);
-                }
-                else if (accountTypeString == "Employee") {
-                    Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.employee);
-                    AccountManager.setAccounts(accountInt, newAccount);
-                    System.out.println(AccountManager.getAccount(accountInt).getName());
-                    Main.storeAccount(accountInt, newAccount);
-                }
-                else if (accountTypeString == "Team Leader") {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/login/login.fxml"));
 
-                }
-                else if (accountTypeString == "IT") {
-                    Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.it);
-                    AccountManager.setAccounts(accountInt, newAccount);
-                    System.out.println(AccountManager.getAccount(accountInt).getName());
-                    Main.storeAccount(accountInt, newAccount);
-                }
-                else if (accountTypeString == "IT Manager") {
+                Parent roots = fxmlLoader.load();
+                LoginController loginController = fxmlLoader.<LoginController>getController();
+                loginController.setAccountManager(accountManager);
 
-                }
-
-                else if (accountTypeString == "Manager") {
-
-                }
-                else if (accountTypeString == "HR") {
-                    Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.hr);
-                    AccountManager.setAccounts(accountInt, newAccount);
-                    System.out.println(AccountManager.getAccount(accountInt).getName());
-                    Main.storeAccount(accountInt, newAccount);
-                }
-                else if (accountTypeString == "HR Manager") {
-
-                }
-                else if (accountTypeString == "Admin") {
-                    Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt, accountTypeString, Main.admin);
-                    AccountManager.setAccounts(accountInt, newAccount);
-                    System.out.println(AccountManager.getAccount(accountInt).getName());
-                    Main.storeAccount(accountInt, newAccount);
-                }
-                else if (accountTypeString == "CEO") {
-
-                }
-
-                //Changes back to login screen
-                Parent login = FXMLLoader.load(getClass().getResource("/com/projectlearn/login/login.fxml"));
-                Scene loginScene = new Scene(login);
+                Scene scene = new Scene(roots);
 
                 Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-                root.setScene(loginScene);
+                scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
+
+                root.setScene(scene);
+                root.setResizable(false);
                 root.show();
+
             }
 
             else {
                 alreadyInUse.setText("Sorry, but that account number is taken! Please choose another one and try again!");
             }
+
+            System.out.println(accountManager.getList().size());
 
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
@@ -142,12 +112,63 @@ public class NewAccountController {
     //Changes back to login screen
     @FXML
     public void quitCreation(ActionEvent event) throws Exception {
-        Parent login = FXMLLoader.load(getClass().getResource("/com/projectlearn/login/login.fxml"));
-        Scene loginScene = new Scene(login);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/login/login.fxml"));
+
+        Parent roots = fxmlLoader.load();
+        LoginController loginController = fxmlLoader.<LoginController>getController();
+        loginController.setAccountManager(accountManager);
+
+        Scene scene = new Scene(roots);
 
         Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        root.setScene(loginScene);
+        scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
+
+        root.setScene(scene);
+        root.setResizable(false);
         root.show();
     }
+
+    public void setAccountManager(AccountManager accountManager) {
+        this.accountManager = accountManager;
+    }
+
+    public Set getPermissionLevel(String accountType) {
+        if (accountType.equals("Intern")) {
+            return accountManager.intern;
+        }
+        else if (accountType.equals("Employee")) {
+            return  accountManager.employee;
+        }
+        else if (accountType.equals("Team Leader")) {
+            return  accountManager.hr;
+        }
+        else if (accountType.equals("IT")) {
+            return accountManager.it;
+        }
+        else if (accountType.equals("IT Manager")) {
+            return accountManager.it;
+        }
+
+        else if (accountType.equals("Manager")) {
+            return accountManager.admin;
+        }
+        else if (accountType.equals("HR")) {
+            return accountManager.hr;
+        }
+        else if (accountType.equals("HR Manager")) {
+            return accountManager.hr;
+        }
+        else if (accountType.equals("Admin")) {
+            return accountManager.admin;
+        }
+        else if (accountType.equals("CEO")) {
+            return accountManager.admin;
+        }
+
+        else {
+            return accountManager.noPerms;
+        }
+    }
+
 }

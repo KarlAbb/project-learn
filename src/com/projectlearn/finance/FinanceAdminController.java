@@ -1,24 +1,25 @@
 package com.projectlearn.finance;
 
 import com.projectlearn.login.LoginController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
 import java.util.Set;
 
-public class FinanceController {
+public class FinanceAdminController {
 
     public AccountManager accountManager;
 
@@ -65,6 +66,9 @@ public class FinanceController {
     //This button returns to the login scene
     @FXML
     private Button logOut;
+    //Changes to scene that shows all accounts
+    @FXML
+    private Button accounts;
 
     //This textfield contains the amount that should be deposited into an account
     @FXML
@@ -73,7 +77,7 @@ public class FinanceController {
     @FXML
     private TextField withdrawAmount;
 
-    private int accountNum = currentAccount.getAccountNum();
+    private int accountNum;
 
     //Displays all of the account information
     @FXML
@@ -165,19 +169,19 @@ public class FinanceController {
         }
     }
 
-    public void viewAccounts (ActionEvent event) throws Exception{
+    public void viewAccounts(ActionEvent event) throws Exception {
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/finance/accountsView.fxml"));
 
             Parent roots = fxmlLoader.load();
             AccountViewController accountViewController = fxmlLoader.<AccountViewController>getController();
+            accountViewController.setAccountManager(accountManager);
+            accountViewController.setAccounts();
 
             Scene scene = new Scene(roots);
 
             Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
 
             root.setScene(scene);
             root.setResizable(false);
@@ -185,8 +189,9 @@ public class FinanceController {
         }
 
         catch (Exception e) {
-
+            e.printStackTrace();
         }
+
     }
 
 
