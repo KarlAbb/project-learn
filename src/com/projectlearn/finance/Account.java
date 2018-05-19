@@ -3,7 +3,7 @@ import java.lang.*;
 import java.util.EnumSet;
 import java.util.Set;
 
-public class Account /*extends AccountManager*/{
+public class Account {
     private int accountID;
     private int balance;
     private String accountType;
@@ -59,7 +59,7 @@ public class Account /*extends AccountManager*/{
 
     //getters and setters
     public int getAccountNum() {
-        return accountID;
+        return accountNum;
     }
 
     public String getAccountType() {

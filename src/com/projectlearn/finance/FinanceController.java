@@ -73,7 +73,7 @@ public class FinanceController {
     @FXML
     private TextField withdrawAmount;
 
-    private int accountNum;
+    private int accountNum = currentAccount.getAccountNum();
 
     //Displays all of the account information
     @FXML
@@ -152,6 +152,7 @@ public class FinanceController {
 
     public void currentAccount (Account currentAccount) {
         this.currentAccount = currentAccount;
+        accountNum = currentAccount.getAccountNum();
     }
 
     public void enabledPerms(Set<Permissions> perms) {

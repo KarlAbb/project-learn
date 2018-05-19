@@ -65,7 +65,9 @@ public class LoginController{
 
     Account currentAccount;
 
-
+    public void init() {
+        
+    }
 
 
 
