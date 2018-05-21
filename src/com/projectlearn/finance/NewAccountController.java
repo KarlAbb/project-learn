@@ -66,7 +66,7 @@ public class NewAccountController {
         try {
             System.out.println(accountManager.getList().size());
             //gets all of the information that the user entered
-            int accountInt = Integer.parseInt(accountNum.getText());
+            int accountInt = Account.accountNumber;
             int balance = 0;
             String nameString = name.getText();
             String passwordInt = password.getText();
@@ -75,8 +75,8 @@ public class NewAccountController {
             String accountTypeString = String.valueOf(type.getValue());
             System.out.println(type.getValue());
             if(!accountManager.getList().containsKey(accountInt)) {
-                Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt,accountTypeString, getPermissionLevel(accountTypeString));
-                accountManager.setAccounts(accountInt, newAccount);
+                Account newAccount = new Account(balance, nameString, emailString, passwordInt, IDInt,accountTypeString, getPermissionLevel(accountTypeString));
+                accountManager.setAccounts(newAccount.getAccountNum(), newAccount);
 
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/login/login.fxml"));
 

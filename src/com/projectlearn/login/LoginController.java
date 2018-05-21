@@ -61,12 +61,12 @@ public class LoginController{
 
     int num1 = 1234;
     int balance1 = 10;
-    Account stefan = new Account(num1, balance1, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", Main.admin);
+    Account stefan = new Account(balance1, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", Main.admin);
 
     Account currentAccount;
 
     public void init() {
-        
+
     }
 
 
@@ -168,8 +168,8 @@ public class LoginController{
             System.out.println(accountManager.getList().size());
             int num1 = 1234;
             int balance1 = 10;
-            Account stefan = new Account(num1, balance1, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", Main.admin);
-            accountManager.setAccounts(num1, stefan);
+            Account stefan = new Account(balance1, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", Main.admin);
+            accountManager.setAccounts(Account.accountNumber, stefan);
             System.out.println(accountManager.getList().size());
 
             loginText.setFill(Color.GREEN);
@@ -181,8 +181,8 @@ public class LoginController{
         finally {
             int num1 = 1234;
             int balance1 = 10;
-            Account stefan = new Account(num1, balance1, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", Main.admin);
-            accountManager.setAccounts(num1, stefan);
+            Account stefan = new Account(balance1, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", Main.admin);
+            accountManager.setAccounts(Account.accountNumber, stefan);
         }
 
     }

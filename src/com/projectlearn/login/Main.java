@@ -20,9 +20,6 @@ public class Main extends Application {
     public Scene mainAccountScene;
 
     public AccountManager accountManager = new AccountManager();
-    int num = 1234;
-    int balance = 10;
-    Account stefan = new Account(num, balance, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", admin);
 
 
     HashMap<String, Permissions> permissionsHashMap = new HashMap<>();
@@ -60,13 +57,13 @@ public class Main extends Application {
 
         int num1 = 1234;
         int balance1 = 10;
-        Account stefan = new Account(num1, balance1, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", Main.admin);
-        accountManager.setAccounts(num1, stefan);
+        Account stefan = new Account(balance1, "Stefan", "sell488sftoday@gmail.com", "1234", 60, "Owner", Main.admin);
+        accountManager.setAccounts(stefan.getAccountNum(), stefan);
 
-        int num2 = 0000;
+        int num2 = 0001;
         int balance2 = 30;
-        Account internBob = new Account(num2, balance2, "Bob", "Testing@gmail.com", "1234", 0, "Intern", intern);
-        accountManager.setAccounts(num2, internBob);
+        Account internBob = new Account(balance2, "Bob", "Testing@gmail.com", "1234", 0, "Intern", intern);
+        accountManager.setAccounts(internBob.getAccountNum(), internBob);
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/login/login.fxml"));
 
