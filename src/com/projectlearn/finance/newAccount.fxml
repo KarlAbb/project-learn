@@ -15,8 +15,6 @@
    <children>
       <VBox prefHeight="539.0" prefWidth="120.0" spacing="20.0">
          <children>
-            <Label text="Account Number" />
-            <TextField fx:id="accountNum" promptText="ex: 1234" />
             <Label text="Name" />
             <TextField fx:id="name" promptText="ex: John Doe" />
             <Label text="Password" />

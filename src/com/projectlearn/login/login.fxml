@@ -15,7 +15,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="364.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectlearn.login.LoginController">
    <children>
-      <VBox layoutX="20.0" layoutY="195.0" prefHeight="156.0" prefWidth="324.0">
+      <VBox layoutX="21.0" layoutY="244.0" prefHeight="156.0" prefWidth="324.0">
          <children>
             <Label fx:id="accountLabel" prefHeight="28.0" prefWidth="137.0" text="Account Number">
                <font>

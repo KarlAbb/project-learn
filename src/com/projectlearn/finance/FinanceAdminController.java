@@ -21,7 +21,7 @@ import java.util.Set;
 
 public class FinanceAdminController {
 
-    public AccountManager accountManager;
+    private AccountManager accountManager;
 
     private Account currentAccount;
 
@@ -177,6 +177,7 @@ public class FinanceAdminController {
             Parent roots = fxmlLoader.load();
             AccountViewController accountViewController = fxmlLoader.<AccountViewController>getController();
             accountViewController.setAccountManager(accountManager);
+            accountViewController.setCurrentAccount(currentAccount);
             accountViewController.setAccounts();
 
             Scene scene = new Scene(roots);

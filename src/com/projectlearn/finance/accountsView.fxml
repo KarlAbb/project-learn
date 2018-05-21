@@ -12,15 +12,18 @@
         <columns>
           <TableColumn fx:id="accountNums" prefWidth="120.0" text="Account Number" />
           <TableColumn fx:id="accountBalance" prefWidth="75.0" text="Balance" />
-            <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="name" prefWidth="124.0" text="Name" />
+            <TableColumn fx:id="email" prefWidth="235.0" text="Email" />
+            <TableColumn fx:id="id" minWidth="0.0" prefWidth="71.0" text="ID" />
+            <TableColumn fx:id="type" prefWidth="114.0" text="Type" />
         </columns>
       </TableView>
-      <HBox layoutX="54.0" layoutY="539.0" prefHeight="32.0" prefWidth="692.0" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="54.0" AnchorPane.rightAnchor="54.0" AnchorPane.topAnchor="539.0">
+      <HBox layoutX="54.0" layoutY="539.0" prefHeight="32.0" prefWidth="692.0" spacing="20.0" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="54.0" AnchorPane.rightAnchor="54.0" AnchorPane.topAnchor="539.0">
          <children>
             <Button fx:id="back" mnemonicParsing="false" onAction="#back" text="Back" />
+            <Button fx:id="edit" mnemonicParsing="false" text="Edit" />
+            <Button fx:id="newAccount" mnemonicParsing="false" onAction="#newAccount" text="New" />
+            <Button fx:id="delete" mnemonicParsing="false" text="Delete" />
          </children>
       </HBox>
    </children>

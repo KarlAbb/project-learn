@@ -23,6 +23,7 @@ import java.util.Set;
 public class NewAccountController {
 
     AccountManager accountManager;
+    Account currentAccount;
 
     //Displays a warning if a user tries to make an account with an existing account number
     @FXML
@@ -36,8 +37,6 @@ public class NewAccountController {
     private Button quit;
 
     //These textfields are where the user enters their prefered account info
-    @FXML
-    private TextField accountNum;
     @FXML
     private TextField name;
     @FXML
@@ -58,53 +57,85 @@ public class NewAccountController {
     private void initialize() {
         type.setItems(types);
         type.setValue("Employee");
+        alreadyInUse.setText("Your account number is: " + Integer.toString(Account.accountNumber) + " don't forget it!");
     }
 
     //ActionHandler for a done button
     @FXML
     public void addNewAccount (ActionEvent event) throws IOException {
         try {
-            System.out.println(accountManager.getList().size());
-            //gets all of the information that the user entered
-            int accountInt = Account.accountNumber;
-            int balance = 0;
-            String nameString = name.getText();
-            String passwordInt = password.getText();
-            String emailString = email.getText();
-            int IDInt = Integer.parseInt(ID.getText());
-            String accountTypeString = String.valueOf(type.getValue());
-            System.out.println(type.getValue());
-            if(!accountManager.getList().containsKey(accountInt)) {
-                Account newAccount = new Account(balance, nameString, emailString, passwordInt, IDInt,accountTypeString, getPermissionLevel(accountTypeString));
-                accountManager.setAccounts(newAccount.getAccountNum(), newAccount);
+            if (currentAccount.getPerms().contains(Permissions.CAN_VIEW_ACCOUNTS)) {
+                System.out.println(accountManager.getList().size());
+                //gets all of the information that the user entered
+                int accountInt = Account.accountNumber;
+                int balance = 0;
+                String nameString = name.getText();
+                String passwordInt = password.getText();
+                String emailString = email.getText();
+                int IDInt = Integer.parseInt(ID.getText());
+                String accountTypeString = String.valueOf(type.getValue());
+                System.out.println(type.getValue());
+                if (!accountManager.getList().containsKey(accountInt)) {
+                    Account newAccount = new Account(balance, nameString, emailString, passwordInt, IDInt, accountTypeString, getPermissionLevel(accountTypeString));
+                    accountManager.setAccounts(newAccount.getAccountNum(), newAccount);
 
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/login/login.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/finance/accountsView.fxml"));
 
-                Parent roots = fxmlLoader.load();
-                LoginController loginController = fxmlLoader.<LoginController>getController();
-                loginController.setAccountManager(accountManager);
+                    Parent roots = fxmlLoader.load();
+                    AccountViewController accountViewController = fxmlLoader.<AccountViewController>getController();
+                    accountViewController.setAccountManager(accountManager);
+                    accountViewController.setCurrentAccount(currentAccount);
+                    accountViewController.setAccounts();
 
-                Scene scene = new Scene(roots);
+                    Scene scene = new Scene(roots);
 
-                Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-                scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
+                    root.setScene(scene);
+                    root.setResizable(false);
+                    root.show();
+                } else {
+                    System.out.println(accountManager.getList().size());
+                    //gets all of the information that the user entered
+                    accountInt = Account.accountNumber;
+                    balance = 0;
+                    nameString = name.getText();
+                    passwordInt = password.getText();
+                    emailString = email.getText();
+                    IDInt = Integer.parseInt(ID.getText());
+                    accountTypeString = String.valueOf(type.getValue());
+                    System.out.println(type.getValue());
+                    if (!accountManager.getList().containsKey(accountInt)) {
+                        Account newAccount = new Account(balance, nameString, emailString, passwordInt, IDInt, accountTypeString, getPermissionLevel(accountTypeString));
+                        accountManager.setAccounts(newAccount.getAccountNum(), newAccount);
 
-                root.setScene(scene);
-                root.setResizable(false);
-                root.show();
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/login/login.fxml"));
+
+                        Parent roots = fxmlLoader.load();
+                        LoginController loginController = fxmlLoader.<LoginController>getController();
+                        loginController.setAccountManager(accountManager);
+
+                        Scene scene = new Scene(roots);
+
+                        Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                        scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
+
+                        root.setScene(scene);
+                        root.setResizable(false);
+                        root.show();
+
+                    } else {
+                        alreadyInUse.setText("Sorry, but that account number is taken! Please choose another one and try again!");
+                    }
+                }
+
+                System.out.println(accountManager.getList().size());
 
             }
-
-            else {
-                alreadyInUse.setText("Sorry, but that account number is taken! Please choose another one and try again!");
+        }   catch(Exception e){
+                System.out.println("Error: " + e.getMessage());
             }
-
-            System.out.println(accountManager.getList().size());
-
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
 
 
     }
@@ -169,6 +200,10 @@ public class NewAccountController {
         else {
             return accountManager.noPerms;
         }
+    }
+
+    public void setCurrentAccount (Account account) {
+        this.currentAccount = account;
     }
 
 }

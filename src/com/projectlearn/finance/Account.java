@@ -4,7 +4,7 @@ import java.util.EnumSet;
 import java.util.Set;
 
 public class Account {
-    public static int accountNumber = 1;
+    public static int accountNumber = 1000;
     private int accountID;
     private int balance;
     private String accountType;

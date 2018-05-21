@@ -59,10 +59,6 @@ public class LoginController{
     @FXML
     private Text loginText;
 
-    int num1 = 1234;
-    int balance1 = 10;
-    Account stefan = new Account(balance1, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", Main.admin);
-
     Account currentAccount;
 
     public void init() {
@@ -111,65 +107,65 @@ public class LoginController{
             System.out.println(inputPassword);
             System.out.println(accountManager.getList().size());
 
-            //checks to see if login info is correct
-            if (checkLogin(accountPassword, inputPassword)) {
+            if(!(numTextField.equals(null) && passwordField.equals(null))) {
 
-                if(currentAccount.getPerms().equals(accountManager.admin)) {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/finance/financeAdmin.fxml"));
+                //checks to see if login info is correct
+                if (checkLogin(accountPassword, inputPassword)) {
 
-                    Parent roots = fxmlLoader.load();
-                    FinanceAdminController financeAdminController = fxmlLoader.<FinanceAdminController>getController();
-                    financeAdminController.setAccountManager(accountManager);
-                    financeAdminController.currentAccount(currentAccount);
-                    financeAdminController.accountInfo();
+                    if (currentAccount.getPerms().equals(accountManager.admin)) {
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/finance/financeAdmin.fxml"));
 
-                    Scene scene = new Scene(roots);
+                        Parent roots = fxmlLoader.load();
+                        FinanceAdminController financeAdminController = fxmlLoader.<FinanceAdminController>getController();
+                        financeAdminController.setAccountManager(accountManager);
+                        financeAdminController.currentAccount(currentAccount);
 
-                    Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-                    scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
+                        Scene scene = new Scene(roots);
 
-                    root.setScene(scene);
-                    root.setResizable(false);
-                    root.show();
+                        Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                        scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
+
+                        root.setScene(scene);
+                        root.setResizable(false);
+                        root.show();
+                        financeAdminController.accountInfo();
+                    } else if (!currentAccount.getPerms().equals(accountManager.admin)) {
+                        //loads up the main scene
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/finance/finance.fxml"));
+
+                        Parent roots = fxmlLoader.load();
+                        FinanceController financeController = fxmlLoader.<FinanceController>getController();
+                        financeController.setAccountManager(accountManager);
+                        financeController.currentAccount(currentAccount);
+                        financeController.accountInfo();
+
+                        Scene scene = new Scene(roots);
+
+                        Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                        scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
+
+                        root.setScene(scene);
+                        root.setResizable(false);
+                        root.show();
+                    }
+
+
                 }
 
-                else if(!currentAccount.getPerms().equals(accountManager.admin)) {
-                    //loads up the main scene
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/finance/finance.fxml"));
-
-                    Parent roots = fxmlLoader.load();
-                    FinanceController financeController = fxmlLoader.<FinanceController>getController();
-                    financeController.setAccountManager(accountManager);
-                    financeController.currentAccount(currentAccount);
-                    financeController.accountInfo();
-
-                    Scene scene = new Scene(roots);
-
-                    Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-                    scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
-
-                    root.setScene(scene);
-                    root.setResizable(false);
-                    root.show();
+                //login incorrect actions
+                else {
+                    loginText.setFill(Color.RED);
+                    loginText.setText("Incorrect email or password");
                 }
-
-
             }
-            //login incorrect actions
-            else {
-                loginText.setFill(Color.RED);
-                loginText.setText("Incorrect email or password");
-            }
+
         }
         //catches exceptions i.e letters instead of numbers for the account number entered
         catch(Exception e) {
             System.out.println(accountManager.getList().size());
-            int num1 = 1234;
-            int balance1 = 10;
-            Account stefan = new Account(balance1, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", Main.admin);
-            accountManager.setAccounts(Account.accountNumber, stefan);
             System.out.println(accountManager.getList().size());
 
             loginText.setFill(Color.GREEN);
@@ -179,10 +175,6 @@ public class LoginController{
         }
 
         finally {
-            int num1 = 1234;
-            int balance1 = 10;
-            Account stefan = new Account(balance1, "Stefan", "sell488sftoday@gmail.com", "1234", 12, "Owner", Main.admin);
-            accountManager.setAccounts(Account.accountNumber, stefan);
         }
 
     }
