@@ -32,11 +32,9 @@ public class AccountManager {
     public void setAccounts(int accountNum, Account account) {
         //checks to see if an account exists and warns if replacing an existing account
         boolean key = accounts.containsKey(accountNum);
-        if(key == false) {
+        if (key == false) {
             accounts.put(accountNum, account);
         }
-        else System.out.println("WARNING: REPLACING ACCOUNT");
-        accounts.put(accountNum, account);
     }
 
     //gets a certain account

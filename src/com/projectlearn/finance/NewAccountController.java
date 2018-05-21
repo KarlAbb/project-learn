@@ -66,7 +66,7 @@ public class NewAccountController {
         try {
             System.out.println(accountManager.getList().size());
             //gets all of the information that the user entered
-            int accountInt = Integer.parseInt(accountNum.getText());
+            int accountInt = Account.accountNumber;
             int balance = 0;
             String nameString = name.getText();
             String passwordInt = password.getText();
@@ -75,8 +75,8 @@ public class NewAccountController {
             String accountTypeString = String.valueOf(type.getValue());
             System.out.println(type.getValue());
             if(!accountManager.getList().containsKey(accountInt)) {
-                Account newAccount = new Account(accountInt, balance, nameString, emailString, passwordInt, IDInt,accountTypeString, getPermissionLevel(accountTypeString));
-                accountManager.setAccounts(accountInt, newAccount);
+                Account newAccount = new Account(balance, nameString, emailString, passwordInt, IDInt,accountTypeString, getPermissionLevel(accountTypeString));
+                accountManager.setAccounts(newAccount.getAccountNum(), newAccount);
 
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/login/login.fxml"));
 
@@ -112,12 +112,20 @@ public class NewAccountController {
     //Changes back to login screen
     @FXML
     public void quitCreation(ActionEvent event) throws Exception {
-        Parent login = FXMLLoader.load(getClass().getResource("/com/projectlearn/login/login.fxml"));
-        Scene loginScene = new Scene(login);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/login/login.fxml"));
+
+        Parent roots = fxmlLoader.load();
+        LoginController loginController = fxmlLoader.<LoginController>getController();
+        loginController.setAccountManager(accountManager);
+
+        Scene scene = new Scene(roots);
 
         Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        root.setScene(loginScene);
+        scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
+
+        root.setScene(scene);
+        root.setResizable(false);
         root.show();
     }
 

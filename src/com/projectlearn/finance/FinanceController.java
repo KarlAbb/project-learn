@@ -152,6 +152,7 @@ public class FinanceController {
 
     public void currentAccount (Account currentAccount) {
         this.currentAccount = currentAccount;
+        accountNum = currentAccount.getAccountNum();
     }
 
     public void enabledPerms(Set<Permissions> perms) {

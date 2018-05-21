@@ -156,6 +156,7 @@ public class FinanceAdminController {
 
     public void currentAccount (Account currentAccount) {
         this.currentAccount = currentAccount;
+        accountNum = currentAccount.getAccountNum();
     }
 
     public void enabledPerms(Set<Permissions> perms) {
@@ -175,7 +176,8 @@ public class FinanceAdminController {
 
             Parent roots = fxmlLoader.load();
             AccountViewController accountViewController = fxmlLoader.<AccountViewController>getController();
-            //accountViewController.setAccountManager(accountManager);
+            accountViewController.setAccountManager(accountManager);
+            accountViewController.setAccounts();
 
             Scene scene = new Scene(roots);
 

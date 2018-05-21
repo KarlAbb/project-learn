@@ -3,7 +3,8 @@ import java.lang.*;
 import java.util.EnumSet;
 import java.util.Set;
 
-public class Account /*extends AccountManager*/{
+public class Account {
+    public static int accountNumber = 1;
     private int accountID;
     private int balance;
     private String accountType;
@@ -18,15 +19,16 @@ public class Account /*extends AccountManager*/{
     private Set<Permissions> permissions;
 
     //constructor
-    public Account(int accountNum, int balance, String name, String email, String password, int id, String accountType, Set<Permissions> perms) {
+    public Account(int balance, String name, String email, String password, int id, String accountType, Set<Permissions> perms) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.accountID = id;
         this.accountType = accountType;
-        this.accountNum = accountNum;
+        this.accountNum = accountNumber;
         this.balance = balance;
         this.permissions = perms;
+        accountNumber++;
     }
 
 
@@ -59,7 +61,7 @@ public class Account /*extends AccountManager*/{
 
     //getters and setters
     public int getAccountNum() {
-        return accountID;
+        return accountNum;
     }
 
     public String getAccountType() {
