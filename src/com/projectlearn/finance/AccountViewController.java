@@ -25,30 +25,42 @@ public class AccountViewController {
     private Collection<Account> accountList;
     private ArrayList<Account> accountLists;
 
+    //Goes back to account screen
     @FXML
     private Button back;
+    //allows user to edit a selected account
     @FXML
     private Button edit;
+    //allows user to create a new account
     @FXML
     private Button newAccount;
+    //deletes an account
     @FXML
     private Button delete;
 
+    //tableview
     @FXML
     private TableView<Account> accounts;
+    //Displays account numbers
     @FXML
     private TableColumn<Account, String> accountNums;
+    //Displays account balances
     @FXML
     private TableColumn<Account, String> accountBalance;
+    //Displays account names
     @FXML
     private TableColumn<Account, String> name;
+    //Displays account emails
     @FXML
     private TableColumn<Account, String> email;
+    //Displays account IDs
     @FXML
     private TableColumn<Account, String> id;
+    //Displays account types/perms
     @FXML
     private TableColumn<Account, String> type;
 
+    //Populates the TableView
     @FXML
     public void setAccounts () {
         accountList = accountManager.getList().values();
@@ -65,9 +77,17 @@ public class AccountViewController {
         }
     }
 
+    //Account deletion method
+    @FXML
+    public void delete(ActionEvent event) throws Exception {
+
+    }
+
+    //New account method
     @FXML
     public void newAccount(ActionEvent event) throws Exception {
         try {
+            //loads newAccount.fmxl
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/finance/newAccount.fxml"));
 
             Parent roots = fxmlLoader.load();
@@ -90,10 +110,12 @@ public class AccountViewController {
     }
 
 
+    //Goes back to account screen
     @FXML
     public void back(ActionEvent event) throws Exception{
 
         try {
+            //loads financeAdmin.fxml
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/finance/financeAdmin.fxml"));
 
             Parent roots = fxmlLoader.load();
@@ -120,10 +142,12 @@ public class AccountViewController {
         }
     }
 
+    //Allows for an updated accountManager instance to be passed in
     public void setAccountManager(AccountManager accountManager) {
         this.accountManager = accountManager;
     }
 
+    //Passes in the logged in account
     public void setCurrentAccount(Account account) {
         this.currentAccount = account;
     }

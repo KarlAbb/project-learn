@@ -142,28 +142,8 @@ public class FinanceController {
         root.show();
     }
 
-    public void noPermission() {
-        warning.setText("You don't have permission to do this! Please contact an administrator if you believe that this is a mistake!");
-    }
 
-    public void setAccountManager(AccountManager accountManager) {
-        this.accountManager = accountManager;
-    }
 
-    public void currentAccount (Account currentAccount) {
-        this.currentAccount = currentAccount;
-        accountNum = currentAccount.getAccountNum();
-    }
-
-    public void enabledPerms(Set<Permissions> perms) {
-        if(!perms.contains(Permissions.CAN_DEPOSIT)) {
-            deposit.setDisable(true);
-        }
-
-        if(!perms.contains(Permissions.CAN_WITHDRAW)) {
-            withdraw.setDisable(true);
-        }
-    }
 
     public void viewAccounts (ActionEvent event) throws Exception{
 
@@ -188,6 +168,34 @@ public class FinanceController {
 
         }
     }
+
+    //Allows for an updated accountManager instance to be passed in
+    public void setAccountManager(AccountManager accountManager) {
+        this.accountManager = accountManager;
+    }
+
+    //Allows for the logged in account to be passed in
+    public void currentAccount (Account currentAccount) {
+        this.currentAccount = currentAccount;
+        accountNum = currentAccount.getAccountNum();
+    }
+
+    //Checks to see which permissions are enabled fo an account
+    public void enabledPerms(Set<Permissions> perms) {
+        if(!perms.contains(Permissions.CAN_DEPOSIT)) {
+            deposit.setDisable(true);
+        }
+
+        if(!perms.contains(Permissions.CAN_WITHDRAW)) {
+            withdraw.setDisable(true);
+        }
+    }
+
+    //No permission handler
+    public void noPermission() {
+        warning.setText("You don't have permission to do this! Please contact an administrator if you believe that this is a mistake!");
+    }
+
 
 
 }

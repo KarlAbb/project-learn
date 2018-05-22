@@ -31,7 +31,7 @@ public class Account {
         accountNumber++;
     }
 
-
+    //deposit
     public int deposit(int amount) {
         balance += amount;
         return balance;
@@ -51,6 +51,7 @@ public class Account {
         else return balance;
     }
 
+    //sets the permission level
     public Set<Permissions> getPerms() {
         return permissions;
     }

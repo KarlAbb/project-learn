@@ -202,6 +202,7 @@ public class NewAccountController {
         }
     }
 
+    //Allows for the logged in account to be passed in
     public void setCurrentAccount (Account account) {
         this.currentAccount = account;
     }
