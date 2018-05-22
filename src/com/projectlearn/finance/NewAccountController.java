@@ -16,7 +16,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
+
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Set;
 
 
@@ -24,6 +27,8 @@ public class NewAccountController {
 
     AccountManager accountManager;
     Account currentAccount;
+
+    private String fileName = "data.bin";
 
     //Displays a warning if a user tries to make an account with an existing account number
     @FXML
@@ -130,13 +135,24 @@ public class NewAccountController {
                     }
                 }
 
+
                 System.out.println(accountManager.getList().size());
 
             }
         }   catch(Exception e){
                 System.out.println("Error: " + e.getMessage());
+                e.printStackTrace();
             }
 
+            /*try {
+                ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileName));
+                os.writeObject(accountManager.getAccount(Account.accountNumber));
+                os.close();
+                System.out.println("Done");
+            }
+            catch (Exception e) {
+            e.printStackTrace();
+            }*/
 
     }
 
