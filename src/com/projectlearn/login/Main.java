@@ -8,9 +8,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.*;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -18,6 +22,7 @@ public class Main extends Application {
     //TODO REORGANIZE PACKAGES
     public  Stage stage;
     public Scene mainAccountScene;
+
 
     public AccountManager accountManager = new AccountManager();
 
@@ -33,8 +38,15 @@ public class Main extends Application {
 
     public static void main(String[] args) throws Exception{
 
-
-
+        String music = new File("src/com/projectlearn/login/short_tone.mp3").getAbsolutePath();
+        Media startUpSound = new Media(new File(music).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(startUpSound);
+        mediaPlayer.setOnEndOfMedia(new Runnable() {
+            public void run() {
+                mediaPlayer.seek(Duration.ZERO);
+            }
+        });
+        mediaPlayer.play();
 
 //        FileInputStream fis = new FileInputStream(accountsStored);
 //        DataInputStream dis = new DataInputStream(fis);

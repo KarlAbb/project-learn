@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -24,6 +25,8 @@ public class AccountViewController {
     private Collection<Account> accountList;
     private ArrayList<Account> accountLists;
 
+    Alert warning = new Alert(Alert.AlertType.CONFIRMATION);
+
     //Goes back to account screen
     @FXML
     private Button back;
@@ -36,6 +39,8 @@ public class AccountViewController {
     //deletes an account
     @FXML
     private Button delete;
+    @FXML
+    private Button done;
 
     //tableview
     @FXML
@@ -62,6 +67,7 @@ public class AccountViewController {
     //Populates the TableView
     @FXML
     public void setAccounts () {
+        done.setDisable(true);
         accountList = accountManager.getList().values();
         accountLists = new ArrayList<Account>(accountList);
         accountBalance.setCellValueFactory(new PropertyValueFactory<Account, String>("balance"));
@@ -79,8 +85,32 @@ public class AccountViewController {
     //Account deletion method
     @FXML
     public void delete(ActionEvent event) throws Exception {
-
+        if(!(accounts.getSelectionModel().getSelectedItem() == null)) {
+            warning.setTitle("Warning");
+            warning.setContentText("Are you sure you want to delete this account?");
+            Optional<ButtonType> result = warning.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                accountManager.getList().remove(accounts.getSelectionModel().getSelectedItem().getAccountNum());
+                accounts.getItems().remove(accounts.getSelectionModel().getSelectedIndex());
+            }
+        }
     }
+
+    //Edit account
+    @FXML
+    public void editAccount(ActionEvent event) throws Exception {
+        accounts.setEditable(true);
+        accounts.getSelectionModel().cellSelectionEnabledProperty().set(true);
+        done.setDisable(false);
+    }
+
+
+    @FXML
+    public void doneEdit(ActionEvent event) throws Exception {
+        accounts.setEditable(false);
+        done.setDisable(true);
+    }
+
 
     //New account method
     @FXML
@@ -108,23 +138,6 @@ public class AccountViewController {
 
     }
 
-    @FXML
-    public void deleteAccount(ActionEvent event) throws Exception{
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            if(!(accounts.getSelectionModel().getSelectedItem() == null)) {
-                accountManager.getList().remove(accounts.getSelectionModel().getSelectedItem().getAccountNum());
-                setAccounts();
-            }
-        } else {
-            alert.close();
-        }
-
-
-    }
 
 
     //Goes back to account screen
