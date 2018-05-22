@@ -16,7 +16,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
-import java.io.IOException;
+
+import java.io.*;
 import java.util.Set;
 
 
@@ -24,6 +25,7 @@ public class NewAccountController {
 
     AccountManager accountManager;
     Account currentAccount;
+
 
     //Displays a warning if a user tries to make an account with an existing account number
     @FXML
@@ -64,17 +66,17 @@ public class NewAccountController {
     @FXML
     public void addNewAccount (ActionEvent event) throws IOException {
         try {
+            //gets all of the information that the user entered
+            int accountInt = Account.accountNumber;
+            int balance = 0;
+            String nameString = name.getText();
+            String passwordInt = password.getText();
+            String emailString = email.getText();
+            int IDInt = Integer.parseInt(ID.getText());
+            String accountTypeString = String.valueOf(type.getValue());
+            System.out.println(type.getValue());
+            //checks to see if new account is being created by user or admin
             if (currentAccount.getPerms().contains(Permissions.CAN_VIEW_ACCOUNTS)) {
-                System.out.println(accountManager.getList().size());
-                //gets all of the information that the user entered
-                int accountInt = Account.accountNumber;
-                int balance = 0;
-                String nameString = name.getText();
-                String passwordInt = password.getText();
-                String emailString = email.getText();
-                int IDInt = Integer.parseInt(ID.getText());
-                String accountTypeString = String.valueOf(type.getValue());
-                System.out.println(type.getValue());
                 if (!accountManager.getList().containsKey(accountInt)) {
                     Account newAccount = new Account(balance, nameString, emailString, passwordInt, IDInt, accountTypeString, getPermissionLevel(accountTypeString));
                     accountManager.setAccounts(newAccount.getAccountNum(), newAccount);
@@ -84,6 +86,7 @@ public class NewAccountController {
                     Parent roots = fxmlLoader.load();
                     AccountViewController accountViewController = fxmlLoader.<AccountViewController>getController();
                     accountViewController.setAccountManager(accountManager);
+                    accountViewController.setAccountManager(accountManager);
                     accountViewController.setCurrentAccount(currentAccount);
                     accountViewController.setAccounts();
 
@@ -91,20 +94,17 @@ public class NewAccountController {
 
                     Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
+                    //scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
+
                     root.setScene(scene);
                     root.setResizable(false);
                     root.show();
-                } else {
+                }
+
+                //new account from login scene
+                else {
+
                     System.out.println(accountManager.getList().size());
-                    //gets all of the information that the user entered
-                    accountInt = Account.accountNumber;
-                    balance = 0;
-                    nameString = name.getText();
-                    passwordInt = password.getText();
-                    emailString = email.getText();
-                    IDInt = Integer.parseInt(ID.getText());
-                    accountTypeString = String.valueOf(type.getValue());
-                    System.out.println(type.getValue());
                     if (!accountManager.getList().containsKey(accountInt)) {
                         Account newAccount = new Account(balance, nameString, emailString, passwordInt, IDInt, accountTypeString, getPermissionLevel(accountTypeString));
                         accountManager.setAccounts(newAccount.getAccountNum(), newAccount);
@@ -130,14 +130,16 @@ public class NewAccountController {
                     }
                 }
 
+
                 System.out.println(accountManager.getList().size());
 
-            }
-        }   catch(Exception e){
-                System.out.println("Error: " + e.getMessage());
+
             }
 
-
+        } catch(Exception e){
+            System.out.println("Error: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     //Changes back to login screen

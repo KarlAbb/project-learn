@@ -1,9 +1,10 @@
 package com.projectlearn.finance;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Set;
 
-public class AccountManager {
+public class AccountManager implements Serializable{
     public Set<Permissions> admin = Set.of(Permissions.CAN_HIRE, Permissions.CAN_FIRE, Permissions.CAN_DEPOSIT, Permissions.CAN_WITHDRAW, Permissions.CAN_PAY, Permissions.CAN_FINE, Permissions.CAN_VIEW_ACCOUNTS);
     public Set<Permissions> intern = Set.of(Permissions.CAN_WITHDRAW);
     public Set<Permissions> employee = Set.of(Permissions.CAN_DEPOSIT, Permissions.CAN_WITHDRAW);

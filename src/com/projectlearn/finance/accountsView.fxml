@@ -23,7 +23,7 @@
             <Button fx:id="back" mnemonicParsing="false" onAction="#back" text="Back" />
             <Button fx:id="edit" mnemonicParsing="false" text="Edit" />
             <Button fx:id="newAccount" mnemonicParsing="false" onAction="#newAccount" text="New" />
-            <Button fx:id="delete" mnemonicParsing="false" text="Delete" />
+            <Button fx:id="delete" mnemonicParsing="false" onAction="#deleteAccount" text="Delete" />
          </children>
       </HBox>
    </children>

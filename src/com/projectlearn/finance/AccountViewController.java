@@ -6,16 +6,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 
 public class AccountViewController {
@@ -106,6 +105,24 @@ public class AccountViewController {
         catch (Exception e) {
 
         }
+
+    }
+
+    @FXML
+    public void deleteAccount(ActionEvent event) throws Exception{
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            if(!(accounts.getSelectionModel().getSelectedItem() == null)) {
+                accountManager.getList().remove(accounts.getSelectionModel().getSelectedItem().getAccountNum());
+                setAccounts();
+            }
+        } else {
+            alert.close();
+        }
+
 
     }
 
