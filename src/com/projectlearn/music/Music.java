@@ -11,14 +11,28 @@ import java.util.Scanner;
 public class Music {
     private MediaPlayer mediaPlayer;
 
+    File folder = new File("src/com/projectlearn/resources/songs");
+    File[] listOfFiles = folder.listFiles();
+    Random random = new Random();
+
     public void playSomething() throws Exception{
-        File folder = new File("src/com/projectlearn/resources/songs");
-        File[] listOfFiles = folder.listFiles();
-        Random random = new Random();
         int song = random.nextInt(listOfFiles.length - 1);
         Media startUpSound = new Media(new File(listOfFiles [song].getPath()).toURI().toString());
         mediaPlayer = new MediaPlayer(startUpSound);
         mediaPlayer.play();
 
+        for (int i = 0; i < listOfFiles.length; i++) {
+            if (listOfFiles[i].isFile()) {
+                System.out.println("File " + listOfFiles[i].getName());
+            } else if (listOfFiles[i].isDirectory()) {
+                System.out.println("Directory " + listOfFiles[i].getName());
+            }
+        }
+
     }
+
+    public File[] getFolder() {
+            return listOfFiles;
+    }
+
 }
