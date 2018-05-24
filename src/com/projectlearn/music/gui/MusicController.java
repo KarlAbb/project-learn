@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class MusicController {
-    private Collection<Music> song;
-    private ArrayList<Music> song1;
+    private Collection<String> song;
+    private ArrayList<String> song1;
 
     @FXML
     private Button start;
@@ -49,8 +49,10 @@ public class MusicController {
 
     public void setSongs() {
         Music music = new Music();
-        songs = new ArrayList<Music>(music.getFolder());
+        song1 = music.getSongs();
         songName.setCellValueFactory(new PropertyValueFactory<Music, String>("folder"));
-        for(int i = 0; i <= music.getFolder().size() - 1; i ++)
+        for(int i = 0; i <= music.getSongs().size() - 1; i ++) {
+            //songs.getItems().add(song1.get(i));
+        }
     }
 }

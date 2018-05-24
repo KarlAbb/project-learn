@@ -27,6 +27,7 @@ import java.util.Set;
 
 public class LoginController{
     private AccountManager accountManager;
+    Music music = new Music();
 
     //logo
     @FXML
@@ -204,7 +205,6 @@ public class LoginController{
     @FXML
     public void fun (ActionEvent event) throws Exception {
         try {
-            Music music = new Music();
             music.playSomething();
         }
         catch (Exception e) {
