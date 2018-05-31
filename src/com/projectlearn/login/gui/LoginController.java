@@ -97,6 +97,7 @@ public class LoginController{
         Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         root.setScene(scene);
+        root.centerOnScreen();
         root.setResizable(false);
         root.show();
 
@@ -136,6 +137,7 @@ public class LoginController{
                         scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/gui/finance.css").toExternalForm());
 
                         root.setScene(scene);
+                        root.centerOnScreen();
                         root.setResizable(false);
                         root.show();
                         financeAdminController.accountInfo();
@@ -156,6 +158,7 @@ public class LoginController{
                         scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/gui/finance.css").toExternalForm());
 
                         root.setScene(scene);
+                        root.centerOnScreen();
                         root.setResizable(false);
                         root.show();
                     }

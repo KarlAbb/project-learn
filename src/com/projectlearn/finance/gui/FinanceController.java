@@ -138,6 +138,7 @@ public class FinanceController {
         scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/gui/finance.css").toExternalForm());
 
         root.setScene(scene);
+        root.centerOnScreen();
         root.setResizable(false);
         root.show();
     }
@@ -160,6 +161,7 @@ public class FinanceController {
             scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/gui/finance.css").toExternalForm());
 
             root.setScene(scene);
+            root.centerOnScreen();
             root.setResizable(false);
             root.show();
         }

@@ -128,6 +128,7 @@ public class AccountViewController {
             Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             root.setScene(scene);
+            root.centerOnScreen();
             root.setResizable(false);
             root.show();
         }
