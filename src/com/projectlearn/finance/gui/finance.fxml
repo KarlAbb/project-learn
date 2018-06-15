@@ -3,6 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -10,51 +12,109 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="finance" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectlearn.finance.gui.FinanceController">
-   <children>
-      <HBox layoutY="562.0" prefHeight="26.0" prefWidth="800.0" spacing="15.0">
-         <children>
-            <Button fx:id="withdraw" mnemonicParsing="false" onAction="#withdraw" text="Withdraw" />
-            <TextField fx:id="withdrawAmount" prefHeight="25.0" prefWidth="71.0" promptText="amount" />
-            <Button fx:id="deposit" mnemonicParsing="false" onAction="#deposit" prefHeight="26.0" prefWidth="71.0" text="Deposit" />
-            <TextField fx:id="amount" prefHeight="26.0" prefWidth="71.0" promptText="amount" />
-            <HBox prefHeight="26.0" prefWidth="320.0" spacing="20.0">
+<TabPane fx:id="control" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="com.projectlearn.finance.gui.FinanceController">
+  <tabs>
+    <Tab fx:id="home" text="Home">
+         <content>
+            <AnchorPane fx:id="finance" prefHeight="600.0" prefWidth="800.0">
                <children>
-                  <Label fx:id="balance" prefHeight="25.0" prefWidth="200.0" />
-                  <Label fx:id="account" prefHeight="37.0" prefWidth="200.0" />
+                  <HBox layoutY="562.0" prefHeight="26.0" prefWidth="800.0" spacing="15.0">
+                     <children>
+                        <Button fx:id="withdraw" mnemonicParsing="false" onAction="#withdraw" text="Withdraw" />
+                        <TextField fx:id="withdrawAmount" prefHeight="25.0" prefWidth="71.0" promptText="amount" />
+                        <Button fx:id="deposit" mnemonicParsing="false" onAction="#deposit" prefHeight="26.0" prefWidth="71.0" text="Deposit" />
+                        <TextField fx:id="amount" prefHeight="26.0" prefWidth="71.0" promptText="amount" />
+                        <HBox prefHeight="26.0" prefWidth="320.0" spacing="20.0">
+                           <children>
+                              <Label fx:id="balance" prefHeight="25.0" prefWidth="200.0" />
+                              <Label fx:id="account" prefHeight="37.0" prefWidth="200.0" />
+                           </children>
+                        </HBox>
+                        <Button fx:id="logOut" mnemonicParsing="false" onAction="#logOut" prefHeight="26.0" prefWidth="100.0" text="Log out" />
+                     </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </HBox>
+                  <GridPane layoutX="35.0" layoutY="55.0" prefHeight="282.0" prefWidth="730.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="357.79998779296875" minWidth="10.0" prefWidth="118.40000610351562" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="653.7999877929688" minWidth="10.0" prefWidth="612.7999938964844" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label fx:id="displayAccountNumber" prefHeight="70.0" prefWidth="365.0" styleClass="info-labels" stylesheets="@finance.css" text="Account number" />
+                        <Label fx:id="displayName" prefHeight="57.0" prefWidth="450.0" styleClass="info-labels" stylesheets="@finance.css" text="Name" GridPane.rowIndex="1" />
+                        <Label fx:id="displayEmail" prefHeight="57.0" prefWidth="454.0" styleClass="info-labels" stylesheets="@finance.css" text="Email" GridPane.rowIndex="2" />
+                        <Label fx:id="displayID" prefHeight="57.0" prefWidth="474.0" styleClass="info-labels" stylesheets="@finance.css" text="ID" GridPane.rowIndex="3" />
+                        <Label fx:id="displayStatus" prefHeight="54.0" prefWidth="378.0" styleClass="info-labels" stylesheets="@finance.css" text="Status" GridPane.rowIndex="4" />
+                        <Label fx:id="setAccountNumber" prefHeight="57.0" prefWidth="735.0" stylesheets="@finance.css" GridPane.columnIndex="1" />
+                        <Label fx:id="setName" prefHeight="57.0" prefWidth="787.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="setEmail" prefHeight="57.0" prefWidth="705.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="setID" prefHeight="57.0" prefWidth="635.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="setStatus" prefHeight="57.0" prefWidth="682.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                     </children>
+                  </GridPane>
+                  <Label fx:id="warning" layoutX="63.0" layoutY="415.0" prefHeight="54.0" prefWidth="675.0" />
                </children>
-            </HBox>
-            <Button fx:id="logOut" mnemonicParsing="false" onAction="#logOut" prefHeight="26.0" prefWidth="100.0" text="Log out" />
-         </children>
-         <padding>
-            <Insets left="10.0" />
-         </padding>
-      </HBox>
-      <GridPane layoutX="35.0" layoutY="55.0" prefHeight="282.0" prefWidth="730.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="357.79998779296875" minWidth="10.0" prefWidth="118.40000610351562" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="653.7999877929688" minWidth="10.0" prefWidth="612.7999938964844" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label fx:id="displayAccountNumber" prefHeight="70.0" prefWidth="365.0" styleClass="info-labels" stylesheets="@finance.css" text="Account number" />
-            <Label fx:id="displayName" prefHeight="57.0" prefWidth="450.0" styleClass="info-labels" stylesheets="@finance.css" text="Name" GridPane.rowIndex="1" />
-            <Label fx:id="displayEmail" prefHeight="57.0" prefWidth="454.0" styleClass="info-labels" stylesheets="@finance.css" text="Email" GridPane.rowIndex="2" />
-            <Label fx:id="displayID" prefHeight="57.0" prefWidth="474.0" styleClass="info-labels" stylesheets="@finance.css" text="ID" GridPane.rowIndex="3" />
-            <Label fx:id="displayStatus" prefHeight="54.0" prefWidth="378.0" styleClass="info-labels" stylesheets="@finance.css" text="Status" GridPane.rowIndex="4" />
-            <Label fx:id="setAccountNumber" prefHeight="57.0" prefWidth="735.0" stylesheets="@finance.css" GridPane.columnIndex="1" />
-            <Label fx:id="setName" prefHeight="57.0" prefWidth="787.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="setEmail" prefHeight="57.0" prefWidth="705.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label fx:id="setID" prefHeight="57.0" prefWidth="635.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label fx:id="setStatus" prefHeight="57.0" prefWidth="682.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-         </children>
-      </GridPane>
-      <Label fx:id="warning" layoutX="63.0" layoutY="415.0" prefHeight="54.0" prefWidth="675.0" />
-   </children>
-</AnchorPane>
+            </AnchorPane>
+         </content>
+         <content>
+            <AnchorPane fx:id="finance" prefHeight="600.0" prefWidth="800.0">
+               <children>
+                  <HBox layoutY="562.0" prefHeight="26.0" prefWidth="800.0" spacing="15.0">
+                     <children>
+                        <Button fx:id="withdraw" mnemonicParsing="false" onAction="#withdraw" text="Withdraw" />
+                        <TextField fx:id="withdrawAmount" prefHeight="25.0" prefWidth="71.0" promptText="amount" />
+                        <Button fx:id="deposit" mnemonicParsing="false" onAction="#deposit" prefHeight="26.0" prefWidth="71.0" text="Deposit" />
+                        <TextField fx:id="amount" prefHeight="26.0" prefWidth="71.0" promptText="amount" />
+                        <HBox prefHeight="26.0" prefWidth="320.0" spacing="20.0">
+                           <children>
+                              <Label fx:id="balance" prefHeight="25.0" prefWidth="200.0" />
+                              <Label fx:id="account" prefHeight="37.0" prefWidth="200.0" />
+                           </children>
+                        </HBox>
+                        <Button fx:id="logOut" mnemonicParsing="false" onAction="#logOut" prefHeight="26.0" prefWidth="100.0" text="Log out" />
+                     </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </HBox>
+                  <GridPane layoutX="35.0" layoutY="55.0" prefHeight="282.0" prefWidth="730.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="357.79998779296875" minWidth="10.0" prefWidth="118.40000610351562" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="653.7999877929688" minWidth="10.0" prefWidth="612.7999938964844" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label fx:id="displayAccountNumber" prefHeight="70.0" prefWidth="365.0" styleClass="info-labels" stylesheets="@finance.css" text="Account number" />
+                        <Label fx:id="displayName" prefHeight="57.0" prefWidth="450.0" styleClass="info-labels" stylesheets="@finance.css" text="Name" GridPane.rowIndex="1" />
+                        <Label fx:id="displayEmail" prefHeight="57.0" prefWidth="454.0" styleClass="info-labels" stylesheets="@finance.css" text="Email" GridPane.rowIndex="2" />
+                        <Label fx:id="displayID" prefHeight="57.0" prefWidth="474.0" styleClass="info-labels" stylesheets="@finance.css" text="ID" GridPane.rowIndex="3" />
+                        <Label fx:id="displayStatus" prefHeight="54.0" prefWidth="378.0" styleClass="info-labels" stylesheets="@finance.css" text="Status" GridPane.rowIndex="4" />
+                        <Label fx:id="setAccountNumber" prefHeight="57.0" prefWidth="735.0" stylesheets="@finance.css" GridPane.columnIndex="1" />
+                        <Label fx:id="setName" prefHeight="57.0" prefWidth="787.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="setEmail" prefHeight="57.0" prefWidth="705.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="setID" prefHeight="57.0" prefWidth="635.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="setStatus" prefHeight="57.0" prefWidth="682.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                     </children>
+                  </GridPane>
+                  <Label fx:id="warning" layoutX="63.0" layoutY="415.0" prefHeight="54.0" prefWidth="675.0" />
+               </children>
+            </AnchorPane>
+         </content>
+    </Tab>
+  </tabs>
+</TabPane>

@@ -128,6 +128,8 @@ public class LoginController{
                         FinanceAdminController financeAdminController = fxmlLoader.<FinanceAdminController>getController();
                         financeAdminController.setAccountManager(accountManager);
                         financeAdminController.currentAccount(currentAccount);
+                        financeAdminController.accountInfo();
+                        financeAdminController.setAccounts();
 
 
                         Scene scene = new Scene(roots);

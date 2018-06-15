@@ -83,20 +83,21 @@ public class NewAccountController {
                     Account newAccount = new Account(balance, nameString, emailString, passwordInt, IDInt, accountTypeString, getPermissionLevel(accountTypeString));
                     accountManager.setAccounts(newAccount.getAccountNum(), newAccount);
 
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/finance/gui/accountsView.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/finance/gui/financeAdmin.fxml"));
 
                     Parent roots = fxmlLoader.load();
-                    AccountViewController accountViewController = fxmlLoader.<AccountViewController>getController();
-                    accountViewController.setAccountManager(accountManager);
-                    accountViewController.setAccountManager(accountManager);
-                    accountViewController.setCurrentAccount(currentAccount);
-                    accountViewController.setAccounts();
+                    FinanceAdminController financeAdminController = fxmlLoader.<FinanceAdminController>getController();
+                    financeAdminController.setAccountManager(accountManager);
+                    financeAdminController.setAccountManager(accountManager);
+                    financeAdminController.setCurrentAccount(currentAccount);
+                    financeAdminController.accountInfo();
+                    financeAdminController.setAccounts();
 
                     Scene scene = new Scene(roots);
 
                     Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-                    //scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/finance.css").toExternalForm());
+                    scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/gui/finance.css").toExternalForm());
 
                     root.setScene(scene);
                     root.setResizable(false);
