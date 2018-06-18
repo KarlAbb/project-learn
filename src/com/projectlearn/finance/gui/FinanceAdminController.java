@@ -363,5 +363,9 @@ public class FinanceAdminController {
         this.currentAccount = account;
     }
 
+    public TabPane getPane () {
+        return control;
+    }
+
 
 }
