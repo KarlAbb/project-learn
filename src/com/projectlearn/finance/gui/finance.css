@@ -1,0 +1,62 @@
+#deposit {
+-fx-font-size: 12px ;
+-fx-background-color: #dcdcdc;
+-fx-padding: 4 4 4 4;
+-fx-text-fill: #800000;
+-fx-border-radius: 8;
+-fx-font-weight: bold;
+}
+
+#withdraw {
+-fx-font-size: 12px ;
+-fx-background-color: #dcdcdc;
+-fx-padding: 4 4 4 4;
+-fx-text-fill: #800000;
+-fx-border-radius: 8;
+-fx-font-weight: bold;
+}
+
+#warning {
+-fx-font-size: 13px;
+-fx-text-fill: #800000;
+-fx-font-weight: bold;
+}
+
+.info-labels {
+-fx-text-fill: #0000cd;
+}
+
+.root {
+-fx-background-color: #f5f5dc
+}
+
+#tableView {
+-fx-background-color: #dcdcdc;
+}
+
+.table-view {
+    -fx-border-fill: #f5f5dc;
+}
+
+.table-row-cell: empty{
+    -fx-background-color: #f5f5dc;
+
+    -fx-border-width: 0;
+    -fx-background-insets: 0, 0 0 0 0;
+    -fx-padding: 0.0em; /* 0 */
+}
+
+.table-row-cell:filled {
+  -fx-background-color: #f5f5dc;
+  -fx-border-color: #808080;
+  -fx-border-width: 0px 0 1px 0;
+}
+
+.table-row-cell:selected {
+   -fx-background-color: steelblue;
+   -fx-text-fill: black;
+}
+
+.table-cell {
+
+}
