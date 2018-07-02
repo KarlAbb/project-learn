@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectlearn.finance.gui.FinanceAdminController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectlearn.finance.gui.FinanceAdminController">
   <tabs>
     <Tab text="Home">
          <content>
@@ -80,10 +80,10 @@
                            <columns>
                               <TableColumn fx:id="accountNums" prefWidth="120.0" text="Account Number" />
                               <TableColumn fx:id="accountBalance" prefWidth="75.0" text="Balance" />
-                              <TableColumn fx:id="name" prefWidth="124.0" text="Name" />
-                              <TableColumn fx:id="email" prefWidth="235.0" text="Email" />
-                              <TableColumn fx:id="id" minWidth="0.0" prefWidth="71.0" text="ID" />
-                              <TableColumn fx:id="type" prefWidth="114.0" text="Type" />
+                              <TableColumn fx:id="name" onEditCommit="#editName" prefWidth="124.0" text="Name" />
+                              <TableColumn fx:id="email" onEditCommit="#editEmail" prefWidth="235.0" text="Email" />
+                              <TableColumn fx:id="id" minWidth="0.0" onEditCommit="#editID" prefWidth="71.0" text="ID" />
+                              <TableColumn fx:id="type" onEditCommit="#editType" prefWidth="114.0" text="Type" />
                            </columns>
                         </TableView>
                      </center>
@@ -91,7 +91,6 @@
                         <HBox prefHeight="32.0" prefWidth="692.0" spacing="20.0" BorderPane.alignment="CENTER">
                            <children>
                               <Button fx:id="back" mnemonicParsing="false" onAction="#back" text="Back" />
-                              <Button fx:id="edit" mnemonicParsing="false" onAction="#editAccount" text="Edit" />
                               <Button fx:id="newAccount" mnemonicParsing="false" onAction="#newAccount" text="New" />
                               <Button fx:id="delete" mnemonicParsing="false" onAction="#delete" text="Delete" />
                               <Button fx:id="done" mnemonicParsing="false" onAction="#doneEdit" text="Done" />

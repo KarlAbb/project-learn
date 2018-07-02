@@ -4,6 +4,8 @@ import com.projectlearn.finance.logic.Account;
 import com.projectlearn.finance.logic.AccountManager;
 import com.projectlearn.finance.logic.Permissions;
 import com.projectlearn.login.gui.LoginController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,9 +13,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.converter.DefaultStringConverter;
+import javafx.util.converter.IntegerStringConverter;
+import javafx.util.converter.NumberStringConverter;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,6 +32,8 @@ public class FinanceAdminController {
     private AccountManager accountManager;
 
     private Account currentAccount;
+
+    ObservableList<String> types = FXCollections.observableArrayList("Intern", "Employee", "Team Leader", "IT", "IT Manager", "Manager", "HR", "HR Manager", "Admin", "CEO");
 
     private Collection<Account> accountList;
     private ArrayList<Account> accountLists;
@@ -63,7 +72,7 @@ public class FinanceAdminController {
     private TableColumn<Account, String> email;
     //Displays account IDs
     @FXML
-    private TableColumn<Account, String> id;
+    private TableColumn<Account, Integer> id;
     //Displays account types/perms
     @FXML
     private TableColumn<Account, String> type;
@@ -247,6 +256,7 @@ public class FinanceAdminController {
     //Populates the TableView
     @FXML
     public void setAccounts () {
+        accountsDis.setEditable(true);
         done.setDisable(true);
         accountList = accountManager.getList().values();
         accountLists = new ArrayList<Account>(accountList);
@@ -254,12 +264,17 @@ public class FinanceAdminController {
         accountNums.setCellValueFactory(new PropertyValueFactory<Account, String>("accountNum"));
         name.setCellValueFactory(new PropertyValueFactory<Account, String>("name"));
         email.setCellValueFactory(new PropertyValueFactory<Account, String>("email"));
-        id.setCellValueFactory(new PropertyValueFactory<Account, String>("accountID"));
+        id.setCellValueFactory(new PropertyValueFactory<Account, Integer>("accountID"));
         type.setCellValueFactory(new PropertyValueFactory<Account, String>("accountType"));
         for (int i = 0; i <= accountLists.size() - 1; i ++) {
             accountsDis.getItems().addAll(accountLists.get(i));
 
         }
+        accountsDis.getSelectionModel().cellSelectionEnabledProperty().set(true);
+        name.setCellFactory(TextFieldTableCell.forTableColumn());
+        email.setCellFactory(TextFieldTableCell.forTableColumn());
+        type.setCellFactory(ComboBoxTableCell.forTableColumn(new DefaultStringConverter(), types));
+        id.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
     }
 
     //Account deletion method
@@ -276,19 +291,58 @@ public class FinanceAdminController {
         }
     }
 
-    //Edit account
+    //Edits account names
     @FXML
-    public void editAccount(ActionEvent event) throws Exception {
-        accountsDis.setEditable(true);
+    public void editName(TableColumn.CellEditEvent<Account, String> event) throws Exception {
+        name.setCellFactory(TextFieldTableCell.forTableColumn());
         accountsDis.getSelectionModel().cellSelectionEnabledProperty().set(true);
-        done.setDisable(false);
+        String newValue = event.getNewValue();
+        TablePosition<Account, String> position = event.getTablePosition();
+
+        int accountNum = accountsDis.getItems().get(position.getRow()).getAccountNum();
+        Account account = accountManager.getAccount(accountNum);
+        account.setName(newValue);
+        accountManager.setAccounts(accountNum, account);
+
     }
+
+    //Edits account emails
+    @FXML
+    public void editEmail(TableColumn.CellEditEvent<Account, String> event) throws Exception {
+        email.setCellFactory(TextFieldTableCell.forTableColumn());
+        accountsDis.getSelectionModel().cellSelectionEnabledProperty().set(true);
+        String newValue = event.getNewValue();
+        TablePosition<Account, String> position = event.getTablePosition();
+
+        int accountNum = accountsDis.getItems().get(position.getRow()).getAccountNum();
+        Account account = accountManager.getAccount(accountNum);
+        account.setEmail(newValue);
+        accountManager.setAccounts(accountNum, account);
+    }
+
+    @FXML
+    public void editID(TableColumn.CellEditEvent<Account, Integer> event) throws IllegalArgumentException {
+        int newValue = event.getNewValue();
+        TablePosition<Account, Integer> position = event.getTablePosition();
+        System.out.println(newValue);
+        int accountNum = accountsDis.getItems().get(position.getRow()).getAccountNum();
+        Account account = accountManager.getAccount(accountNum);
+        account.setAccountID(newValue);
+        accountManager.setAccounts(accountNum, account);
+    }
+
+    @FXML
+    public void editType(TableColumn.CellEditEvent<Account, String> event) throws Exception {
+        event.getNewValue();
+    }
+
 
 
     @FXML
     public void doneEdit(ActionEvent event) throws Exception {
         accountsDis.setEditable(false);
         done.setDisable(true);
+
     }
 
 

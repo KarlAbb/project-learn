@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -29,9 +30,6 @@ public class AccountViewController {
     //Goes back to account screen
     @FXML
     private Button back;
-    //allows user to edit a selected account
-    @FXML
-    private Button edit;
     //allows user to create a new account
     @FXML
     private Button newAccount;
@@ -72,6 +70,7 @@ public class AccountViewController {
         accountBalance.setCellValueFactory(new PropertyValueFactory<Account, String>("balance"));
         accountNums.setCellValueFactory(new PropertyValueFactory<Account, String>("accountNum"));
         name.setCellValueFactory(new PropertyValueFactory<Account, String>("name"));
+        name.setCellFactory(TextFieldTableCell.forTableColumn());
         email.setCellValueFactory(new PropertyValueFactory<Account, String>("email"));
         id.setCellValueFactory(new PropertyValueFactory<Account, String>("accountID"));
         type.setCellValueFactory(new PropertyValueFactory<Account, String>("accountType"));
@@ -79,6 +78,7 @@ public class AccountViewController {
             accounts.getItems().addAll(accountLists.get(i));
 
         }
+
     }
 
     //Account deletion method
@@ -97,15 +97,35 @@ public class AccountViewController {
 
     //Edit account
     @FXML
-    public void editAccount(ActionEvent event) throws Exception {
+    public void editAccount(TableColumn.CellEditEvent cellEditEvent) {
+
+        accounts.setEditable(true);
+        Account account = accounts.getSelectionModel().getSelectedItem();
+        account.setName(cellEditEvent.getNewValue().toString());
+    }
+
+    /*
+    ActionEvent event) throws Exception {
+        accounts.getSelectionModel().getSelectedIndex();
+        accounts.getItems().get(accounts.getSelectionModel().getSelectedIndex());
         accounts.setEditable(true);
         accounts.getSelectionModel().cellSelectionEnabledProperty().set(true);
         done.setDisable(false);
-    }
+     */
 
 
     @FXML
+    public void edits(TableColumn.CellEditEvent cellEditEvent) {
+        accounts.setEditable(true);
+        name.setCellFactory(TextFieldTableCell.forTableColumn());
+        Account account = accounts.getSelectionModel().getSelectedItem();
+        account.setName(cellEditEvent.getNewValue().toString());
+    }
+
+    @FXML
     public void doneEdit(ActionEvent event) throws Exception {
+        accounts.getSelectionModel().getSelectedIndex();
+        accounts.getItems().get(accounts.getSelectionModel().getSelectedIndex());
         accounts.setEditable(false);
         done.setDisable(true);
     }
