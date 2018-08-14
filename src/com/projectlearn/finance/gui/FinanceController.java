@@ -147,33 +147,6 @@ public class FinanceController {
     }
 
 
-
-
-    public void viewAccounts (ActionEvent event) throws Exception{
-
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/finance/gui/accountsView.fxml"));
-
-            Parent roots = fxmlLoader.load();
-            AccountViewController accountViewController = fxmlLoader.<AccountViewController>getController();
-
-            Scene scene = new Scene(roots);
-
-            Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/gui/finance.css").toExternalForm());
-
-            root.setScene(scene);
-            root.centerOnScreen();
-            root.setResizable(false);
-            root.show();
-        }
-
-        catch (Exception e) {
-
-        }
-    }
-
     //Allows for an updated accountManager instance to be passed in
     public void setAccountManager(AccountManager accountManager) {
         this.accountManager = accountManager;

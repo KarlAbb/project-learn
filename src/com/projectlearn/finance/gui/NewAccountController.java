@@ -90,6 +90,7 @@ public class NewAccountController {
                     financeAdminController.accountInfo();
                     financeAdminController.setAccounts();
 
+
                     Scene scene = new Scene(roots);
 
                     Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();

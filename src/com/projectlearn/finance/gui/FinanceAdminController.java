@@ -22,6 +22,7 @@ import javafx.util.converter.DefaultStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import javafx.util.converter.NumberStringConverter;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
@@ -39,13 +40,8 @@ public class FinanceAdminController {
     private ArrayList<Account> accountLists;
 
     Alert warnings = new Alert(Alert.AlertType.CONFIRMATION);
+    Alert errors = new Alert(Alert.AlertType.ERROR);
 
-    //Goes back to account screen
-    @FXML
-    private Button back;
-    //allows user to edit a selected account
-    @FXML
-    private Button edit;
     //allows user to create a new account
     @FXML
     private Button newAccount;
@@ -125,9 +121,9 @@ public class FinanceAdminController {
     //This button returns to the login scene
     @FXML
     private Button logOut;
-    //Changes to scene that shows all accounts
+
     @FXML
-    private Button accounts;
+    private Button logOutView;
 
     //This textfield contains the amount that should be deposited into an account
     @FXML
@@ -149,6 +145,11 @@ public class FinanceAdminController {
         account.setText("Welcome " + currentAccount.getName() + "!");
         balance.setText("Your balance is: " + currentAccount.getBalance());
         enabledPerms(currentAccount.getPerms());
+
+        DialogPane dialogPane = errors.getDialogPane();
+        dialogPane.getStylesheets().add(
+                getClass().getResource("finance.css").toExternalForm());
+        dialogPane.getStyleClass().add("errors");
     }
 
 
@@ -175,8 +176,13 @@ public class FinanceAdminController {
             System.out.println(accountNum);
             int withdrawValue = Integer.parseInt(withdrawAmount.getText());
             System.out.println(withdrawAmount);
-            currentAccount.withdraw(withdrawValue);
-            balance.setText("Your balance is: " + currentAccount.getBalance());
+            if(currentAccount.getBalance() > withdrawValue) {
+                currentAccount.withdraw(withdrawValue);
+                balance.setText("Your balance is: " + currentAccount.getBalance());
+            }
+            else {
+                displayError("You do not have enough funds!");
+            }
         }
 
         else {
@@ -207,7 +213,7 @@ public class FinanceAdminController {
     }
 
     public void noPermission() {
-        warning.setText("You don't have permission to do this! Please contact an administrator if you believe that this is a mistake!");
+        displayError("You don't have permission to do this! Please contact an administrator if you believe that this is a mistake!");
     }
 
     public void currentAccount (Account currentAccount) {
@@ -223,33 +229,6 @@ public class FinanceAdminController {
         if(!perms.contains(Permissions.CAN_WITHDRAW)) {
             withdraw.setDisable(true);
         }
-    }
-
-    public void viewAccounts(ActionEvent event) throws Exception {
-
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/finance/gui/accountsView.fxml"));
-
-            Parent roots = fxmlLoader.load();
-            AccountViewController accountViewController = fxmlLoader.<AccountViewController>getController();
-            accountViewController.setAccountManager(accountManager);
-            accountViewController.setCurrentAccount(currentAccount);
-            accountViewController.setAccounts();
-
-            Scene scene = new Scene(roots);
-
-            Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            root.setScene(scene);
-            root.centerOnScreen();
-            root.setResizable(false);
-            root.show();
-        }
-
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
     }
 
 
@@ -281,8 +260,7 @@ public class FinanceAdminController {
     @FXML
     public void delete(ActionEvent event) throws Exception {
         if(!(accountsDis.getSelectionModel().getSelectedItem() == null)) {
-            warnings.setTitle("Warning");
-            warnings.setContentText("Are you sure you want to delete this account?");
+            displayWarning("Warning", "Are you sure you want to delete this account?");
             Optional<ButtonType> result = warnings.showAndWait();
             if (result.get() == ButtonType.OK) {
                 accountManager.getList().remove(accountsDis.getSelectionModel().getSelectedItem().getAccountNum());
@@ -374,39 +352,6 @@ public class FinanceAdminController {
     }
 
 
-
-    //Goes back to account screen
-    @FXML
-    public void back(ActionEvent event) throws Exception{
-
-        try {
-            //loads financeAdmin.fxml
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/finance/gui/financeAdmin.fxml"));
-
-            Parent roots = fxmlLoader.load();
-            FinanceAdminController financeAdminController = fxmlLoader.<FinanceAdminController>getController();
-            financeAdminController.setAccountManager(accountManager);
-            financeAdminController.currentAccount(currentAccount);
-            financeAdminController.accountInfo();
-
-
-            Scene scene = new Scene(roots);
-
-            Stage root = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            scene.getStylesheets().add(getClass().getResource("/com/projectlearn/finance/gui/finance.css").toExternalForm());
-
-            root.setScene(scene);
-            root.setResizable(false);
-            root.show();
-
-        }
-
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     //Allows for an updated accountManager instance to be passed in
     public void setAccountManager(AccountManager accountManager) {
         this.accountManager = accountManager;
@@ -419,6 +364,20 @@ public class FinanceAdminController {
 
     public TabPane getPane () {
         return control;
+    }
+
+    //displays a custom error pop up
+    public void displayError (String warning) {
+        errors.setTitle("Warning");
+        errors.setContentText(warning);
+        Optional<ButtonType> result = errors.showAndWait();
+    }
+
+    //displays a custom warning pop up
+    public void displayWarning (String title, String warning) {
+        warnings.setTitle(title);
+        warnings.setContentText(warning);
+        Optional<ButtonType> result = warnings.showAndWait();
     }
 
 
