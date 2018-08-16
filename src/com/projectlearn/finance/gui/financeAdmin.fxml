@@ -15,19 +15,19 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="800.0" stylesheets="@finance.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectlearn.finance.gui.FinanceAdminController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@finance.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectlearn.finance.gui.FinanceAdminController">
   <tabs>
     <Tab text="Home">
          <content>
             <AnchorPane fx:id="finance" prefHeight="600.0" prefWidth="800.0">
                <children>
-                  <HBox layoutY="562.0" prefHeight="26.0" prefWidth="800.0" spacing="10.0">
+                  <HBox layoutX="14.0" layoutY="727.0" prefHeight="30.0" prefWidth="1170.0" spacing="10.0">
                      <children>
                         <Button fx:id="withdraw" mnemonicParsing="false" onAction="#withdraw" style="-fx-background-color: #5dca1e; -fx-text-fill: #FFFFFF;" text="Withdraw" />
                         <TextField fx:id="withdrawAmount" prefHeight="25.0" prefWidth="71.0" promptText="amount" styleClass="text-display" stylesheets="@finance.css" />
                         <Button fx:id="deposit" mnemonicParsing="false" onAction="#deposit" prefHeight="26.0" prefWidth="71.0" style="-fx-background-color: #5dca1e; -fx-text-fill: #FFFFFF;" text="Deposit" />
                         <TextField fx:id="amount" prefHeight="26.0" prefWidth="71.0" promptText="amount" styleClass="text-display" stylesheets="@finance.css" />
-                        <HBox prefHeight="28.0" prefWidth="360.0" spacing="10.0">
+                        <HBox prefHeight="30.0" prefWidth="750.0" spacing="10.0">
                            <children>
                               <Label fx:id="account" prefHeight="26.0" prefWidth="126.0" styleClass="footer-info" stylesheets="@finance.css" />
                               <Label fx:id="balance" prefHeight="25.0" prefWidth="150.0" styleClass="footer-info" stylesheets="@finance.css" />

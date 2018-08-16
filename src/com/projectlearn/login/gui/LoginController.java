@@ -31,41 +31,41 @@ public class LoginController{
 
     //logo
     @FXML
-    private ImageView logoImage;
+    public ImageView logoImage;
 
     //Account number prompt label
     @FXML
-    private Label accountLabel;
+    public Label accountLabel;
 
     //Account number textfield
     @FXML
-    private TextField numTextField;
+    public TextField numTextField;
 
     //Account password prompt label
     @FXML
-    private Label passwordLabel;
+    public Label passwordLabel;
 
     //Account password textfield
     @FXML
-    private PasswordField passwordField;
+    public PasswordField passwordField;
 
     //Cancels and exits the application
     @FXML
-    private Button cancelBtn;
+    public Button cancelBtn;
 
     //Checks login info and changes to account scene
     @FXML
-    private Button loginBtn;
+    public Button loginBtn;
 
     //Changes to new account scene
     @FXML
-    private Button newAccountBtn;
+    public Button newAccountBtn;
 
     @FXML
-    private Button bored;
+    public Button bored;
 
     @FXML
-    private Text loginText;
+    public Text loginText;
 
     Account currentAccount;
 

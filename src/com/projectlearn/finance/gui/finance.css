@@ -122,5 +122,9 @@
 
 }
 
+.tab-header-background {
+-fx-text-fill: #000000;
+}
+
 
 

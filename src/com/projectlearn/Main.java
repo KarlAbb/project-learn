@@ -87,7 +87,7 @@ public class Main extends Application {
 
         scene.getStylesheets().add(getClass().getResource("/com/projectlearn/login/gui/login.css").toExternalForm());
 
-        primaryStage.getIcons().add(new Image("/com/projectlearn/resources/ProjectLearn_Logo.png"));
+        primaryStage.getIcons().add(new Image("src/com/projectlearn/resources/ProjectLearn_Logo.png"));
 
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
