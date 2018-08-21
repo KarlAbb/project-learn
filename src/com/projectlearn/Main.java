@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -87,7 +88,10 @@ public class Main extends Application {
 
         scene.getStylesheets().add(getClass().getResource("/com/projectlearn/login/gui/login.css").toExternalForm());
 
-        primaryStage.getIcons().add(new Image("src/com/projectlearn/resources/ProjectLearn_Logo.png"));
+        Image imageThing = new Image("file:src/com/projectlearn/resources/ProjectLearn_Logo.png");
+
+        //Image images = new Image(getClass().getResource("src/com/projectlearn/resources/ProjectLearn_Logo.png"));
+        primaryStage.getIcons().add(imageThing);
 
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
