@@ -29,9 +29,12 @@ public class LoginController{
     private AccountManager accountManager;
     Music music = new Music();
 
-    //logo
+    //logos
     @FXML
     public ImageView logoImage;
+
+    @FXML
+    public ImageView homeLogo;
 
     //Account number prompt label
     @FXML
@@ -123,6 +126,7 @@ public class LoginController{
 
                     if (currentAccount.getPerms().equals(accountManager.admin)) {
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projectlearn/finance/gui/financeAdmin.fxml"));
+
 
                         Parent roots = fxmlLoader.load();
                         FinanceAdminController financeAdminController = fxmlLoader.<FinanceAdminController>getController();
@@ -216,6 +220,7 @@ public class LoginController{
             e.printStackTrace();
         }
     }
+
 
 }
 

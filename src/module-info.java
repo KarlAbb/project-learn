@@ -1,4 +1,4 @@
-module com.projectlearn {
+open module com.projectlearn {
     requires javafx.base;
     requires javafx.graphics;
     requires javafx.controls;

@@ -73,21 +73,21 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <BorderPane prefHeight="600.0" prefWidth="800.0">
+                  <BorderPane prefHeight="700.0" prefWidth="1200.0" stylesheets="@finance.css">
                      <center>
-                        <TableView fx:id="accountsDis" prefHeight="400.0" prefWidth="743.0" BorderPane.alignment="CENTER">
+                        <TableView fx:id="accountsDis" prefHeight="668.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
                            <columns>
                               <TableColumn fx:id="accountNums" prefWidth="120.0" text="Account Number" />
-                              <TableColumn fx:id="accountBalance" prefWidth="75.0" text="Balance" />
-                              <TableColumn fx:id="name" onEditCommit="#editName" prefWidth="124.0" text="Name" />
-                              <TableColumn fx:id="email" onEditCommit="#editEmail" prefWidth="235.0" text="Email" />
-                              <TableColumn fx:id="id" minWidth="0.0" onEditCommit="#editID" prefWidth="71.0" text="ID" />
-                              <TableColumn fx:id="type" onEditCommit="#editType" prefWidth="114.0" text="Type" />
+                              <TableColumn fx:id="accountBalance" prefWidth="134.0" text="Balance" />
+                              <TableColumn fx:id="name" minWidth="20.0" onEditCommit="#editName" prefWidth="244.0" text="Name" />
+                              <TableColumn fx:id="email" onEditCommit="#editEmail" prefWidth="443.0" text="Email" />
+                              <TableColumn fx:id="id" minWidth="0.0" onEditCommit="#editID" prefWidth="75.0" text="ID" />
+                              <TableColumn fx:id="type" onEditCommit="#editType" prefWidth="178.0" text="Type" />
                            </columns>
                         </TableView>
                      </center>
                      <bottom>
-                        <HBox prefHeight="32.0" prefWidth="692.0" spacing="20.0" BorderPane.alignment="CENTER">
+                        <HBox prefHeight="32.0" prefWidth="1200.0" spacing="20.0" BorderPane.alignment="CENTER">
                            <children>
                               <Button fx:id="newAccount" mnemonicParsing="false" onAction="#newAccount" text="New" />
                               <Button fx:id="delete" mnemonicParsing="false" onAction="#delete" text="Delete" />
