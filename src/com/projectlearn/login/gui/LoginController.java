@@ -112,12 +112,18 @@ public class LoginController{
 
         try {
             System.out.println(accountManager.getList().size());
-            currentAccount = accountManager.getAccount(Integer.parseInt(numTextField.getText()));
+            if(accountManager.getList().containsKey(Integer.parseInt(numTextField.getText()))) {
+                currentAccount = accountManager.getAccount(Integer.parseInt(numTextField.getText()));
+            }
+            else {
+                incorrectLoginTry();
+            }
             String accountPassword = currentAccount.getAccountPassword();
             String inputPassword  = passwordField.getText();
             System.out.println(accountPassword);
             System.out.println(inputPassword);
             System.out.println(accountManager.getList().size());
+
 
             if(!(numTextField.equals(null) && passwordField.equals(null))) {
 
@@ -174,8 +180,7 @@ public class LoginController{
 
                 //login incorrect actions
                 else {
-                    loginText.setFill(Color.RED);
-                    loginText.setText("Incorrect email or password");
+                    incorrectLoginTry();
                 }
             }
 
@@ -219,6 +224,11 @@ public class LoginController{
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void incorrectLoginTry() {
+        loginText.setFill(Color.RED);
+        loginText.setText("Incorrect email or password");
     }
 
 
