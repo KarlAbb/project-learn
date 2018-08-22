@@ -87,7 +87,7 @@ public class NewAccountController {
                     financeAdminController.setAccountManager(accountManager);
                     financeAdminController.setAccountManager(accountManager);
                     financeAdminController.setCurrentAccount(currentAccount);
-                    financeAdminController.accountInfo();
+                    //financeAdminController.accountInfo();
                     financeAdminController.setAccounts();
 
 

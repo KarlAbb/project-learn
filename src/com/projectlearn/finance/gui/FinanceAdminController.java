@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,7 +29,7 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 
-public class FinanceAdminController {
+public class FinanceAdminController implements Initializable {
 
     private AccountManager accountManager;
 
@@ -133,6 +134,10 @@ public class FinanceAdminController {
     private TextField withdrawAmount;
 
     private int accountNum;
+
+    public void initialize(java.net.URL location, java.util.ResourceBundle resources) {
+
+    }
 
     //Displays all of the account information
     @FXML

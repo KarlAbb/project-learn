@@ -22,6 +22,7 @@
                   <Image url="@../../resources/Home_Logo.JPG" />
                </image>
             </ImageView>
+            <Text layoutX="192.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PLACE HOLDER TEXT" wrappingWidth="215.3684844970703" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
          </children></AnchorPane>
       <AnchorPane layoutX="600.0" prefHeight="800.0" prefWidth="600.0">
          <children>

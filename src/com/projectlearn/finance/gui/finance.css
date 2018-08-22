@@ -119,6 +119,7 @@
 
 .table-cell {
 -fx-text-fill: #FFFFFF;
+-fx-border-width: 0px;
 
 }
 
