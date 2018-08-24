@@ -113,11 +113,10 @@ public class LoginController{
         try {
             System.out.println(accountManager.getList().size());
             if(accountManager.getList().containsKey(Integer.parseInt(numTextField.getText()))) {
-                currentAccount = accountManager.getAccount(Integer.parseInt(numTextField.getText()));
-            }
-            else {
-                incorrectLoginTry();
-            }
+                System.out.println("This account exists");
+
+            currentAccount = accountManager.getAccount(Integer.parseInt(numTextField.getText()));
+
             String accountPassword = currentAccount.getAccountPassword();
             String inputPassword  = passwordField.getText();
             System.out.println(accountPassword);
@@ -184,6 +183,12 @@ public class LoginController{
                 }
             }
 
+            }
+            else {
+                System.out.println("This account does not exist");
+                incorrectLoginTry();
+            }
+
         }
         //catches exceptions i.e letters instead of numbers for the account number entered
         catch(Exception e) {
@@ -197,6 +202,7 @@ public class LoginController{
         }
 
         finally {
+
         }
 
     }
