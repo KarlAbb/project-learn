@@ -22,7 +22,7 @@
                   <Image url="@../../resources/Home_Logo.JPG" />
                </image>
             </ImageView>
-            <Text layoutX="192.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PLACE HOLDER TEXT" wrappingWidth="215.3684844970703" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+            <Text layoutX="192.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #FFFFFF; -fx-font-size: 20; -fx-font-weight: bold;" text="Learn. Teach. Repeat" wrappingWidth="215.3684844970703" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
          </children></AnchorPane>
       <AnchorPane layoutX="600.0" prefHeight="800.0" prefWidth="600.0">
          <children>
@@ -38,7 +38,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="numTextField" prefHeight="33.0" prefWidth="311.0" promptText="Enter your email">
+                  <TextField fx:id="numTextField" prefHeight="33.0" prefWidth="311.0" promptText="Enter your account number">
                      <font>
                         <Font size="18.0" />
                      </font>
