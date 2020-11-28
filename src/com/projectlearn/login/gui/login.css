@@ -1,0 +1,17 @@
+.root {
+-fx-background-color: #08119d;
+}
+
+.login-text {
+-fx-text-fill: #FFFFFF
+}
+
+.login-button {
+-fx-text-fill: #FFFFFF;
+-fx-background-color: #5dca1e;
+}
+
+.extra-buttons {
+-fx-text-fill: #FFFFFF;
+-fx-background-color: #d76666;
+}
